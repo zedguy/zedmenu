@@ -30,6 +30,7 @@ namespace zedmenu.Menu
             {
                 bool toOpen = (!rightHanded && ControllerInputPoller.instance.leftControllerSecondaryButton) || (rightHanded && ControllerInputPoller.instance.rightControllerSecondaryButton);
                 bool keyboardOpen = UnityInput.Current.GetKey(keyboardButton);
+                
 
                 if (menu == null)
                 {
@@ -69,6 +70,11 @@ namespace zedmenu.Menu
             {
                 // Pre-Execution
                 fpsObject.text = "";
+                if (Time.time > menucool + 5f)
+                {
+                    menucool = Time.time;
+                    menuswitch = UnityEngine.Random.Range(0,menutitles.Length);
+                }
 
                 // Execute Enabled mods
                 foreach (ButtonInfo[] buttonlist in buttons)
@@ -346,7 +352,7 @@ namespace zedmenu.Menu
                     }
                 }.AddComponent<Text>();
                 text.font = currentFont;
-                text.text = PluginInfo.Name + " <color=grey>[</color>" + (pageNumber + 1).ToString() + "<color=grey>]</color>";
+                text.text = menutitles[menuswitch] + " <color=grey>[</color>" + (pageNumber + 1).ToString() + "<color=grey>]</color>";
                 text.fontSize = 1;
                 text.color = new Color32(190, 255, 190, 255);
                 text.supportRichText = true;
@@ -794,7 +800,7 @@ namespace zedmenu.Menu
 
         // Data
         public static int pageNumber = 0;
-            public static int buttonsType = 0;
+            public static int buttonsType = 0; public static float menucool;
 
         // the variable warehouse
         public static ControllerInputPoller Inputs = ControllerInputPoller.instance;
@@ -928,6 +934,7 @@ namespace zedmenu.Menu
             "zedpad",
             "zed menu thingy",
         };
+        public static int menuswitch = 0;
         public static string[] fullProjectileNames = new string[]
         {
             "Snowball",
