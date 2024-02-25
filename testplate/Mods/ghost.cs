@@ -143,13 +143,6 @@ namespace zedmenu.Mods
             whoCopy = null;
             isCopying = false;
             GorillaTagger.Instance.offlineVRRig.enabled = true;
-            GorillaTagger.Instance.offlineVRRig.headConstraint.rotation = Quaternion.identity;
-            GorillaTagger.Instance.offlineVRRig.head.trackingPositionOffset = Vector3.zero;
-            GorillaTagger.Instance.offlineVRRig.head.trackingRotationOffset = Vector3.zero;
-            GorillaTagger.Instance.offlineVRRig.leftHand.trackingPositionOffset = Vector3.zero;
-            GorillaTagger.Instance.offlineVRRig.leftHand.trackingRotationOffset = Vector3.zero;
-            GorillaTagger.Instance.offlineVRRig.rightHand.trackingPositionOffset = Vector3.zero;
-            GorillaTagger.Instance.offlineVRRig.rightHand.trackingRotationOffset = Vector3.zero;
         }
 
         public static void OrbitGun()
