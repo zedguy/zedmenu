@@ -99,7 +99,7 @@ namespace zedmenu.Menu
 
             new ButtonInfo[] { // Hitsounds Settings
                 new ButtonInfo { buttonText = "Return to Main", method =() => Global.ReturnHome(), isTogglable = false, toolTip = "Returns to the main page of the menu."},
-                new ButtonInfo { buttonText = "Spaz name and rig", method =() => Rig.CREEPY(), toolTip = "really weird.", disableMethod =() => Rig.disablecopy()},
+                new ButtonInfo { buttonText = "Spaz name", method =() => Rig.CREEPY(), toolTip = "really weird.", disableMethod =() => Rig.disablecopy()},
             },
         };
     }
