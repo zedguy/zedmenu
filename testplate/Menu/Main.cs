@@ -385,27 +385,28 @@ namespace zedmenu.Menu
                     component2.position = new Vector3(0.06f, 0f, 0.135f);
                     component2.rotation = Quaternion.Euler(new Vector3(180f, 90f, 90f));
             }
-            lastobj = new GameObject
+            Text text2 = new GameObject
             {
                 transform =
                     {
                         parent = canvasObject.transform
                     }
             }.AddComponent<Text>();
-            lastobj.font = currentFont;
-            lastobj.text = lastCommand;
-            lastobj.fontSize = 1;
-            lastobj.color = textColors[0];
-            lastobj.supportRichText = true;
-            lastobj.fontStyle = FontStyle.Normal;
-            lastobj.alignment = TextAnchor.MiddleCenter;
-            lastobj.resizeTextForBestFit = true;
-            lastobj.resizeTextMinSize = 0;
-            RectTransform ocm2p = text.GetComponent<RectTransform>();
-            ocm2p.localPosition = new Vector3(0,-0.9f,0);
-            ocm2p.sizeDelta = new Vector2(0.28f, 0.05f);
-            ocm2p.position = new Vector3(0.06f, 0f, 0.165f);
-            ocm2p.rotation = Quaternion.Euler(new Vector3(180f, 90f, 90f));
+            text2.font = currentFont;
+            text2.text = "hi ";
+            text2.color = textColors[0];
+            text2.fontSize = 1;
+            text2.supportRichText = true;
+            text2.fontStyle = FontStyle.Normal;
+            text2.alignment = TextAnchor.MiddleCenter;
+            text2.horizontalOverflow = UnityEngine.HorizontalWrapMode.Overflow;
+            text2.resizeTextForBestFit = true;
+            text2.resizeTextMinSize = 0;
+            RectTransform component3 = fpsObject.GetComponent<RectTransform>();
+            component3.localPosition = Vector3.zero;
+            component3.sizeDelta = new Vector2(0.28f, 0.02f);
+            component3.position = new Vector3(0.06f, 0f, -0.165f);
+            component3.rotation = Quaternion.Euler(new Vector3(180f, 90f, 90f));
 
             // Buttons
             // Disconnect
