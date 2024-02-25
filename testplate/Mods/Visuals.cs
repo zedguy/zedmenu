@@ -31,5 +31,25 @@ namespace zedmenu.Mods
                 }
             }
         }
+        public static void Beacons()
+        {
+            if (PhotonNetwork.InRoom)
+            {
+                foreach (VRRig p in GorillaParent.instance.vrrigs)
+                {
+                    if (p && p != null && p != GorillaTagger.Instance.offlineVRRig)
+                    {
+                        GameObject trace = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                        UnityEngine.Object.Destroy(trace.GetComponent<Rigidbody>());
+                        UnityEngine.Object.Destroy(trace.GetComponent<BoxCollider>());
+                        trace.GetComponent<Renderer>().material.shader = Shader.Find("GUI/Text Shader");
+                        trace.GetComponent<Renderer>().material.color = p.playerColor;
+                        trace.transform.localScale = new Vector3(0.05f,1000f,0.05f);
+                        trace.transform.position = p.transform.position;
+                        UnityEngine.Object.Destroy(trace, Time.deltaTime);
+                    }
+                }
+            }
+        }
     }
 }

@@ -59,6 +59,7 @@ namespace zedmenu.Menu
                 new ButtonInfo { buttonText = "Draw "+gtxt, method =() => Locomotion.draw(), toolTip = "Draw with spheres."},
                 new ButtonInfo { buttonText = "Finger Guns "+gtxt, method =() => Locomotion.shoot(), toolTip = "Shoots pellets."},
                 new ButtonInfo { buttonText = "Tracers", method =() => Visuals.Tracers(), toolTip = "Traces other players."},
+                new ButtonInfo { buttonText = "Beacons", method =() => Visuals.Beacons(), toolTip = "Beacons on other players."},
                 new ButtonInfo { buttonText = "Rapid Slingshot "+atxt, method =() => Global.RapidFireSlingshot(), toolTip = "Rapidly fires slingshot."},
                 new ButtonInfo { buttonText = "Destroy Gun", method =() => Global.DestroyGun(), toolTip = "Makes invis to future players."},
                 new ButtonInfo { buttonText = "Copy ID Gun", method =() => Global.CopyIDGun(), toolTip = "Copies IDs."},
