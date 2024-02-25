@@ -42,8 +42,8 @@ namespace zedmenu.Mods
             }
             if (ghostMonke)
             {
-                var a = UnityEngine.Random.Range(1, 3);
-                var b = UnityEngine.Random.Range(1, 3);
+                var a = UnityEngine.Random.Range(1, 100);
+                var b = UnityEngine.Random.Range(-100, 100);
                 Physics.Raycast(GorillaTagger.Instance.offlineVRRig.transform.position + (GorillaTagger.Instance.offlineVRRig.transform.right / a) + (GorillaTagger.Instance.offlineVRRig.transform.forward / b), Vector3.down, out var Ray);
                 Physics.Raycast(GorillaTagger.Instance.offlineVRRig.transform.position - (GorillaTagger.Instance.offlineVRRig.transform.right / a) + (GorillaTagger.Instance.offlineVRRig.transform.forward / b), Vector3.down, out var Ray2);
                 GorillaTagger.Instance.offlineVRRig.transform.rotation = GorillaTagger.Instance.bodyCollider.transform.rotation;
@@ -96,7 +96,7 @@ namespace zedmenu.Mods
                 {
                     ghostMonke = true;
                     GorillaTagger.Instance.offlineVRRig.enabled = false;
-                    GorillaTagger.Instance.offlineVRRig.transform.position = GorillaLocomotion.Player.Instance.transform.position;
+                    GorillaTagger.Instance.offlineVRRig.transform.position = GorillaLocomotion.Player.Instance.headCollider.transform.position;
                     GorillaTagger.Instance.offlineVRRig.transform.rotation = GorillaLocomotion.Player.Instance.headCollider.transform.rotation;
 
                 }
