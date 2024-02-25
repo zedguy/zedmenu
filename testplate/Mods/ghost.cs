@@ -42,11 +42,12 @@ namespace zedmenu.Mods
             }
             if (ghostMonke)
             {
-                var a = UnityEngine.Random.Range(1, 5);
-                Physics.Raycast(GorillaTagger.Instance.offlineVRRig.transform.position + (GorillaTagger.Instance.offlineVRRig.transform.right / a), Vector3.down, out var Ray);
-                Physics.Raycast(GorillaTagger.Instance.offlineVRRig.transform.position - (GorillaTagger.Instance.offlineVRRig.transform.right / a), Vector3.down, out var Ray2);
+                var a = UnityEngine.Random.Range(1, 3);
+                var b = UnityEngine.Random.Range(1, 3);
+                Physics.Raycast(GorillaTagger.Instance.offlineVRRig.transform.position + (GorillaTagger.Instance.offlineVRRig.transform.right / a) + (GorillaTagger.Instance.offlineVRRig.transform.forward / b), Vector3.down, out var Ray);
+                Physics.Raycast(GorillaTagger.Instance.offlineVRRig.transform.position - (GorillaTagger.Instance.offlineVRRig.transform.right / a) + (GorillaTagger.Instance.offlineVRRig.transform.forward / b), Vector3.down, out var Ray2);
                 GorillaTagger.Instance.offlineVRRig.transform.rotation = GorillaTagger.Instance.bodyCollider.transform.rotation;
-                GorillaTagger.Instance.offlineVRRig.transform.position = GorillaTagger.Instance.bodyCollider.transform.position;
+                GorillaTagger.Instance.offlineVRRig.transform.position = GorillaTagger.Instance.headCollider.transform.position;
                 GorillaTagger.Instance.offlineVRRig.head.rigTarget.transform.rotation = GorillaTagger.Instance.headCollider.transform.rotation;
                 GorillaTagger.Instance.offlineVRRig.leftHand.rigTarget.transform.position = Ray2.point;
                 GorillaTagger.Instance.offlineVRRig.rightHand.rigTarget.transform.position = Ray.point;
