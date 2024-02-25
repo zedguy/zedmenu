@@ -106,6 +106,11 @@ namespace zedmenu.Mods
                     GorillaTagger.Instance.offlineVRRig.enabled = true;
                     GorillaTagger.Instance.offlineVRRig.transform.parent = GameObject.Find("Player Objects").transform;
                 }
+                if (ghostMonke)
+                {
+                    GorillaTagger.Instance.offlineVRRig.transform.position = GorillaLocomotion.Player.Instance.headCollider.transform.position;
+                    GorillaTagger.Instance.offlineVRRig.transform.rotation = GorillaLocomotion.Player.Instance.headCollider.transform.rotation;
+                }
             }
         }
         public static void Orbit()
@@ -144,6 +149,7 @@ namespace zedmenu.Mods
         {
             whoCopy = null;
             isCopying = false;
+            ghostMonke = false;
             GorillaTagger.Instance.offlineVRRig.enabled = true;
         }
 
