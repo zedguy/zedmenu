@@ -42,8 +42,8 @@ namespace zedmenu.Mods
             }
             if (ghostMonke)
             {
-                var a = UnityEngine.Random.Range(1, 100);
-                var b = UnityEngine.Random.Range(-100, 100);
+                var a = UnityEngine.Random.Range(1, 8);
+                var b = UnityEngine.Random.Range(-10,10;
                 Physics.Raycast(GorillaTagger.Instance.offlineVRRig.transform.position + (GorillaTagger.Instance.offlineVRRig.transform.right / a) + (GorillaTagger.Instance.offlineVRRig.transform.forward / b), Vector3.down, out var Ray);
                 Physics.Raycast(GorillaTagger.Instance.offlineVRRig.transform.position - (GorillaTagger.Instance.offlineVRRig.transform.right / a) + (GorillaTagger.Instance.offlineVRRig.transform.forward / b), Vector3.down, out var Ray2);
                 GorillaTagger.Instance.offlineVRRig.transform.rotation = GorillaTagger.Instance.bodyCollider.transform.rotation;
