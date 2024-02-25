@@ -55,7 +55,6 @@ namespace zedmenu.Mods
                     GorillaTagger.Instance.offlineVRRig.SetThrowableProjectileColor(true, color);
                     GameObject.Find("Player Objects/Player VR Controller/GorillaPlayer/EquipmentInteractor").GetComponent<EquipmentInteractor>().ReleaseLeftHand();
                     //fart.OnRelease(null, null);
-                    RPCProtection();
                     GorillaTagger.Instance.GetComponent<Rigidbody>().velocity = oldVel;
                     fart.transform.position = oldPos;
                     fart.randomizeColor = false;
@@ -64,6 +63,11 @@ namespace zedmenu.Mods
                 catch { /*NotifiLib.SendNotification("<color=grey>[</color><color=red>ERROR</color><color=grey>]</color> <color=white>Grab a snowball in your left hand and put it in the snow.</color>");*/ }
                 if (projDebounceType > 0f && !noDelay)
                 {
+                    projDebounce = Time.time + projDebounceType;
+                }
+                if (projDebounceType > 0f)
+                {
+                    RPCProtection();
                     projDebounce = Time.time + projDebounceType;
                 }
             }
@@ -181,18 +185,41 @@ namespace zedmenu.Mods
         {
             if (rightGrab)
             {
-                SysFireProjectile("Snowball", "none", GorillaTagger.Instance.rightHandTransform.position, GorillaTagger.Instance.rightHandTransform.forward * 10, Color.white.r, Color.white.g, Color.white.b, false, false);
+                SysFireProjectile("Snowball", "none", GorillaTagger.Instance.rightHandTransform.position, GorillaTagger.Instance.rightHandTransform.forward * 10, Color.white.r, Color.white.g, Color.white.b, false, false, GetIndex("No Spam Delay").enabled);
+            }
+        }
+        public static void bspam()
+        {
+            if (rightGrab)
+            {
+                SysFireProjectile("WaterBalloon", "none", GorillaTagger.Instance.rightHandTransform.position, GorillaTagger.Instance.rightHandTransform.forward * 10, Color.white.r, Color.white.g, Color.white.b, false, false, GetIndex("No Spam Delay").enabled);
+            }
+        }
+        public static void pspam()
+        {
+            if (rightGrab)
+            {
+                SysFireProjectile("ThrowableGift", "none", GorillaTagger.Instance.rightHandTransform.position, GorillaTagger.Instance.rightHandTransform.forward * 10, Color.white.r, Color.white.g, Color.white.b, false, false, GetIndex("No Spam Delay").enabled);
+            }
+        }
+        public static void mspam()
+        {
+            if (rightGrab)
+            {
+                SysFireProjectile("ScienceCandy", "none", GorillaTagger.Instance.rightHandTransform.position, GorillaTagger.Instance.rightHandTransform.forward * 10, Color.white.r, Color.white.g, Color.white.b, false, false, GetIndex("No Spam Delay").enabled);
             }
         }
         public static void imspam()
         {
             if (rightGrab)
             {
-                BetaFireImpact(GorillaTagger.Instance.rightHandTransform.position, Color.white.r, Color.white.g, Color.white.b,true);
+                Color c = Color.HSVToRGB(UnityEngine.Random.Range(0,360),1,1);
+                BetaFireImpact(GorillaTagger.Instance.rightHandTransform.position, c.r, c.g, c.b, GetIndex("No Spam Delay").enabled);
             }
             if (leftGrab)
             {
-                BetaFireImpact(GorillaTagger.Instance.leftHandTransform.position, Color.white.r, Color.white.g, Color.white.b,true);
+                Color c = Color.HSVToRGB(UnityEngine.Random.Range(0, 360) * 360 % 360, 1, 1);
+                BetaFireImpact(GorillaTagger.Instance.leftHandTransform.position, c.r, c.g, c.b, GetIndex("No Spam Delay").enabled);
             }
         }
     }
