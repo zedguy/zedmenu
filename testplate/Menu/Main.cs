@@ -958,7 +958,7 @@ namespace zedmenu.Menu
         };
 
         public static int themeType = 1;
-        public static Color bgColorA = new Color32(180, 255, 200, 255);
+        public static Color bgColorA = new Color32(120, 255, 140, 255);
         public static Color bgColorB = new Color32(255, 102, 0, 128);
 
         public static Color buttonDefaultA = new Color32(170, 85, 0, 255);

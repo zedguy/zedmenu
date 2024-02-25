@@ -15,17 +15,16 @@ namespace zedmenu.Mods
             {
                 foreach (VRRig p in GorillaParent.instance.vrrigs)
                 {
-                    if (p && p != null)
+                    if (p && p != null && p != GorillaTagger.Instance.offlineVRRig)
                     {
                         GameObject traceholder = new GameObject("Tracers");
                         LineRenderer trace = traceholder.AddComponent<LineRenderer>();
                         trace.endWidth = 0.025f;
-                        trace.startWidth = 0.025f;
-                        trace.startColor = new Color32(150, 255, 180, 255);
-                        trace.endColor = new Color32(150, 255, 180, 255);
+                        trace.startWidth = 0.01f;
+                        trace.startColor = p.playerColor; trace.endColor = p.playerColor;
                         trace.useWorldSpace = true;
                         trace.SetPosition(0, GorillaLocomotion.Player.Instance.bodyCollider.transform.position + (Vector3.down / 3));
-                        trace.SetPosition(1, p.transform.position + (Vector3.down / 3));
+                        trace.SetPosition(1, p.transform.position + (Vector3.down / 2.75f));
                         trace.material.shader = Shader.Find("GUI/Text Shader");
                         UnityEngine.Object.Destroy(traceholder, Time.deltaTime);
                     }

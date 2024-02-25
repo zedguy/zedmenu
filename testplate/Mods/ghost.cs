@@ -47,7 +47,7 @@ namespace zedmenu.Mods
                 Physics.Raycast(GorillaTagger.Instance.offlineVRRig.transform.position + (GorillaTagger.Instance.offlineVRRig.transform.right / a) + (GorillaTagger.Instance.offlineVRRig.transform.forward / b), Vector3.down, out var Ray);
                 Physics.Raycast(GorillaTagger.Instance.offlineVRRig.transform.position - (GorillaTagger.Instance.offlineVRRig.transform.right / a) + (GorillaTagger.Instance.offlineVRRig.transform.forward / b), Vector3.down, out var Ray2);
                 GorillaTagger.Instance.offlineVRRig.transform.rotation = GorillaTagger.Instance.bodyCollider.transform.rotation;
-                GorillaTagger.Instance.offlineVRRig.transform.position = GorillaTagger.Instance.headCollider.transform.position;
+                GorillaTagger.Instance.offlineVRRig.transform.position = GorillaTagger.Instance.headCollider.transform.position + (-GorillaTagger.Instance.headCollider.transform.forward/6);
                 GorillaTagger.Instance.offlineVRRig.head.rigTarget.transform.rotation = GorillaTagger.Instance.headCollider.transform.rotation;
                 GorillaTagger.Instance.offlineVRRig.leftHand.rigTarget.transform.position = Ray2.point;
                 GorillaTagger.Instance.offlineVRRig.rightHand.rigTarget.transform.position = Ray.point;

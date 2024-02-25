@@ -30,6 +30,7 @@ namespace zedmenu.Menu
                 new ButtonInfo { buttonText = "Change Platform Mode", overlapText = "Change Platform Mode <color=grey>[</color><color=#96ffb2>Sphere</color><color=grey>]</color>", method =() => Locomotion.platsize(), isTogglable = false, toolTip = "Changes platform type."},
                 new ButtonInfo { buttonText = "Change Draw Size", method =() => Locomotion.drawsize(), isTogglable = false, toolTip = "Changes draw size."},
                 new ButtonInfo { buttonText = "Change Speed Boost Amount", overlapText = "Change Speed Boost Amount <color=grey>[</color><color=#96ffb2>Normal</color><color=grey>]</color>", method =() => Locomotion.ChangeSpeedBoostAmount(), isTogglable = false, toolTip = "Changes the speed of the speed boosts."},
+                new ButtonInfo { buttonText = "RPC Flush", method =() => Main.RPCProtection(), isTogglable = false, toolTip = "flush rpcs (report flush?)."},
             },
 
             new ButtonInfo[] { // Menu Settings
