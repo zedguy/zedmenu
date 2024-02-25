@@ -385,28 +385,28 @@ namespace zedmenu.Menu
                     component2.position = new Vector3(0.06f, 0f, 0.135f);
                     component2.rotation = Quaternion.Euler(new Vector3(180f, 90f, 90f));
             }
-            Text text2 = new GameObject
-            {
-                transform =
-                    {
-                        parent = canvasObject.transform
-                    }
-            }.AddComponent<Text>();
-            text2.font = currentFont;
-            text2.text = "hi ";
-            text2.color = textColors[0];
-            text2.fontSize = 1;
-            text2.supportRichText = true;
-            text2.fontStyle = FontStyle.Normal;
-            text2.alignment = TextAnchor.MiddleCenter;
-            text2.horizontalOverflow = UnityEngine.HorizontalWrapMode.Overflow;
-            text2.resizeTextForBestFit = true;
-            text2.resizeTextMinSize = 0;
-            RectTransform component3 = fpsObject.GetComponent<RectTransform>();
-            component3.localPosition = Vector3.zero;
-            component3.sizeDelta = new Vector2(0.28f, 0.02f);
-            component3.position = new Vector3(0.06f, 0f, -0.165f);
-            component3.rotation = Quaternion.Euler(new Vector3(180f, 90f, 90f));
+            //Text text2 = new GameObject
+            //{
+            //    transform =
+            //        {
+            //            parent = canvasObject.transform
+            //        }
+            //}.AddComponent<Text>();
+            //text2.font = currentFont;
+            //text2.text = "hi ";
+            //text2.color = textColors[0];
+            //text2.fontSize = 1;
+            //text2.supportRichText = true;
+            //text2.fontStyle = FontStyle.Normal;
+            //text2.alignment = TextAnchor.MiddleCenter;
+            //text2.horizontalOverflow = UnityEngine.HorizontalWrapMode.Overflow;
+            //text2.resizeTextForBestFit = true;
+            //text2.resizeTextMinSize = 0;
+            //RectTransform component3 = fpsObject.GetComponent<RectTransform>();
+            //component3.localPosition = Vector3.zero;
+            //component3.sizeDelta = new Vector2(0.28f, 0.02f);
+            //component3.position = new Vector3(0.06f, 0f, -0.165f);
+            //component3.rotation = Quaternion.Euler(new Vector3(180f, 90f, 90f));
 
             // Buttons
             // Disconnect
