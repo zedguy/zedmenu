@@ -84,6 +84,10 @@ namespace zedmenu.Mods
                 {
                     vrrig.mainSkin.material.shader = Shader.Find("GorillaTag/UberShader");
                     vrrig.mainSkin.material.color= vrrig.playerColor;
+                    if (vrrig.mainSkin.material.name.Contains("fected"))
+                    {
+                        vrrig.mainSkin.material.color = Color.white;
+                    }
                 }
             }
         }
