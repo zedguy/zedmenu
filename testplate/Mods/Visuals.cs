@@ -29,7 +29,7 @@ namespace zedmenu.Mods
                         trace.material.shader = Shader.Find("GUI/Text Shader");
                         if (p.mainSkin.material.name.Contains("fected"))
                         {
-                            trace.startColor = new Color32(255, 170, 50, 255); trace.endColor = new Color32(255, 170, 50, 255);
+                            trace.startColor = new Color32(255, 150, 10, 255); trace.endColor = new Color32(255, 120, 0, 255);
                         }
                         UnityEngine.Object.Destroy(traceholder, Time.deltaTime);
                     }
@@ -54,7 +54,7 @@ namespace zedmenu.Mods
                         trace.transform.position = p.transform.position;
                         if (p.mainSkin.material.name.Contains("fected"))
                         {
-                            mat.color = new Color32(255, 170, 50, 255);
+                            mat.color = new Color32(255, 120, 0, 255);
                         }
                         UnityEngine.Object.Destroy(trace, Time.deltaTime);
                     }
@@ -71,7 +71,7 @@ namespace zedmenu.Mods
                     vrrig.mainSkin.material.color = vrrig.playerColor;
                     if (vrrig.mainSkin.material.name.Contains("fected"))
                     {
-                        vrrig.mainSkin.material.color = new Color32(255, 170, 50, 255);
+                        vrrig.mainSkin.material.color = new Color32(255, 120, 0, 255);
                     }
                 }
             }
