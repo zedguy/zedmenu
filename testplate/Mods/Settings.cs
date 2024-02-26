@@ -36,6 +36,10 @@ namespace zedmenu.Mods
         {
             buttonsType = 7;
         }
+        public static void visual()
+        {
+            buttonsType = 8;
+        }
 
         public static void RightHand()
         {

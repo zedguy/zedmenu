@@ -2,21 +2,23 @@
 using zedmenu.Mods;
 using static zedmenu.Settings;
 using static zedmenu.Menu.Main;
+using GorillaTag.GuidedRefs;
 namespace zedmenu.Menu
 {
     internal class Buttons
     {
         public static ButtonInfo[][] buttons = new ButtonInfo[][]
         {
-            new ButtonInfo[] { // Main Mods
+            new ButtonInfo[] { // Mod Categories
                 new ButtonInfo { buttonText = "Settings", method =() => SettingsMods.EnterSettings(), isTogglable = false, toolTip = "Opens the main settings page for the menu."},
-                new ButtonInfo { buttonText = "Movement Mods", method =() => SettingsMods.MovementSettings(), isTogglable = false, toolTip = "Opens the movement mods for the menu."},
-                new ButtonInfo { buttonText = "Rig Mods", method =() => SettingsMods.MenuSettings(), isTogglable = false, toolTip = "Opens the rig mods for the menu."},
-                new ButtonInfo { buttonText = "Hitsound Mods", method =() => SettingsMods.HitSettings(), isTogglable = false, toolTip = "Opens the Hitsound mods for the menu."},
+                new ButtonInfo { buttonText = "Movement", method =() => SettingsMods.MovementSettings(), isTogglable = false, toolTip = "Opens the movement mods for the menu."},
+                new ButtonInfo { buttonText = "VRRig", method =() => SettingsMods.MenuSettings(), isTogglable = false, toolTip = "Opens the rig mods for the menu."},
+                new ButtonInfo { buttonText = "Hitsounds", method =() => SettingsMods.HitSettings(), isTogglable = false, toolTip = "Opens the Hitsound mods for the menu."},
+                new ButtonInfo { buttonText = "Visuals", method =() => SettingsMods.visual(), isTogglable = false, toolTip = "Opens the visual mods for the menu."},
                 new ButtonInfo { buttonText = "Disguises", method =() => SettingsMods.Disguises(), isTogglable = false, toolTip = "Opens the disguises for the menu."},
-                new ButtonInfo { buttonText = "Misc Mods", method =() => SettingsMods.ProjectileSettings(), isTogglable = false, toolTip = "Opens the projectile mods for the menu."},
-                new ButtonInfo { buttonText = "Trolling Mods", method =() => SettingsMods.Trolls(), isTogglable = false, toolTip = "Opens the trolling mods for the menu."},
-                new ButtonInfo { buttonText = "thank you for using my menu", isTogglable = false},
+                new ButtonInfo { buttonText = "Misc.", method =() => SettingsMods.ProjectileSettings(), isTogglable = false, toolTip = "Opens the projectile mods for the menu."},
+                new ButtonInfo { buttonText = "Trolling", method =() => SettingsMods.Trolls(), isTogglable = false, toolTip = "Opens the trolling mods for the menu."},
+                new ButtonInfo { buttonText = "thanks for using my menu", isTogglable = false},
             },
 
             new ButtonInfo[] { // Settings
@@ -30,10 +32,11 @@ namespace zedmenu.Menu
                 new ButtonInfo { buttonText = "Change Platform Mode", overlapText = "Change Platform Mode <color=grey>[</color><color=#96ffb2>Sphere</color><color=grey>]</color>", method =() => Locomotion.platsize(), isTogglable = false, toolTip = "Changes platform type."},
                 new ButtonInfo { buttonText = "Change Draw Size", method =() => Locomotion.drawsize(), isTogglable = false, toolTip = "Changes draw size."},
                 new ButtonInfo { buttonText = "Change Speed Boost Amount", overlapText = "Change Speed Boost Amount <color=grey>[</color><color=#96ffb2>Normal</color><color=grey>]</color>", method =() => Locomotion.ChangeSpeedBoostAmount(), isTogglable = false, toolTip = "Changes the speed of the speed boosts."},
+                new ButtonInfo { buttonText = "Change Visual Colors", overlapText = "Change Visual Colors <color=grey>[</color><color=#96ffb2>" + "Player Color" + "</color><color=grey>]</color>", method =() => Visuals.ChangeSpeedBoostAmount(), isTogglable = false, toolTip = "Changes draw size."},
                 new ButtonInfo { buttonText = "RPC Flush", method =() => Main.RPCProtection(), isTogglable = false, toolTip = "flush rpcs (report flush?)."},
             },
 
-            new ButtonInfo[] { // Menu Settings
+            new ButtonInfo[] { // Rig Mods
                 new ButtonInfo { buttonText = "Return to Main", method =() => Global.ReturnHome(), isTogglable = false, toolTip = "Returns to the main page of the menu."},
                 new ButtonInfo { buttonText = "Ghost "+atxt, method =() => Rig.Ghost(), disableMethod =() => Rig.disablecopy(),  toolTip = "Simple Ghost monke."},
                 new ButtonInfo { buttonText = "Freeze Rig "+atxt, method =() => Rig.RigFreeze(), disableMethod =() => Rig.disablecopy(),  toolTip = "Ghost but follow the head."},
@@ -43,7 +46,7 @@ namespace zedmenu.Menu
                 new ButtonInfo { buttonText = "Orbit Random "+atxt, method =() => Rig.Orbit(), disableMethod =() => Rig.disablecopy(), toolTip = "Orbits random player."},
             },
 
-            new ButtonInfo[] { // Movement Settings
+            new ButtonInfo[] { // Movement Mods
                 new ButtonInfo { buttonText = "Return to Main", method =() => Global.ReturnHome(), isTogglable = false, toolTip = "Returns to the main page of the menu."},
                 new ButtonInfo { buttonText = "Platforms "+gtxt, method =() => Locomotion.Plats(), toolTip = "Simple platforms."},
                 new ButtonInfo { buttonText = "Up and Down "+ttxt, method =() => Locomotion.updown(), toolTip = "Up and down using triggers."},
@@ -51,9 +54,10 @@ namespace zedmenu.Menu
                 new ButtonInfo { buttonText = "Iron Man "+atxt, method =() => Locomotion.IronMan(), toolTip = "Turns you into iron man, rotate your hands around to change direction."},
                 new ButtonInfo { buttonText = "Noclip "+ttxt, method =() => Locomotion.Noclip(), toolTip = "Phase through stuff."},
                 new ButtonInfo { buttonText = "Speed Boost", method =() => Locomotion.SpeedBoost(), /*disableMethod =() => Movement.DisableSpeedBoost(),*/ toolTip = "Changes your speed to whatever you set it to."},
+                new ButtonInfo { buttonText = "WASD Fly", method =() => Locomotion.WASDFly(), toolTip = "move with w, a, s, d."},
             },
 
-            new ButtonInfo[] { // Projectile Settings
+            new ButtonInfo[] { // Misc Mods
                 new ButtonInfo { buttonText = "Return to Main", method =() => Global.ReturnHome(), isTogglable = false, toolTip = "Returns to the main page of the menu."},
                 new ButtonInfo { buttonText = "Draw "+gtxt, method =() => Locomotion.draw(), toolTip = "Draw with spheres."},
                 new ButtonInfo { buttonText = "Finger Guns "+gtxt, method =() => Locomotion.shoot(), toolTip = "Shoots pellets."},
@@ -74,7 +78,7 @@ namespace zedmenu.Menu
                 new ButtonInfo { buttonText = "Spam impacts "+gtxt, method =() => Projectiles.imspam()},
             },
 
-            new ButtonInfo[] { // Hitsounds Settings
+            new ButtonInfo[] { // Hitsounds Mods
                 new ButtonInfo { buttonText = "Return to Main", method =() => Global.ReturnHome(), isTogglable = false, toolTip = "Returns to the main page of the menu."},
                 new ButtonInfo { buttonText = "Set to Rock", method =() => HitSounds.SetHitsounds(0), isTogglable = false, toolTip = "Sets hitsounds to rock."},
                 new ButtonInfo { buttonText = "Set to Grass", method =() => HitSounds.SetHitsounds(7), isTogglable = false, toolTip = "Sets hitsounds to grass."},
@@ -97,7 +101,7 @@ namespace zedmenu.Menu
                 new ButtonInfo { buttonText = "Random Sound Spam "+gtxt, method =() => HitSounds.rsp(), toolTip = "Constantly spams random hitsounds."},
             },
 
-            new ButtonInfo[] { // Hitsounds Settings
+            new ButtonInfo[] { // Disguises
                 new ButtonInfo { buttonText = "Return to Main", method =() => Global.ReturnHome(), isTogglable = false, toolTip = "Returns to the main page of the menu."},
                 new ButtonInfo { buttonText = "Random Disguise", method =() => Safety.ChangeIdentity(), isTogglable = false, toolTip = "disguise."},
                 new ButtonInfo { buttonText = "Become PBBV", method =() => Disguise.BecomePBBV(), isTogglable = false, toolTip = "disguise."},
@@ -107,9 +111,16 @@ namespace zedmenu.Menu
                 new ButtonInfo { buttonText = "Become Void", method =() => Disguise.BecomeVoid(), isTogglable = false, toolTip = "disguise."},
             },
 
-            new ButtonInfo[] { // Hitsounds Settings
+            new ButtonInfo[] { // Trolling Mods
                 new ButtonInfo { buttonText = "Return to Main", method =() => Global.ReturnHome(), isTogglable = false, toolTip = "Returns to the main page of the menu."},
                 new ButtonInfo { buttonText = "Spaz name", method =() => Rig.CREEPY(), toolTip = "really weird.", disableMethod =() => Rig.disablecopy()},
+            },
+            new ButtonInfo[] { // Visual Mods
+                new ButtonInfo { buttonText = "Return to Main", method =() => Global.ReturnHome(), isTogglable = false, toolTip = "Returns to the main page of the menu."},
+                new ButtonInfo { buttonText = "Tracers", method =() => Visuals.Tracers(), toolTip = "Traces other players."},
+                new ButtonInfo { buttonText = "Chams", method =() => Visuals.CasualChams(), disableMethod =() => Visuals.DisableChams(), toolTip = "Lets you see players through walls."},
+                new ButtonInfo { buttonText = "Beacons", method =() => Visuals.Beacons(), toolTip = "Beacons on other players."},
+                new ButtonInfo { buttonText = "Box ESP", method =() => Visuals.Box(), toolTip = "Box shaped ESP on other players."},
             },
         };
     }

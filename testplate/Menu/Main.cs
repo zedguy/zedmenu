@@ -34,7 +34,7 @@ namespace zedmenu.Menu
 
                 if (menu == null)
                 {
-                    if (toOpen)
+                    if (toOpen || keyboardOpen)
                     {
                         CreateMenu();
                         RecenterMenu(rightHanded, keyboardOpen);
@@ -46,7 +46,7 @@ namespace zedmenu.Menu
                 }
                 else
                 {
-                    if ((toOpen))
+                    if (toOpen || keyboardOpen)
                     {
                         RecenterMenu(rightHanded, keyboardOpen);
                     }
@@ -313,7 +313,7 @@ namespace zedmenu.Menu
                 UnityEngine.Object.Destroy(menu.GetComponent<Rigidbody>());
                 UnityEngine.Object.Destroy(menu.GetComponent<BoxCollider>());
                 UnityEngine.Object.Destroy(menu.GetComponent<Renderer>());
-                menu.transform.localScale = new Vector3(0.1f, 0.3f, 0.3825f);
+                menu.transform.localScale = new Vector3(0.1f, 0.3f, 0.3825f) ;
                 drawhold = GameObject.CreatePrimitive(PrimitiveType.Cube);
                 UnityEngine.Object.Destroy(drawhold.GetComponent<Rigidbody>());
                 UnityEngine.Object.Destroy(drawhold.GetComponent<BoxCollider>());
@@ -958,6 +958,7 @@ namespace zedmenu.Menu
         };
 
         public static int themeType = 1;
+        public static int visualColor = 0;
         public static Color bgColorA = new Color32(120, 255, 140, 255);
         public static Color bgColorB = new Color32(255, 102, 0, 128);
 
@@ -1003,7 +1004,7 @@ namespace zedmenu.Menu
         public static float laggyRigDelay = 0f;
         public static float jrDebounce = 0f;
         public static float projDebounce = 0f;
-        public static float projDebounceType = 0.05f;
+        public static float projDebounceType = 0.08f;
         public static float soundDebounce = 0f;
         public static float colorChangerDelay = 0f;
         public static float teleDebounce = 0f;

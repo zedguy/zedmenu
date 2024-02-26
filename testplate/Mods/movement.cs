@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using BepInEx;
+using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
 using zedmenu.Menu;
@@ -154,6 +155,7 @@ namespace zedmenu.Mods
             GetIndex("Change Speed Boost Amount").overlapText = "Change Speed Boost Amount <color=grey>[</color><color=#96ffb2>" + speedNames[speedboostCycle] + "</color><color=grey>]</color>";
         }
 
+
         public static void cleardraw()
         {
             for (int i = 0; i < drawhold.transform.childCount; i++)
@@ -195,7 +197,7 @@ namespace zedmenu.Mods
         }
         public static void shoot()
         {
-            if (Inputs.rightControllerGripFloat > 0.8f && Inputs.rightControllerIndexFloat > 0.75f)
+            if (Inputs.rightControllerGripFloat > 0.8f && Inputs.rightControllerIndexFloat > 0.75f || Mouse.current.rightButton.isPressed)
             {
                 GameObject s = GameObject.CreatePrimitive(PrimitiveType.Sphere);
                 s.transform.localScale = new Vector3(ShootStrength2, ShootStrength2, ShootStrength2);
@@ -218,8 +220,69 @@ namespace zedmenu.Mods
                 s.transform.position = GorillaLocomotion.Player.Instance.rightControllerTransform.position;
                 s.transform.rotation = GorillaLocomotion.Player.Instance.rightControllerTransform.rotation;
                 s.AddComponent<Rigidbody>().velocity = -GorillaLocomotion.Player.Instance.rightControllerTransform.up * 50;
+                if (shouldBePC)
+                {
+                    s.AddComponent<Rigidbody>().velocity = GorillaLocomotion.Player.Instance.headCollider.transform.forward * 50;
+                }
                 s.GetComponent<Rigidbody>().useGravity = false;
                 UnityEngine.Object.Destroy(s,3);
+            }
+        }
+        public static void WASDFly()
+        {
+            GorillaLocomotion.Player.Instance.GetComponent<Rigidbody>().velocity = new Vector3(0f, 0.067f, 0f);
+
+            bool W = UnityInput.Current.GetKey(KeyCode.W);
+            bool A = UnityInput.Current.GetKey(KeyCode.A);
+            bool S = UnityInput.Current.GetKey(KeyCode.S);
+            bool D = UnityInput.Current.GetKey(KeyCode.D);
+            bool Space = UnityInput.Current.GetKey(KeyCode.Space);
+            bool Ctrl = UnityInput.Current.GetKey(KeyCode.LeftControl);
+
+            if (W)
+            {
+                GorillaTagger.Instance.rigidbody.transform.position += GorillaTagger.Instance.rigidbody.transform.forward * Time.deltaTime * flySpeed;
+            }
+
+            if (S)
+            {
+                GorillaTagger.Instance.rigidbody.transform.position += GorillaTagger.Instance.rigidbody.transform.forward * Time.deltaTime * -flySpeed;
+            }
+
+            if (Mouse.current.rightButton.isPressed)
+            {
+                Vector3 Euler = GorillaTagger.Instance.rigidbody.transform.rotation.eulerAngles;
+                if (startX < 0)
+                {
+                    startX = Euler.y;
+                    subThingy = Mouse.current.position.ReadValue().x / UnityEngine.Screen.width;
+                }
+                Euler = new Vector3(Euler.x, startX + ((((Mouse.current.position.ReadValue().x / UnityEngine.Screen.width) - subThingy) * 360) * 1.33f), Euler.z);
+                GorillaTagger.Instance.rigidbody.transform.rotation = Quaternion.Euler(Euler);
+            }
+            else
+            {
+                startX = -1;
+            }
+
+            if (A)
+            {
+                GorillaTagger.Instance.rigidbody.transform.position += GorillaTagger.Instance.rigidbody.transform.right * Time.deltaTime * -flySpeed;
+            }
+
+            if (D)
+            {
+                GorillaTagger.Instance.rigidbody.transform.position += GorillaTagger.Instance.rigidbody.transform.right * Time.deltaTime * flySpeed;
+            }
+
+            if (Space)
+            {
+                GorillaTagger.Instance.rigidbody.transform.position += GorillaTagger.Instance.rigidbody.transform.up * Time.deltaTime * flySpeed;
+            }
+
+            if (Ctrl)
+            {
+                GorillaTagger.Instance.rigidbody.transform.position += GorillaTagger.Instance.rigidbody.transform.up * Time.deltaTime * -flySpeed;
             }
         }
         public static void drawsize()
