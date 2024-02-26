@@ -3,6 +3,7 @@ using Photon.Realtime;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Unity.Mathematics;
 using UnityEngine;
 
 namespace zedmenu.Mods
@@ -26,6 +27,10 @@ namespace zedmenu.Mods
                         trace.SetPosition(0, GorillaLocomotion.Player.Instance.bodyCollider.transform.position + (Vector3.down / 3));
                         trace.SetPosition(1, p.transform.position + (Vector3.down / 2.75f));
                         trace.material.shader = Shader.Find("GUI/Text Shader");
+                        if (p.mainSkin.material.name.Contains("fected"))
+                        {
+                            trace.startColor = new Color32(255, 170, 50, 255); trace.endColor = new Color32(255, 170, 50, 255);
+                        }
                         UnityEngine.Object.Destroy(traceholder, Time.deltaTime);
                     }
                 }
@@ -42,14 +47,46 @@ namespace zedmenu.Mods
                         GameObject trace = GameObject.CreatePrimitive(PrimitiveType.Cube);
                         UnityEngine.Object.Destroy(trace.GetComponent<Rigidbody>());
                         UnityEngine.Object.Destroy(trace.GetComponent<BoxCollider>());
-                        trace.GetComponent<Renderer>().material.shader = Shader.Find("GUI/Text Shader");
-                        trace.GetComponent<Renderer>().material.color = p.playerColor;
+                        Material mat = trace.GetComponent<Renderer>().material;
+                        mat.shader = Shader.Find("GUI/Text Shader");
+                        mat.color = p.playerColor;
                         trace.transform.localScale = new Vector3(0.05f,1000f,0.05f);
                         trace.transform.position = p.transform.position;
+                        if (p.mainSkin.material.name.Contains("fected"))
+                        {
+                            mat.color = new Color32(255, 170, 50, 255);
+                        }
                         UnityEngine.Object.Destroy(trace, Time.deltaTime);
                     }
                 }
             }
         }
+        public static void CasualChams()
+        {
+            foreach (VRRig vrrig in GorillaParent.instance.vrrigs)
+            {
+                if (vrrig != GorillaTagger.Instance.offlineVRRig)
+                {
+                    vrrig.mainSkin.material.shader = Shader.Find("GUI/Text Shader");
+                    vrrig.mainSkin.material.color = vrrig.playerColor;
+                    if (vrrig.mainSkin.material.name.Contains("fected"))
+                    {
+                        vrrig.mainSkin.material.color = new Color32(255, 170, 50, 255);
+                    }
+                }
+            }
+        }
+        public static void DisableChams()
+        {
+            foreach (VRRig vrrig in GorillaParent.instance.vrrigs)
+            {
+                if (vrrig != GorillaTagger.Instance.offlineVRRig)
+                {
+                    vrrig.mainSkin.material.shader = Shader.Find("GorillaTag/UberShader");
+                    vrrig.mainSkin.material.color= vrrig.playerColor;
+                }
+            }
+        }
+
     }
 }

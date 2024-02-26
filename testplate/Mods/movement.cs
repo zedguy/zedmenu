@@ -36,7 +36,7 @@ namespace zedmenu.Mods
                     if (platformMode == 1)
                     {
                         leftplat = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                        leftplat.transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
+                        leftplat.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
                         leftplat.transform.position = GorillaLocomotion.Player.Instance.leftControllerTransform.position;
                     }
 
@@ -82,7 +82,7 @@ namespace zedmenu.Mods
                     if (platformMode == 1)
                     {
                         rightplat = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                        rightplat.transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
+                        rightplat.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
                         rightplat.transform.position = GorillaLocomotion.Player.Instance.rightControllerTransform.position;
                     }
 

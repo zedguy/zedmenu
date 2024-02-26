@@ -1003,7 +1003,7 @@ namespace zedmenu.Menu
         public static float laggyRigDelay = 0f;
         public static float jrDebounce = 0f;
         public static float projDebounce = 0f;
-        public static float projDebounceType = 0.1f;
+        public static float projDebounceType = 0.05f;
         public static float soundDebounce = 0f;
         public static float colorChangerDelay = 0f;
         public static float teleDebounce = 0f;

@@ -65,11 +65,6 @@ namespace zedmenu.Mods
                 {
                     projDebounce = Time.time + projDebounceType;
                 }
-                if (projDebounceType > 0f)
-                {
-                    RPCProtection();
-                    projDebounce = Time.time + projDebounceType;
-                }
             }
         }
 
@@ -185,41 +180,79 @@ namespace zedmenu.Mods
         {
             if (rightGrab)
             {
-                SysFireProjectile("Snowball", "none", GorillaTagger.Instance.rightHandTransform.position, GorillaTagger.Instance.rightHandTransform.forward * 10, Color.white.r, Color.white.g, Color.white.b, false, false, GetIndex("No Spam Delay").enabled);
+                SysFireProjectile("Snowball", "none", GorillaTagger.Instance.rightHandTransform.position, GorillaTagger.Instance.rightHandTransform.forward * (UnityEngine.Random.Range(150, 200) / 10), UnityEngine.Random.Range(0.0f, 1000.0f / 500), UnityEngine.Random.Range(0.0f, 1000.0f / 500), UnityEngine.Random.Range(0.0f, 1000.0f / 500), false, false);
             }
         }
         public static void bspam()
         {
             if (rightGrab)
             {
-                SysFireProjectile("WaterBalloon", "none", GorillaTagger.Instance.rightHandTransform.position, GorillaTagger.Instance.rightHandTransform.forward * 10, Color.white.r, Color.white.g, Color.white.b, false, false, GetIndex("No Spam Delay").enabled);
+                SysFireProjectile("WaterBalloon", "none", GorillaTagger.Instance.rightHandTransform.position, GorillaTagger.Instance.rightHandTransform.forward * (UnityEngine.Random.Range(150, 200) / 10), UnityEngine.Random.Range(0.0f, 1000.0f / 500), UnityEngine.Random.Range(0.0f, 1000.0f / 500), UnityEngine.Random.Range(0.0f, 1000.0f / 500), false, false);
             }
         }
         public static void pspam()
         {
             if (rightGrab)
             {
-                SysFireProjectile("ThrowableGift", "none", GorillaTagger.Instance.rightHandTransform.position, GorillaTagger.Instance.rightHandTransform.forward * 10, Color.white.r, Color.white.g, Color.white.b, false, false, GetIndex("No Spam Delay").enabled);
+                SysFireProjectile("ThrowableGift", "none", GorillaTagger.Instance.rightHandTransform.position, GorillaTagger.Instance.rightHandTransform.forward * (UnityEngine.Random.Range(150, 200) / 10), UnityEngine.Random.Range(0.0f, 1000.0f / 500), UnityEngine.Random.Range(0.0f, 1000.0f / 500), UnityEngine.Random.Range(0.0f, 1000.0f / 500), false, false);
             }
         }
         public static void mspam()
         {
             if (rightGrab)
             {
-                SysFireProjectile("ScienceCandy", "none", GorillaTagger.Instance.rightHandTransform.position, GorillaTagger.Instance.rightHandTransform.forward * 10, Color.white.r, Color.white.g, Color.white.b, false, false, GetIndex("No Spam Delay").enabled);
+                SysFireProjectile("ScienceCandy", "none", GorillaTagger.Instance.rightHandTransform.position, GorillaTagger.Instance.rightHandTransform.forward * (UnityEngine.Random.Range(150, 200) / 10), UnityEngine.Random.Range(0.0f, 1000.0f / 500), UnityEngine.Random.Range(0.0f, 1000.0f / 500), UnityEngine.Random.Range(0.0f, 1000.0f / 500), false, false);
             }
         }
         public static void imspam()
         {
             if (rightGrab)
             {
-                Color c = Color.HSVToRGB(UnityEngine.Random.Range(0,360),1,1);
-                BetaFireImpact(GorillaTagger.Instance.rightHandTransform.position, c.r, c.g, c.b, GetIndex("No Spam Delay").enabled);
+                Color c = Color.HSVToRGB(UnityEngine.Random.Range(1, Time.time),1,1);
+                BetaFireImpact(GorillaTagger.Instance.rightHandTransform.position, c.r, c.g, c.b, false);
             }
             if (leftGrab)
             {
-                Color c = Color.HSVToRGB(UnityEngine.Random.Range(0, 360) * 360 % 360, 1, 1);
-                BetaFireImpact(GorillaTagger.Instance.leftHandTransform.position, c.r, c.g, c.b, GetIndex("No Spam Delay").enabled);
+                Color c = Color.HSVToRGB(UnityEngine.Random.Range(1, Time.time) * 360 % 360, 1, 1);
+                BetaFireImpact(GorillaTagger.Instance.leftHandTransform.position, c.r, c.g, c.b, false);
+            }
+        }
+        public static void GiveProj(string proj)
+        {
+            if (rightGrab)
+            {
+                Physics.Raycast(GorillaTagger.Instance.rightHandTransform.position, GorillaTagger.Instance.rightHandTransform.forward, out var Ray);
+                GameObject NewPointer = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                NewPointer.GetComponent<Renderer>().material.color = bgColorA;
+                NewPointer.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+                NewPointer.transform.position = Ray.point;
+                UnityEngine.Object.Destroy(NewPointer.GetComponent<BoxCollider>());
+                UnityEngine.Object.Destroy(NewPointer.GetComponent<Rigidbody>());
+                UnityEngine.Object.Destroy(NewPointer.GetComponent<Collider>());
+                UnityEngine.Object.Destroy(NewPointer, Time.deltaTime);
+                if (rightTrigger > 0.5f)
+                {
+                    VRRig possibly = Ray.collider.GetComponentInParent<VRRig>();
+                    if (possibly && possibly != GorillaTagger.Instance.offlineVRRig)
+                    {
+                        isCopying = true;
+                        whoCopy = possibly;
+                    }
+                }
+                if (leftTrigger > 0.5f)
+                {
+                    if (whoCopy && isCopying)
+                    {
+                        whoCopy = null;
+                        isCopying = false;
+                    }
+                }
+            }
+            if (isCopying && whoCopy != null && whoCopy != GorillaTagger.Instance.offlineVRRig)
+            {
+                VRRig vrrig = whoCopy;
+                float c1 = UnityEngine.Random.Range(0.0f, 1000.0f / 100);
+                SysFireProjectile(proj,"none",vrrig.rightHandTransform.position, vrrig.rightHandTransform.forward * c1, UnityEngine.Random.Range(0.0f, 1000.0f / 500), UnityEngine.Random.Range(0.0f, 1000.0f / 500), UnityEngine.Random.Range(0.0f, 1000.0f / 500),false,false);
             }
         }
     }
