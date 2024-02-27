@@ -204,6 +204,27 @@ namespace zedmenu.Mods
                 SysFireProjectile("ScienceCandy", "none", GorillaTagger.Instance.rightHandTransform.position, GorillaTagger.Instance.rightHandTransform.forward * (UnityEngine.Random.Range(150, 200) / 10), UnityEngine.Random.Range(0.0f, 1000.0f / 500), UnityEngine.Random.Range(0.0f, 1000.0f / 500), UnityEngine.Random.Range(0.0f, 1000.0f / 500), false, false);
             }
         }
+        public static void lspam()
+        {
+            if (rightGrab)
+            {
+                SysFireProjectile("ScienceCandy", "none", GorillaTagger.Instance.rightHandTransform.position, GorillaTagger.Instance.rightHandTransform.forward * (UnityEngine.Random.Range(150, 200) / 10), UnityEngine.Random.Range(0.0f, 1000.0f / 500), UnityEngine.Random.Range(0.0f, 1000.0f / 500), UnityEngine.Random.Range(0.0f, 1000.0f / 500), false, false);
+            }
+        }
+        public static void pee()
+        {
+            if (rightGrab)
+            {
+                SysFireProjectile("Snowball", "none", GorillaTagger.Instance.bodyCollider.transform.position + (GorillaTagger.Instance.bodyCollider.transform.forward / 12 + (Vector3.down / 4.75f)), GorillaTagger.Instance.bodyCollider.transform.forward * (UnityEngine.Random.Range(150, 200) / 10), 255, 255, 0, false, false);
+            }
+        }
+        public static void cumm()
+        {
+            if (rightGrab)
+            {
+                SysFireProjectile("Snowball", "none", GorillaTagger.Instance.bodyCollider.transform.position + (GorillaTagger.Instance.bodyCollider.transform.forward/12 + (Vector3.down/4.75f)), GorillaTagger.Instance.bodyCollider.transform.forward * (UnityEngine.Random.Range(150, 200) / 10), 255, 255, 255, false, false);
+            }
+        }
         public static void imspam()
         {
             if (rightGrab)

@@ -69,6 +69,8 @@ namespace zedmenu.Menu
                 new ButtonInfo { buttonText = "Spam Balloons "+gtxt, method =() => Projectiles.bspam()},
                 new ButtonInfo { buttonText = "Spam Presents "+gtxt, method =() => Projectiles.pspam()},
                 new ButtonInfo { buttonText = "Spam Mentos "+gtxt, method =() => Projectiles.mspam()},
+                new ButtonInfo { buttonText = "Piss "+gtxt, method =() => Projectiles.pee()},
+                new ButtonInfo { buttonText = "Cum "+gtxt, method =() => Projectiles.cumm()},
                 new ButtonInfo { buttonText = "Give Snow Gun", method =() => Projectiles.GiveProj("Snowball"), toolTip = "gives spammer to selected player."},
                 new ButtonInfo { buttonText = "Give WaterBalloon Gun", method =() => Projectiles.GiveProj("WaterBalloon"), toolTip = "gives spammer to selected player."},
                 new ButtonInfo { buttonText = "Give Present Gun", method =() => Projectiles.GiveProj("ThrowableGift"), toolTip = "gives spammer to selected player."},
