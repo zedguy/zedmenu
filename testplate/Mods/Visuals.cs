@@ -33,7 +33,7 @@ namespace zedmenu.Mods
                     {
                         GameObject traceholder = new GameObject("Tracers");
                         LineRenderer trace = traceholder.AddComponent<LineRenderer>();
-                        trace.endWidth = 0.025f;
+                        trace.endWidth = 0.05f;
                         trace.startWidth = 0.01f;
                         trace.useWorldSpace = true;
                         trace.SetPosition(0, GorillaLocomotion.Player.Instance.bodyCollider.transform.position + (Vector3.down / 3));

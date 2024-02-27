@@ -55,6 +55,53 @@ namespace zedmenu.Mods
                 GorillaTagger.Instance.offlineVRRig.rightHand.rigTarget.transform.rotation = GorillaTagger.Instance.offlineVRRig.transform.rotation;
             }
         }
+        public static void PointGun()
+        {
+            if (rightGrab)
+            {
+                Physics.Raycast(GorillaTagger.Instance.rightHandTransform.position, GorillaTagger.Instance.rightHandTransform.forward, out var Ray);
+                GameObject NewPointer = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                NewPointer.GetComponent<Renderer>().material.color = bgColorA;
+                NewPointer.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+                NewPointer.transform.position = Ray.point;
+                UnityEngine.Object.Destroy(NewPointer.GetComponent<BoxCollider>());
+                UnityEngine.Object.Destroy(NewPointer.GetComponent<Rigidbody>());
+                UnityEngine.Object.Destroy(NewPointer.GetComponent<Collider>());
+                UnityEngine.Object.Destroy(NewPointer, Time.deltaTime);
+                if (rightTrigger > 0.5f)
+                {
+                    VRRig possibly = Ray.collider.GetComponentInParent<VRRig>();
+                    if (possibly && possibly != GorillaTagger.Instance.offlineVRRig)
+                    {
+                        ghostMonke = true;
+                        isCopying = true;
+                        GorillaTagger.Instance.offlineVRRig.enabled = false;
+                        whoCopy = possibly;
+                    }
+                }
+                if (leftTrigger > 0.5f)
+                {
+                    if (whoCopy && isCopying)
+                    {
+                        whoCopy = null;
+                        ghostMonke = false;
+                        isCopying = false;
+                        GorillaTagger.Instance.offlineVRRig.enabled = true;
+                    }
+                }
+            }
+            if (ghostMonke && isCopying && whoCopy != null && whoCopy != GorillaTagger.Instance.offlineVRRig)
+            {
+                GorillaTagger.Instance.offlineVRRig.transform.rotation = GorillaTagger.Instance.bodyCollider.transform.rotation;
+                GorillaTagger.Instance.offlineVRRig.transform.position = GorillaTagger.Instance.headCollider.transform.position + (-GorillaTagger.Instance.headCollider.transform.forward / 6);
+                GorillaTagger.Instance.offlineVRRig.head.rigTarget.transform.LookAt(whoCopy.headMesh.transform.position);
+                GorillaTagger.Instance.offlineVRRig.leftHand.rigTarget.transform.position = GorillaLocomotion.Player.Instance.leftControllerTransform.position ;
+                GorillaTagger.Instance.offlineVRRig.rightHand.rigTarget.transform.position = whoCopy.headMesh.transform.position;
+                GorillaTagger.Instance.offlineVRRig.leftHand.rigTarget.transform.rotation = GorillaTagger.Instance.offlineVRRig.transform.rotation;
+                var a = GorillaLocomotion.Player.Instance.rightControllerTransform.transform.rotation;
+                GorillaTagger.Instance.offlineVRRig.rightHand.rigTarget.transform.rotation = Quaternion.Euler(new Vector3(a.x,a.y + 180,a.z));
+            }
+        }
         public static void CREEPY()
         {
             if (Inputs.rightControllerPrimaryButton && Time.time > Cooldown)

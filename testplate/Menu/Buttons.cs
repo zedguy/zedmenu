@@ -42,6 +42,7 @@ namespace zedmenu.Menu
                 new ButtonInfo { buttonText = "Freeze Rig "+atxt, method =() => Rig.RigFreeze(), disableMethod =() => Rig.disablecopy(),  toolTip = "Ghost but follow the head."},
                 new ButtonInfo { buttonText = "Weird Arms "+atxt, method =() => Rig.WeirdArms(), disableMethod =() => Rig.disablecopy(),  toolTip = "makes your arms go downward weirdly."},
                 new ButtonInfo { buttonText = "Rig Gun", method =() => Rig.RigGun(), disableMethod =() => Rig.disablecopy(),  toolTip = "moves rig to gun."},
+                new ButtonInfo { buttonText = "Point Gun", method =() => Rig.PointGun(), disableMethod =() => Rig.disablecopy(),  toolTip = "points at people."},
                 new ButtonInfo { buttonText = "Orbit Gun", method =() => Rig.OrbitGun(), disableMethod =() => Rig.disablecopy(),  toolTip = "Orbits target player."},
                 new ButtonInfo { buttonText = "Orbit Random "+atxt, method =() => Rig.Orbit(), disableMethod =() => Rig.disablecopy(), toolTip = "Orbits random player."},
             },
