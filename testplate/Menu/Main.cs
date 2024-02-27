@@ -136,7 +136,7 @@ namespace zedmenu.Menu
                     motdTC.text = "zed's menu";
                     GameObject myfavorite = GameObject.Find("Environment Objects/LocalObjects_Prefab/TreeRoom/TreeRoomInteractables/UI/motd/motdtext");
                     Text motdTextB = myfavorite.GetComponent<Text>();
-                    motdTextB.text = @"zedmenu v"+PluginInfo.Version + "\n" + "this menu prob sucks ngl" + "\n" + "this menu is designed to be oldschool menus. (2021-2022)" + "\n" + "dont expect much from it";
+                    motdTextB.text = @"zedmenu v"+PluginInfo.Version + "\n" + "this menu prob sucks ngl" + "\n" + "\n" + "this menu is designed to be like oldschool menus. (2021-2022)" + "\n" + "dont expect much from it";
                 }
                 catch { }
 
