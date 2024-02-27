@@ -73,7 +73,7 @@ namespace zedmenu.Mods
                         }
                         if (p.mainSkin.material.name.Contains("fected"))
                         {
-                            trace.material.color = new Color32(255, 150, 10, 255);
+                            trace.material.color = new Color32(255, 110, 0, 255);
                         }
                         UnityEngine.Object.Destroy(traceholder, Time.deltaTime);
                     }
@@ -151,7 +151,7 @@ namespace zedmenu.Mods
                         Material mat = trace.GetComponent<Renderer>().material;
                         mat.shader = Shader.Find("GUI/Text Shader");
                         mat.color = p.playerColor;
-                        trace.transform.localScale = new Vector3(0.175f, 0.2f, 0.175f);
+                        trace.transform.localScale = new Vector3(0.4f, 0.625f, 0.4f);
                         trace.transform.position = p.transform.position;
                         if (visualColor == 0)
                         {

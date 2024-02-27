@@ -17,7 +17,7 @@ namespace zedmenu.Menu
                 new ButtonInfo { buttonText = "Hitsounds", method =() => SettingsMods.HitSettings(), isTogglable = false, toolTip = "Opens the Hitsound mods for the menu."},
                 new ButtonInfo { buttonText = "Disguises", method =() => SettingsMods.Disguises(), isTogglable = false, toolTip = "Opens the disguises for the menu."},
                 new ButtonInfo { buttonText = "Trolling", method =() => SettingsMods.Trolls(), isTogglable = false, toolTip = "Opens the trolling mods for the menu."},
-                new ButtonInfo { buttonText = "Misc.", method =() => SettingsMods.ProjectileSettings(), isTogglable = false, toolTip = "Opens the projectile mods for the menu."},
+                new ButtonInfo { buttonText = "Misc", method =() => SettingsMods.ProjectileSettings(), isTogglable = false, toolTip = "Opens the projectile mods for the menu."},
                 new ButtonInfo { buttonText = "thanks for using my menu", isTogglable = false},
             },
 
