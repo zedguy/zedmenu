@@ -73,7 +73,7 @@ namespace zedmenu.Mods
                         }
                         if (p.mainSkin.material.name.Contains("fected"))
                         {
-                            trace.startColor = new Color32(255, 150, 10, 255); trace.endColor = new Color32(255, 110, 0, 255);
+                            trace.material.color = new Color32(255, 150, 10, 255);
                         }
                         UnityEngine.Object.Destroy(traceholder, Time.deltaTime);
                     }
