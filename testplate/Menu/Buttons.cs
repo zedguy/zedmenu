@@ -122,6 +122,7 @@ namespace zedmenu.Menu
                 new ButtonInfo { buttonText = "Chams", method =() => Visuals.CasualChams(), disableMethod =() => Visuals.DisableChams(), toolTip = "Lets you see players through walls."},
                 new ButtonInfo { buttonText = "Beacons", method =() => Visuals.Beacons(), toolTip = "Beacons on other players."},
                 new ButtonInfo { buttonText = "Box ESP", method =() => Visuals.Box(), toolTip = "Box shaped ESP on other players."},
+                new ButtonInfo { buttonText = "Dot ESP", method =() => Visuals.Dot(), toolTip = "Dot shaped ESP on other players."},
             },
         };
     }
