@@ -272,7 +272,7 @@ namespace zedmenu.Mods
                 {
                     if (p && p != null && p != GorillaTagger.Instance.offlineVRRig)
                     {
-                        GameObject trace = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                        GameObject trace = GameObject.CreatePrimitive(PrimitiveType.Sphere);
                         UnityEngine.Object.Destroy(trace.GetComponent<Rigidbody>());
                         UnityEngine.Object.Destroy(trace.GetComponent<BoxCollider>());
                         Material mat = trace.GetComponent<Renderer>().material;
