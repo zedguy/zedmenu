@@ -37,7 +37,7 @@ namespace zedmenu.Mods
                         trace.endWidth = 0.05f * p.scaleFactor;
                         trace.startWidth = 0.01f * GorillaTagger.Instance.offlineVRRig.scaleFactor;
                         trace.useWorldSpace = true;
-                        trace.SetPosition(0, GorillaLocomotion.Player.Instance.bodyCollider.transform.position + (Vector3.down / 3));
+                        trace.SetPosition(0, GorillaLocomotion.Player.Instance.bodyCollider.transform.position + (Vector3.down / 3*p.scaleFactor));
                         trace.SetPosition(1, p.transform.position + (Vector3.down / 2.75f*p.scaleFactor));
                         trace.material.shader = Shader.Find("GUI/Text Shader");
                         if (visualColor == 0)
