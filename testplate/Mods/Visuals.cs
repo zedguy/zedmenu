@@ -34,8 +34,8 @@ namespace zedmenu.Mods
                     {
                         GameObject traceholder = new GameObject("Tracers");
                         LineRenderer trace = traceholder.AddComponent<LineRenderer>();
-                        trace.endWidth = 0.05f;
-                        trace.startWidth = 0.01f;
+                        trace.endWidth = 0.05f * p.scaleFactor;
+                        trace.startWidth = 0.01f * GorillaTagger.Instance.offlineVRRig.scaleFactor;
                         trace.useWorldSpace = true;
                         trace.SetPosition(0, GorillaLocomotion.Player.Instance.bodyCollider.transform.position + (Vector3.down / 3));
                         trace.SetPosition(1, p.transform.position + (Vector3.down / 2.75f));
@@ -198,7 +198,7 @@ namespace zedmenu.Mods
                         Material mat = trace.GetComponent<Renderer>().material;
                         mat.shader = Shader.Find("GUI/Text Shader");
                         mat.color = p.playerColor;
-                        trace.transform.localScale = new Vector3(0.5f, 0.725f, 0.5f);
+                        trace.transform.localScale = new Vector3(0.5f, 0.725f, 0.5f) * p.scaleFactor;
                         trace.transform.position = p.transform.position;
                         if (visualColor == 0)
                         {
@@ -240,10 +240,6 @@ namespace zedmenu.Mods
                         {
                             GorillaHuntManager hunt = GorillaGameManager.instance.gameObject.GetComponent<GorillaHuntManager>();
                             Player pl = hunt.GetTargetOf(PhotonNetwork.LocalPlayer);
-                            if (RigManager.GetPlayerFromVRRig(p) != pl)
-                            {
-                                UnityEngine.Object.Destroy(trace, Time.deltaTime);
-                            }
                             if (RigManager.GetPlayerFromVRRig(p) == pl)
                             {
                                 mat.color = new Color32(25, 255, 25, 255);
@@ -278,7 +274,7 @@ namespace zedmenu.Mods
                         Material mat = trace.GetComponent<Renderer>().material;
                         mat.shader = Shader.Find("GUI/Text Shader");
                         mat.color = p.playerColor;
-                        trace.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
+                        trace.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f) * p.scaleFactor;
                         trace.transform.position = p.headMesh.transform.position;
                         if (visualColor == 0)
                         {
@@ -320,10 +316,6 @@ namespace zedmenu.Mods
                         {
                             GorillaHuntManager hunt = GorillaGameManager.instance.gameObject.GetComponent<GorillaHuntManager>();
                             Player pl = hunt.GetTargetOf(PhotonNetwork.LocalPlayer);
-                            if (RigManager.GetPlayerFromVRRig(p) != pl)
-                            {
-                                UnityEngine.Object.Destroy(trace, Time.deltaTime);
-                            }
                             if (RigManager.GetPlayerFromVRRig(p) == pl)
                             {
                                 mat.color = new Color32(25, 255, 25, 255);
@@ -394,11 +386,6 @@ namespace zedmenu.Mods
                     {
                         GorillaHuntManager hunt = GorillaGameManager.instance.gameObject.GetComponent<GorillaHuntManager>();
                         Player pl = hunt.GetTargetOf(PhotonNetwork.LocalPlayer);
-                        if (RigManager.GetPlayerFromVRRig(vrrig) != pl)
-                        {
-                            vrrig.mainSkin.material.shader = Shader.Find("GorillaTag/UberShader");
-                            vrrig.mainSkin.material.color = vrrig.playerColor;
-                        }
                         if (RigManager.GetPlayerFromVRRig(vrrig) == pl)
                         {
                             mat.color = new Color32(25, 255, 25, 255);
