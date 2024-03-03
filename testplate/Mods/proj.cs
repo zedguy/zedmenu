@@ -208,7 +208,7 @@ namespace zedmenu.Mods
         {
             if (rightGrab)
             {
-                SysFireProjectile("ScienceCandy", "none", GorillaTagger.Instance.rightHandTransform.position, GorillaTagger.Instance.rightHandTransform.forward * (UnityEngine.Random.Range(150, 200) / 10), UnityEngine.Random.Range(0.0f, 1000.0f / 500), UnityEngine.Random.Range(0.0f, 1000.0f / 500), UnityEngine.Random.Range(0.0f, 1000.0f / 500), false, false);
+                SysFireProjectile("LavaRock", "none", GorillaTagger.Instance.rightHandTransform.position, GorillaTagger.Instance.rightHandTransform.forward * (UnityEngine.Random.Range(150, 200) / 10), UnityEngine.Random.Range(0.0f, 1000.0f / 500), UnityEngine.Random.Range(0.0f, 1000.0f / 500), UnityEngine.Random.Range(0.0f, 1000.0f / 500), false, false);
             }
         }
         public static void pee()

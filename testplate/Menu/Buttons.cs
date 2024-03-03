@@ -77,6 +77,7 @@ namespace zedmenu.Menu
                 new ButtonInfo { buttonText = "Give Present Gun", method =() => Projectiles.GiveProj("ThrowableGift"), toolTip = "gives spammer to selected player."},
                 new ButtonInfo { buttonText = "Give Mentos Gun", method =() => Projectiles.GiveProj("ScienceCandy"), toolTip = "gives spammer to selected player."},
                 new ButtonInfo { buttonText = "Spam impacts "+gtxt, method =() => Projectiles.imspam()},
+                new ButtonInfo { buttonText = "Flamethrower to Cane", method =() => Global.suntocane(), isTogglable = false},
             },
 
             new ButtonInfo[] { // Hitsounds Mods
@@ -96,6 +97,7 @@ namespace zedmenu.Menu
                 new ButtonInfo { buttonText = "Set to LavaRock", method =() => HitSounds.SetHitsounds(231), isTogglable = false, toolTip = "Sets hitsounds to lavarock."},
                 new ButtonInfo { buttonText = "Set to Snow", method =() => HitSounds.SetHitsounds(32), isTogglable = false, toolTip = "Sets hitsounds to snow."},
                 new ButtonInfo { buttonText = "Set to WaterBalloon", method =() => HitSounds.SetHitsounds(204), isTogglable = false, toolTip = "Sets hitsounds to waterballoon."},
+                new ButtonInfo { buttonText = "Set to Presents", method =() => HitSounds.SetHitsounds(240), isTogglable = false, toolTip = "Sets hitsounds to Presents."},
                 new ButtonInfo { buttonText = "Set to Ice", method =() => HitSounds.SetHitsounds(59), isTogglable = false, toolTip = "Sets hitsounds to slippery."},
                 new ButtonInfo { buttonText = "Randomize Hitsounds", method =() => HitSounds.SetHitsounds(0,true), isTogglable = false, toolTip = "Randomize hitsounds."},
                 new ButtonInfo { buttonText = "Toggle Random Sounds", method =() => HitSounds.randomize(), toolTip = "Constantly randomizes hitsounds."},

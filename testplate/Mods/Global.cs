@@ -4,6 +4,7 @@ using Photon.Pun;
 using static zedmenu.Menu.Main;
 using static zedmenu.Classes.RigManager;
 using UnityEngine.InputSystem;
+using GorillaNetworking;
 
 namespace zedmenu.Mods
 {
@@ -32,6 +33,19 @@ namespace zedmenu.Mods
                 Slingshot yay = slingy.GetComponent<Slingshot>();
                 yay.itemState = TransferrableObject.ItemStates.State2;
             }
+        }
+        public static void suntocane()
+        {
+            GameObject glasses = GameObject.Find("Environment Objects/LocalObjects_Prefab/City/CosmeticsRoomAnchor/outerstores/Bottom Floor/OutsideBuildings/SeasonalStore/LMAII.");
+            CosmeticStand stand = glasses.GetComponent<CosmeticStand>();
+            CosmeticsController.CosmeticItem cosmetic = glasses.GetComponent<CosmeticStand>().thisCosmeticItem;
+            stand.thisCosmeticName = "LMACL.";
+            cosmetic.itemName = "LMACL.";
+            cosmetic.displayName = "LMACL.";
+            cosmetic.cost = 5000;
+            cosmetic.itemCategory = CosmeticsController.CosmeticCategory.Holdable;
+            cosmetic.overrideDisplayName = "GIANT CANDY CANE";
+            stand.InitializeCosmetic();
         }
         public static void CopyIDGun()
         {
