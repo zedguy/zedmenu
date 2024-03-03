@@ -34,7 +34,7 @@ namespace zedmenu.Menu
                 new ButtonInfo { buttonText = "Change Speed Boost Amount", overlapText = "Change Speed Boost Amount <color=grey>[</color><color=#96ffb2>Normal</color><color=grey>]</color>", method =() => Locomotion.ChangeSpeedBoostAmount(), isTogglable = false, toolTip = "Changes the speed of the speed boosts."},
                 new ButtonInfo { buttonText = "Change Visual Colors", overlapText = "Change Visual Colors <color=grey>[</color><color=#96ffb2>" + "Player Color" + "</color><color=grey>]</color>", method =() => Visuals.ChangeSpeedBoostAmount(), isTogglable = false, toolTip = "Changes draw size."},
                 new ButtonInfo { buttonText = "RPC Flush", method =() => Main.RPCProtection(), isTogglable = false, toolTip = "flush rpcs (report flush?)."},
-                new ButtonInfo { buttonText = "Anti Ban", method =() => Global.AntiBan(), isTogglable = false, toolTip = "bans not allowed"},
+                new ButtonInfo { buttonText = "Anti Ban", method =() => Global.AntiBan(), toolTip = "bans not allowed"},
             },
 
             new ButtonInfo[] { // Rig Mods
