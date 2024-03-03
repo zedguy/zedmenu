@@ -23,7 +23,7 @@ namespace zedmenu
         public static bool fpsCounter = true;
         public static bool disconnectButton = true;
         public static bool rightHanded = false;
-        public static bool disableNotifications = true;
+        public static bool disableNotifications = false;
 
         public static KeyCode keyboardButton = KeyCode.Q;
 

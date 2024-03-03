@@ -34,6 +34,7 @@ namespace zedmenu.Menu
                 new ButtonInfo { buttonText = "Change Speed Boost Amount", overlapText = "Change Speed Boost Amount <color=grey>[</color><color=#96ffb2>Normal</color><color=grey>]</color>", method =() => Locomotion.ChangeSpeedBoostAmount(), isTogglable = false, toolTip = "Changes the speed of the speed boosts."},
                 new ButtonInfo { buttonText = "Change Visual Colors", overlapText = "Change Visual Colors <color=grey>[</color><color=#96ffb2>" + "Player Color" + "</color><color=grey>]</color>", method =() => Visuals.ChangeSpeedBoostAmount(), isTogglable = false, toolTip = "Changes draw size."},
                 new ButtonInfo { buttonText = "RPC Flush", method =() => Main.RPCProtection(), isTogglable = false, toolTip = "flush rpcs (report flush?)."},
+                new ButtonInfo { buttonText = "AntiBan", method =() => Global.AntiBan(), isTogglable = false, toolTip = "bans not allowed"},
             },
 
             new ButtonInfo[] { // Rig Mods
@@ -77,7 +78,7 @@ namespace zedmenu.Menu
                 new ButtonInfo { buttonText = "Give Present Gun", method =() => Projectiles.GiveProj("ThrowableGift"), toolTip = "gives spammer to selected player."},
                 new ButtonInfo { buttonText = "Give Mentos Gun", method =() => Projectiles.GiveProj("ScienceCandy"), toolTip = "gives spammer to selected player."},
                 new ButtonInfo { buttonText = "Spam impacts "+gtxt, method =() => Projectiles.imspam()},
-                new ButtonInfo { buttonText = "Flamethrower to Cane", method =() => Global.suntocane(), isTogglable = false},
+                new ButtonInfo { buttonText = "Set Master", method =() => Global.FastMaster(), isTogglable = false},
             },
 
             new ButtonInfo[] { // Hitsounds Mods

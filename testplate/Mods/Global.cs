@@ -5,6 +5,9 @@ using static zedmenu.Menu.Main;
 using static zedmenu.Classes.RigManager;
 using UnityEngine.InputSystem;
 using GorillaNetworking;
+using PlayFab;
+using System.Text.RegularExpressions;
+using zedmenu.Notifications;
 
 namespace zedmenu.Mods
 {
@@ -34,18 +37,71 @@ namespace zedmenu.Mods
                 yay.itemState = TransferrableObject.ItemStates.State2;
             }
         }
-        public static void suntocane()
+        public static float lastTime = -1f;
+        public static bool antibanworked = false;
+
+        public static void AntiBan()
         {
-            GameObject glasses = GameObject.Find("Environment Objects/LocalObjects_Prefab/City/CosmeticsRoomAnchor/outerstores/Bottom Floor/OutsideBuildings/SeasonalStore/LMAII.");
-            CosmeticStand stand = glasses.GetComponent<CosmeticStand>();
-            CosmeticsController.CosmeticItem cosmetic = glasses.GetComponent<CosmeticStand>().thisCosmeticItem;
-            stand.thisCosmeticName = "LMACL.";
-            cosmetic.itemName = "LMACL.";
-            cosmetic.displayName = "LMACL.";
-            cosmetic.cost = 5000;
-            cosmetic.itemCategory = CosmeticsController.CosmeticCategory.Holdable;
-            cosmetic.overrideDisplayName = "GIANT CANDY CANE";
-            stand.InitializeCosmetic();
+            if (Time.time > lastTime + 2f)
+            {
+                if (antibanworked)
+                {
+                    NotifiLib.SendNotification("<color=grey>[</color><color=purple>ANTIBAN</color><color=grey>]</color> <color=white>The anti ban has been enabled successfully.</color>");
+                    antibanworked = false;
+                    string gamemode = PhotonNetwork.CurrentRoom.CustomProperties["gameMode"].ToString().Replace(GorillaComputer.instance.currentQueue, GorillaComputer.instance.currentQueue + "MODDEDMODDED");
+                    ExitGames.Client.Photon.Hashtable hash = new ExitGames.Client.Photon.Hashtable
+                    {
+                        { "gameMode", gamemode }
+                    };
+                    PhotonNetwork.CurrentRoom.SetCustomProperties(hash);
+                    GetIndex("Anti Ban").enabled = false;
+                }
+                else
+                {
+                    NotifiLib.SendNotification("<color=grey>[</color><color=red>ERROR</color><color=grey>]</color> <color=white>The anti ban failed to load. This could be a result of bad internet.</color>");
+                }
+            }
+            if (Time.time > lastTime + 5f)
+            {
+                lastTime = Time.time;
+                NotifiLib.SendNotification("<color=grey>[</color><color=purple>ANTIBAN</color><color=grey>]</color> <color=white>Enabling anti ban...</color>");
+                if (!PhotonNetwork.CurrentRoom.CustomProperties.ToString().Contains("MODDED"))
+                {
+                    PlayFabClientAPI.ExecuteCloudScript(new PlayFab.ClientModels.ExecuteCloudScriptRequest
+                    {
+                        FunctionName = "RoomClosed",
+                        FunctionParameter = new
+                        {
+                            GameId = PhotonNetwork.CurrentRoom.Name,
+                            Region = Regex.Replace(PhotonNetwork.CloudRegion, "[^a-zA-Z0-9]", "").ToUpper(),
+                            UserId = PhotonNetwork.PlayerList[UnityEngine.Random.Range(0, PhotonNetwork.PlayerList.Length + 1)].UserId,
+                            ActorNr = PhotonNetwork.PlayerList[UnityEngine.Random.Range(0, PhotonNetwork.PlayerList.Length + 1)],
+                            ActorCount = PhotonNetwork.ViewCount,
+                            AppVersion = PhotonNetwork.AppVersion
+                        },
+                    }, result =>
+                    {
+                        antibanworked = true;
+                    }, null);
+                }
+            }
+        }
+
+        public static bool IsModded()
+        {
+            return PhotonNetwork.CurrentRoom.CustomProperties.ToString().Contains("MODDED");
+        }
+
+        public static void FastMaster()
+        {
+            if (!IsModded() || !PhotonNetwork.InRoom)
+            {
+                AntiBan();
+            }
+            else
+            {
+                PhotonNetwork.SetMasterClient(PhotonNetwork.LocalPlayer);
+            }
         }
         public static void CopyIDGun()
         {
