@@ -1,13 +1,17 @@
 ﻿using System.Reflection;
 using UnityEngine;
 using Photon.Pun;
+using Photon.Realtime;
 using static zedmenu.Menu.Main;
 using static zedmenu.Classes.RigManager;
+using ExitGames.Client.Photon;
 using UnityEngine.InputSystem;
 using GorillaNetworking;
 using PlayFab;
 using System.Text.RegularExpressions;
+using System.Collections.Generic;
 using zedmenu.Notifications;
+using GorillaTag;
 
 namespace zedmenu.Mods
 {
@@ -101,6 +105,129 @@ namespace zedmenu.Mods
             else
             {
                 PhotonNetwork.SetMasterClient(PhotonNetwork.LocalPlayer);
+            }
+        }
+
+        public static void ForceEruptLava()
+        {
+            if (!PhotonNetwork.IsMasterClient)
+            {
+                if (!GetIndex("Disable Auto Anti Ban").enabled)
+                {
+                    FastMaster();
+                }
+            }
+            else
+            {
+                InfectionLavaController controller = InfectionLavaController.Instance;
+                System.Type type = controller.GetType();
+
+                FieldInfo fieldInfo = type.GetField("reliableState", BindingFlags.NonPublic | BindingFlags.Instance);
+
+                object reliableState = fieldInfo.GetValue(controller);
+
+                FieldInfo stateFieldInfo = reliableState.GetType().GetField("state");
+                stateFieldInfo.SetValue(reliableState, InfectionLavaController.RisingLavaState.Erupting);
+
+                FieldInfo stateFieldInfo2 = reliableState.GetType().GetField("stateStartTime");
+                stateFieldInfo2.SetValue(reliableState, PhotonNetwork.Time);
+
+                fieldInfo.SetValue(controller, reliableState);
+            }
+        }
+
+        public static void ForceUneruptLava()
+        {
+            if (!PhotonNetwork.IsMasterClient)
+            {
+                if (!GetIndex("Disable Auto Anti Ban").enabled)
+                {
+                    FastMaster();
+                }
+            }
+            else
+            {
+                InfectionLavaController controller = InfectionLavaController.Instance;
+                System.Type type = controller.GetType();
+
+                FieldInfo fieldInfo = type.GetField("reliableState", BindingFlags.NonPublic | BindingFlags.Instance);
+
+                object reliableState = fieldInfo.GetValue(controller);
+
+                FieldInfo stateFieldInfo = reliableState.GetType().GetField("state");
+                stateFieldInfo.SetValue(reliableState, InfectionLavaController.RisingLavaState.Draining);
+
+                FieldInfo stateFieldInfo2 = reliableState.GetType().GetField("stateStartTime");
+                stateFieldInfo2.SetValue(reliableState, PhotonNetwork.Time);
+
+                fieldInfo.SetValue(controller, reliableState);
+            }
+        }
+        public static void InfectionGamemode()
+        {
+            if (!IsModded())
+            {
+                if (!GetIndex("Disable Auto Anti Ban").enabled)
+                {
+                    AntiBan();
+                }
+            }
+            else
+            {
+                Hashtable hashtable = new Hashtable();
+                hashtable.Add("gameMode", "forestDEFAULTMODDED_MODDED_INFECTION");
+                PhotonNetwork.CurrentRoom.SetCustomProperties(hashtable, null, null);
+            }
+        }
+
+        public static void CasualGamemode()
+        {
+            if (!IsModded())
+            {
+                if (!GetIndex("Disable Auto Anti Ban").enabled)
+                {
+                    AntiBan();
+                }
+            }
+            else
+            {
+                Hashtable hashtable = new Hashtable();
+                hashtable.Add("gameMode", "forestDEFAULTMODDED_MODDED_CASUALCASUAL");
+                PhotonNetwork.CurrentRoom.SetCustomProperties(hashtable, null, null);
+            }
+        }
+
+        public static void HuntGamemode()
+        {
+            if (!IsModded())
+            {
+                if (!GetIndex("Disable Auto Anti Ban").enabled)
+                {
+                    AntiBan();
+                }
+            }
+            else
+            {
+                Hashtable hashtable = new Hashtable();
+                hashtable.Add("gameMode", "forestDEFAULTMODDED_MODDED_HUNTHUNT");
+                PhotonNetwork.CurrentRoom.SetCustomProperties(hashtable, null, null);
+            }
+        }
+
+        public static void BattleGamemode()
+        {
+            if (!IsModded())
+            {
+                if (!GetIndex("Disable Auto Anti Ban").enabled)
+                {
+                    AntiBan();
+                }
+            }
+            else
+            {
+                Hashtable hashtable = new Hashtable();
+                hashtable.Add("gameMode", "forestDEFAULTMODDED_MODDED_BATTLEPAINTBRAWL");
+                PhotonNetwork.CurrentRoom.SetCustomProperties(hashtable, null, null);
             }
         }
         public static void CopyIDGun()

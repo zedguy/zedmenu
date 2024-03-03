@@ -79,6 +79,10 @@ namespace zedmenu.Menu
                 new ButtonInfo { buttonText = "Give Mentos Gun", method =() => Projectiles.GiveProj("ScienceCandy"), toolTip = "gives spammer to selected player."},
                 new ButtonInfo { buttonText = "Spam impacts "+gtxt, method =() => Projectiles.imspam()},
                 new ButtonInfo { buttonText = "Set Master", method =() => Global.FastMaster(), isTogglable = false},
+                new ButtonInfo { buttonText = "Infection Gamemode", method =() => Global.InfectionGamemode(), isTogglable = false, toolTip = "Sets the gamemode to infection."},
+                new ButtonInfo { buttonText = "Casual Gamemode", method =() => Global.CasualGamemode(), isTogglable = false, toolTip = "Sets the gamemode to casual."},
+                new ButtonInfo { buttonText = "Hunt Gamemode", method =() => Global.HuntGamemode(), isTogglable = false, toolTip = "Sets the gamemode to hunt."},
+                new ButtonInfo { buttonText = "Battle Gamemode", method =() => Global.BattleGamemode(), isTogglable = false, toolTip = "Sets the gamemode to battle."},
             },
 
             new ButtonInfo[] { // Hitsounds Mods
@@ -99,6 +103,7 @@ namespace zedmenu.Menu
                 new ButtonInfo { buttonText = "Set to Snow", method =() => HitSounds.SetHitsounds(32), isTogglable = false, toolTip = "Sets hitsounds to snow."},
                 new ButtonInfo { buttonText = "Set to WaterBalloon", method =() => HitSounds.SetHitsounds(204), isTogglable = false, toolTip = "Sets hitsounds to waterballoon."},
                 new ButtonInfo { buttonText = "Set to Presents", method =() => HitSounds.SetHitsounds(240), isTogglable = false, toolTip = "Sets hitsounds to Presents."},
+                new ButtonInfo { buttonText = "Set to Big Crystal", method =() => HitSounds.SetHitsounds(213), isTogglable = false, toolTip = "Sets hitsounds to Big Crystal."},
                 new ButtonInfo { buttonText = "Set to Ice", method =() => HitSounds.SetHitsounds(59), isTogglable = false, toolTip = "Sets hitsounds to slippery."},
                 new ButtonInfo { buttonText = "Randomize Hitsounds", method =() => HitSounds.SetHitsounds(0,true), isTogglable = false, toolTip = "Randomize hitsounds."},
                 new ButtonInfo { buttonText = "Toggle Random Sounds", method =() => HitSounds.randomize(), toolTip = "Constantly randomizes hitsounds."},
