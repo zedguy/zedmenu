@@ -176,7 +176,7 @@ namespace zedmenu.Mods
             else
             {
                 Hashtable hashtable = new Hashtable();
-                hashtable.Add("gameMode", "private" + PhotonNetwork.CurrentRoom.CustomProperties["gameMode"].ToString());
+                hashtable.Add("gameMode", "forestcitybasementcanyonsmountainsbeachskycaves" + PhotonNetwork.CurrentRoom.CustomProperties["gameMode"].ToString());
                 PhotonNetwork.CurrentRoom.SetCustomProperties(hashtable, null, null);
             }
         }
