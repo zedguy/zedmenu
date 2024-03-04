@@ -86,7 +86,7 @@ namespace zedmenu.Menu
                 new ButtonInfo { buttonText = "SS Disable Triggers", method =() => Global.ssdisabletest(), isTogglable = false, toolTip = "No leaving."},
                 new ButtonInfo { buttonText = "Erupt Volcano", method =() => Global.ForceEruptLava(), isTogglable = false, toolTip = "valcono."},
                 new ButtonInfo { buttonText = "UnErupt Volcano", method =() => Global.ForceUneruptLava(), isTogglable = false, toolTip = "No volacneo."},
-                new ButtonInfo { buttonText = "Tag Gun", method =() => Global.TagGun(), isTogglable = false, toolTip = "silly tag gun for annoying."},
+                new ButtonInfo { buttonText = "Tag Gun", method =() => Global.TagGun(), toolTip = "silly tag gun for annoying."},
             },
 
             new ButtonInfo[] { // Hitsounds Mods
