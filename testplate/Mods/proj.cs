@@ -229,12 +229,14 @@ namespace zedmenu.Mods
         {
             if (rightGrab)
             {
-                Color c = Color.HSVToRGB(UnityEngine.Random.Range(1, Time.time),1,1);
+                float h = (Time.frameCount / 180f) % 1f;
+                UnityEngine.Color c = UnityEngine.Color.HSVToRGB(h, 1f, 1f);
                 BetaFireImpact(GorillaTagger.Instance.rightHandTransform.position, c.r, c.g, c.b, false);
             }
             if (leftGrab)
             {
-                Color c = Color.HSVToRGB(UnityEngine.Random.Range(1, Time.time) * 360 % 360, 1, 1);
+                float h = (Time.frameCount / 180f) % 1f;
+                UnityEngine.Color c = UnityEngine.Color.HSVToRGB(h, 1f, 1f);
                 BetaFireImpact(GorillaTagger.Instance.leftHandTransform.position, c.r, c.g, c.b, false);
             }
         }

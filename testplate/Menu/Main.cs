@@ -730,7 +730,10 @@ namespace zedmenu.Menu
                             target.enabled = !target.enabled;
                             if (target.enabled)
                             {
-                                NotifiLib.SendNotification("<color=grey>[</color><color=green>ENABLE</color><color=grey>]</color> " + target.toolTip);
+                                if (target.toolTip == "none")
+                                {
+                                    NotifiLib.SendNotification("<color=grey>[</color><color=green>ENABLE</color><color=grey>]</color> " + target.toolTip);
+                                }
                                 if (target.enableMethod != null)
                                 {
                                     try { target.enableMethod.Invoke(); } catch { }
@@ -738,7 +741,10 @@ namespace zedmenu.Menu
                             }
                             else
                             {
-                                NotifiLib.SendNotification("<color=grey>[</color><color=red>DISABLE</color><color=grey>]</color> " + target.toolTip);
+                                if (target.toolTip == "none")
+                                {
+                                    NotifiLib.SendNotification("<color=grey>[</color><color=red>DISABLE</color><color=grey>]</color> " + target.toolTip);
+                                }
                                 if (target.disableMethod != null)
                                 {
                                     try { target.disableMethod.Invoke(); } catch { }
@@ -747,7 +753,10 @@ namespace zedmenu.Menu
                         }
                         else
                         {
-                            NotifiLib.SendNotification("<color=grey>[</color><color=green>ENABLE</color><color=grey>]</color> " + target.toolTip);
+                            if (target.toolTip == "none")
+                            {
+                                NotifiLib.SendNotification("<color=grey>[</color><color=green>ENABLE</color><color=grey>]</color> " + target.toolTip);
+                            }
                             if (target.method != null)
                             {
                                 try { target.method.Invoke(); } catch { }

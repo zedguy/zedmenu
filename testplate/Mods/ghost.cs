@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Unity.Mathematics;
+using UnityEngine;
 using zedmenu.Classes;
 using static zedmenu.Menu.Main;
 
@@ -158,6 +159,37 @@ namespace zedmenu.Mods
             {
                 GorillaTagger.Instance.offlineVRRig.transform.position = GorillaLocomotion.Player.Instance.headCollider.transform.position;
                 GorillaTagger.Instance.offlineVRRig.transform.rotation = GorillaLocomotion.Player.Instance.headCollider.transform.rotation;
+            }
+        }
+        public static void Capuchin()
+        {
+            if (Inputs.rightControllerPrimaryButton && Time.time > Cooldown)
+            {
+                Cooldown = Time.time + 0.25f;
+                if (!ghostMonke)
+                {
+                    ghostMonke = true;
+                    GorillaTagger.Instance.offlineVRRig.enabled = false;
+                    GorillaTagger.Instance.offlineVRRig.transform.position = GorillaLocomotion.Player.Instance.headCollider.transform.position;
+                    GorillaTagger.Instance.offlineVRRig.transform.rotation = GorillaLocomotion.Player.Instance.headCollider.transform.rotation;
+
+                }
+                else
+                {
+                    ghostMonke = false;
+                    GorillaTagger.Instance.offlineVRRig.enabled = true;
+                    GorillaTagger.Instance.offlineVRRig.transform.parent = GameObject.Find("Player Objects").transform;
+                }
+            }
+            if (ghostMonke)
+            {
+                GorillaTagger.Instance.offlineVRRig.transform.rotation = GorillaTagger.Instance.bodyCollider.transform.rotation;
+                GorillaTagger.Instance.offlineVRRig.transform.position = GorillaTagger.Instance.headCollider.transform.position + (-GorillaTagger.Instance.headCollider.transform.forward / 6);
+                GorillaTagger.Instance.offlineVRRig.head.rigTarget.transform.rotation = Quaternion.identity;
+                GorillaTagger.Instance.offlineVRRig.leftHand.rigTarget.transform.position = GorillaLocomotion.Player.Instance.leftControllerTransform.position;
+                GorillaTagger.Instance.offlineVRRig.rightHand.rigTarget.transform.position = whoCopy.headMesh.transform.position;
+                GorillaTagger.Instance.offlineVRRig.leftHand.rigTarget.transform.rotation = Quaternion.Inverse(GorillaTagger.Instance.leftHandTransform.transform.rotation);
+                GorillaTagger.Instance.offlineVRRig.rightHand.rigTarget.transform.rotation = Quaternion.Inverse(GorillaTagger.Instance.rightHandTransform.transform.rotation);
             }
         }
         public static void Orbit()

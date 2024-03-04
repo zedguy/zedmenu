@@ -18,7 +18,8 @@ namespace zedmenu
             Color.black // Enabled
         };
 
-        public static Font currentFont = (Resources.GetBuiltinResource(typeof(Font), "Arial.ttf") as Font);
+        //public static Font currentFont = (Resources.GetBuiltinResource(typeof(Font), "Arial.ttf") as Font);
+        public static Font currentFont = Font.CreateDynamicFontFromOSFont("Comic Sans MS", 24);
 
         public static bool fpsCounter = true;
         public static bool disconnectButton = true;

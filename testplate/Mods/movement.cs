@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
 using zedmenu.Menu;
+using zedmenu.Patches;
 using static zedmenu.Menu.Main;
 
 namespace zedmenu.Mods
@@ -386,16 +387,11 @@ namespace zedmenu.Mods
                 GorillaTagger.Instance.StartVibration(false, GorillaTagger.Instance.tapHapticStrength / 50f * GorillaLocomotion.Player.Instance.bodyCollider.attachedRigidbody.velocity.magnitude, GorillaTagger.Instance.tapHapticDuration);
             }
         }
-        public static void FunGun()
+        public static void TPGun()
         {
             if (Inputs.rightGrab || Mouse.current.rightButton.isPressed)
             {
                 Physics.Raycast(GorillaTagger.Instance.rightHandTransform.position, GorillaTagger.Instance.rightHandTransform.forward, out var Ray);
-                if (shouldBePC)
-                {
-                    Ray ray = TPC.ScreenPointToRay(Mouse.current.position.ReadValue());
-                    Physics.Raycast(ray, out Ray, 100);
-                }
 
                 GameObject NewPointer = GameObject.CreatePrimitive(PrimitiveType.Sphere);
                 NewPointer.GetComponent<Renderer>().material.color = bgColorA;
@@ -407,29 +403,7 @@ namespace zedmenu.Mods
                 UnityEngine.Object.Destroy(NewPointer, Time.deltaTime);
                 if (rightTrigger > 0.5f || Mouse.current.leftButton.isPressed)
                 {
-                    GorillaLocomotion.Player.Instance.rightControllerTransform.position = Ray.point + new Vector3(0f, -0.2f, 0f);
-                }
-            }
-            if (Inputs.leftGrab || Mouse.current.rightButton.isPressed)
-            {
-                Physics.Raycast(GorillaTagger.Instance.leftHandTransform.position, GorillaTagger.Instance.leftHandTransform.forward, out var Ray);
-                if (shouldBePC)
-                {
-                    Ray ray = TPC.ScreenPointToRay(Mouse.current.position.ReadValue());
-                    Physics.Raycast(ray, out Ray, 100);
-                }
-
-                GameObject NewPointer = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-                NewPointer.GetComponent<Renderer>().material.color = bgColorA;
-                NewPointer.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
-                NewPointer.transform.position = Ray.point;
-                UnityEngine.Object.Destroy(NewPointer.GetComponent<BoxCollider>());
-                UnityEngine.Object.Destroy(NewPointer.GetComponent<Rigidbody>());
-                UnityEngine.Object.Destroy(NewPointer.GetComponent<Collider>());
-                UnityEngine.Object.Destroy(NewPointer, Time.deltaTime);
-                if (rightTrigger > 0.5f || Mouse.current.leftButton.isPressed)
-                {
-
+                    TeleportPatch.TeleportPlayer(Ray.point);
                 }
             }
         }

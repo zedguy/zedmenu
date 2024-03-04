@@ -18,7 +18,6 @@ namespace zedmenu.Menu
                 new ButtonInfo { buttonText = "Disguises", method =() => SettingsMods.Disguises(), isTogglable = false, toolTip = "Opens the disguises for the menu."},
                 new ButtonInfo { buttonText = "Trolling", method =() => SettingsMods.Trolls(), isTogglable = false, toolTip = "Opens the trolling mods for the menu."},
                 new ButtonInfo { buttonText = "Misc", method =() => SettingsMods.ProjectileSettings(), isTogglable = false, toolTip = "Opens the projectile mods for the menu."},
-                new ButtonInfo { buttonText = "thanks for using my menu", isTogglable = false},
             },
 
             new ButtonInfo[] { // Settings
@@ -56,6 +55,7 @@ namespace zedmenu.Menu
                 new ButtonInfo { buttonText = "Iron Man "+atxt, method =() => Locomotion.IronMan(), toolTip = "Turns you into iron man, rotate your hands around to change direction."},
                 new ButtonInfo { buttonText = "Noclip "+ttxt, method =() => Locomotion.Noclip(), toolTip = "Phase through stuff."},
                 new ButtonInfo { buttonText = "Speed Boost", method =() => Locomotion.SpeedBoost(), /*disableMethod =() => Movement.DisableSpeedBoost(),*/ toolTip = "Changes your speed to whatever you set it to."},
+                new ButtonInfo { buttonText = "TP Gun", method =() => Locomotion.TPGun(), toolTip = "teleports to gun thing."},
                 new ButtonInfo { buttonText = "WASD Fly", method =() => Locomotion.WASDFly(), toolTip = "move with w, a, s, d."},
             },
 
@@ -83,6 +83,10 @@ namespace zedmenu.Menu
                 new ButtonInfo { buttonText = "Casual Gamemode", method =() => Global.CasualGamemode(), isTogglable = false, toolTip = "Sets the gamemode to casual."},
                 new ButtonInfo { buttonText = "Hunt Gamemode", method =() => Global.HuntGamemode(), isTogglable = false, toolTip = "Sets the gamemode to hunt."},
                 new ButtonInfo { buttonText = "Battle Gamemode", method =() => Global.BattleGamemode(), isTogglable = false, toolTip = "Sets the gamemode to battle."},
+                new ButtonInfo { buttonText = "SS Disable Triggers", method =() => Global.ssdisabletest(), isTogglable = false, toolTip = "No leaving."},
+                new ButtonInfo { buttonText = "Erupt Volcano", method =() => Global.ForceEruptLava(), isTogglable = false, toolTip = "valcono."},
+                new ButtonInfo { buttonText = "UnErupt Volcano", method =() => Global.ForceUneruptLava(), isTogglable = false, toolTip = "No volacneo."},
+                new ButtonInfo { buttonText = "Tag Gun", method =() => Global.TagGun(), isTogglable = false, toolTip = "silly tag gun for annoying."},
             },
 
             new ButtonInfo[] { // Hitsounds Mods
@@ -122,7 +126,10 @@ namespace zedmenu.Menu
 
             new ButtonInfo[] { // Trolling Mods
                 new ButtonInfo { buttonText = "Return to Main", method =() => Global.ReturnHome(), isTogglable = false, toolTip = "Returns to the main page of the menu."},
-                new ButtonInfo { buttonText = "Spaz name", method =() => Rig.CREEPY(), toolTip = "really weird.", disableMethod =() => Rig.disablecopy()},
+                new ButtonInfo { buttonText = "Zedguyy - Making half the menu's code", isTogglable = false},
+                new ButtonInfo { buttonText = "IIdk - Menu Template and some code", isTogglable = false},
+                new ButtonInfo { buttonText = "Dudeman - Some Ideas", isTogglable = false},
+                new ButtonInfo { buttonText = "You - Actually using the menu", isTogglable = false},
             },
             new ButtonInfo[] { // Visual Mods
                 new ButtonInfo { buttonText = "Return to Main", method =() => Global.ReturnHome(), isTogglable = false, toolTip = "Returns to the main page of the menu."},
