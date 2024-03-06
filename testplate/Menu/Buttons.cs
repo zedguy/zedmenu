@@ -33,7 +33,7 @@ namespace zedmenu.Menu
                 new ButtonInfo { buttonText = "Change Speed Boost Amount", overlapText = "Change Speed Boost Amount <color=grey>[</color><color=#96ffb2>Normal</color><color=grey>]</color>", method =() => Locomotion.ChangeSpeedBoostAmount(), isTogglable = false, toolTip = "Changes the speed of the speed boosts."},
                 new ButtonInfo { buttonText = "Change Visual Colors", overlapText = "Change Visual Colors <color=grey>[</color><color=#96ffb2>" + "Player Color" + "</color><color=grey>]</color>", method =() => Visuals.ChangeSpeedBoostAmount(), isTogglable = false, toolTip = "Changes draw size."},
                 new ButtonInfo { buttonText = "Change RPC Clear Speed", overlapText = "Change RPC Clear Speed <color=grey>[</color><color=#96ffb2>" + "30s" + "</color><color=grey>]</color>", method =() => Global.ChangeRPCSpeed(), isTogglable = false, toolTip = "Changes time until rpcs flush automatically."},
-                new ButtonInfo { buttonText = "Auto Flush RPCs", method =() => Global.autorpc(), isTogglable = false, toolTip = "auto flush rpcs (report flush?)."},
+                new ButtonInfo { buttonText = "Auto Flush RPCs", method =() => Global.autorpc(), toolTip = "auto flush rpcs (report flush?)."},
                 new ButtonInfo { buttonText = "RPC Flush", method =() => Main.RPCProtection(), isTogglable = false, toolTip = "flush rpcs (report flush?)."},
                 new ButtonInfo { buttonText = "Anti Ban "+qdetxt, method =() => Global.AntiBan(), toolTip = "bans not allowed"},
             },
