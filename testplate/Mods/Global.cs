@@ -449,17 +449,17 @@ namespace zedmenu.Mods
         }
         public static void ChangeRPCSpeed()
         {
+
             rpcclearcyucle++;
-            if (rpcclearcyucle > 3)
+            string[] speedNames = new string[] { "10s", "30s", "60s", "120s" };
+            if (rpcclearcyucle > speedNames.Length - 1)
             {
                 rpcclearcyucle = 0;
             }
 
             float[] jspeedamounts = new float[] { 10f, 30f, 60f, 120f };
-            rpclearcool = jspeedamounts[speedboostCycle];
-
-            string[] speedNames = new string[] { "10s", "30s", "60s", "120s" };
-            GetIndex("Change RPC Clear Speed").overlapText = "Change RPC Clear Speed <color=grey>[</color><color=#96ffb2>" + speedNames[speedboostCycle] + "</color><color=grey>]</color>";
+            rpclearcool = jspeedamounts[rpcclearcyucle];
+            GetIndex("Change RPC Clear Speed").overlapText = "Change RPC Clear Speed <color=grey>[</color><color=#96ffb2>" + speedNames[rpcclearcyucle] + "</color><color=grey>]</color>";
         }
     }
 }

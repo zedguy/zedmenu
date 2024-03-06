@@ -904,10 +904,10 @@ namespace zedmenu.Menu
 
         public static string ownerPlayerId = "E19CE8918FD9E927";
         public static string questPlayerId = "86A10278DF9691BE";
-        public static string gtxt = "<color=grey>[</color><color=#ff3232>G</color><color=grey>]</color>";
-        public static string ttxt = "<color=grey>[</color><color=#ff3232>T</color><color=grey>]</color>";
-        public static string atxt = "<color=grey>[</color><color=#ff3232>A</color><color=grey>]</color>";
-        public static string btxt = "<color=grey>[</color><color=#ff3232>B</color><color=grey>]</color>";
+        public static string gtxt = "<color=grey>[</color><color=#96ffb2>G</color><color=grey>]</color>";
+        public static string ttxt = "<color=grey>[</color><color=#96ffb2>T</color><color=grey>]</color>";
+        public static string atxt = "<color=grey>[</color><color=#96ffb2>A</color><color=grey>]</color>";
+        public static string btxt = "<color=grey>[</color><color=#96ffb2>B</color><color=grey>]</color>";
         public static string detxt = "<color=grey>[</color><color=#ff3232>D</color><color=grey>]</color>";
         public static string qdetxt = "<color=grey>[</color><color=#ff3232>D?</color><color=grey>]</color>";
 
