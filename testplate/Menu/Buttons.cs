@@ -32,8 +32,10 @@ namespace zedmenu.Menu
                 new ButtonInfo { buttonText = "Change Draw Size", method =() => Locomotion.drawsize(), isTogglable = false, toolTip = "Changes draw size."},
                 new ButtonInfo { buttonText = "Change Speed Boost Amount", overlapText = "Change Speed Boost Amount <color=grey>[</color><color=#96ffb2>Normal</color><color=grey>]</color>", method =() => Locomotion.ChangeSpeedBoostAmount(), isTogglable = false, toolTip = "Changes the speed of the speed boosts."},
                 new ButtonInfo { buttonText = "Change Visual Colors", overlapText = "Change Visual Colors <color=grey>[</color><color=#96ffb2>" + "Player Color" + "</color><color=grey>]</color>", method =() => Visuals.ChangeSpeedBoostAmount(), isTogglable = false, toolTip = "Changes draw size."},
+                new ButtonInfo { buttonText = "Change RPC Clear Speed", overlapText = "Change RPC Clear Speed <color=grey>[</color><color=#96ffb2>" + "30s" + "</color><color=grey>]</color>", method =() => Global.ChangeRPCSpeed(), isTogglable = false, toolTip = "Changes time until rpcs flush automatically."},
+                new ButtonInfo { buttonText = "Auto Flush RPCs", method =() => Global.autorpc(), isTogglable = false, toolTip = "auto flush rpcs (report flush?)."},
                 new ButtonInfo { buttonText = "RPC Flush", method =() => Main.RPCProtection(), isTogglable = false, toolTip = "flush rpcs (report flush?)."},
-                new ButtonInfo { buttonText = "Anti Ban", method =() => Global.AntiBan(), toolTip = "bans not allowed"},
+                new ButtonInfo { buttonText = "Anti Ban "+qdetxt, method =() => Global.AntiBan(), toolTip = "bans not allowed"},
             },
 
             new ButtonInfo[] { // Rig Mods
@@ -45,6 +47,11 @@ namespace zedmenu.Menu
                 new ButtonInfo { buttonText = "Point Gun", method =() => Rig.PointGun(), disableMethod =() => Rig.disablecopy(),  toolTip = "points at people."},
                 new ButtonInfo { buttonText = "Orbit Gun", method =() => Rig.OrbitGun(), disableMethod =() => Rig.disablecopy(),  toolTip = "Orbits target player."},
                 new ButtonInfo { buttonText = "Orbit Random "+atxt, method =() => Rig.Orbit(), disableMethod =() => Rig.disablecopy(), toolTip = "Orbits random player."},
+                new ButtonInfo { buttonText = "Lucy Random "+atxt, method =() => Rig.LucyRandom(), disableMethod =() => Rig.disablecopy(), toolTip = "Chases random player."},
+                new ButtonInfo { buttonText = "Lucy Gun", method =() => Rig.LucyGun(), disableMethod =() => Rig.disablecopy(), toolTip = "Chases target player."},
+                new ButtonInfo { buttonText = "Spin Head X", method =() => Rig.SpinHeadX(), disableMethod =() => Rig.disablecopy(), toolTip = "spins your head."},
+                new ButtonInfo { buttonText = "Spin Head Y", method =() => Rig.SpinHeadY(), disableMethod =() => Rig.disablecopy(), toolTip = "spins your head."},
+                new ButtonInfo { buttonText = "Spin Head Z", method =() => Rig.SpinHeadZ(), disableMethod =() => Rig.disablecopy(), toolTip = "spins your head."},
             },
 
             new ButtonInfo[] { // Movement Mods
@@ -56,6 +63,7 @@ namespace zedmenu.Menu
                 new ButtonInfo { buttonText = "Noclip "+ttxt, method =() => Locomotion.Noclip(), toolTip = "Phase through stuff."},
                 new ButtonInfo { buttonText = "Speed Boost", method =() => Locomotion.SpeedBoost(), /*disableMethod =() => Movement.DisableSpeedBoost(),*/ toolTip = "Changes your speed to whatever you set it to."},
                 new ButtonInfo { buttonText = "TP Gun", method =() => Locomotion.TPGun(), toolTip = "teleports to gun thing."},
+                new ButtonInfo { buttonText = "No Gravity", method =() => Locomotion.ZeroGravity(), toolTip = "float around."},
                 new ButtonInfo { buttonText = "WASD Fly", method =() => Locomotion.WASDFly(), toolTip = "move with w, a, s, d."},
             },
 
@@ -78,14 +86,14 @@ namespace zedmenu.Menu
                 new ButtonInfo { buttonText = "Give Present Gun", method =() => Projectiles.GiveProj("ThrowableGift"), toolTip = "gives spammer to selected player."},
                 new ButtonInfo { buttonText = "Give Mentos Gun", method =() => Projectiles.GiveProj("ScienceCandy"), toolTip = "gives spammer to selected player."},
                 new ButtonInfo { buttonText = "Spam impacts "+gtxt, method =() => Projectiles.imspam()},
-                new ButtonInfo { buttonText = "Set Master", method =() => Global.FastMaster(), isTogglable = false},
-                new ButtonInfo { buttonText = "Infection Gamemode", method =() => Global.InfectionGamemode(), isTogglable = false, toolTip = "Sets the gamemode to infection."},
-                new ButtonInfo { buttonText = "Casual Gamemode", method =() => Global.CasualGamemode(), isTogglable = false, toolTip = "Sets the gamemode to casual."},
-                new ButtonInfo { buttonText = "Hunt Gamemode", method =() => Global.HuntGamemode(), isTogglable = false, toolTip = "Sets the gamemode to hunt."},
-                new ButtonInfo { buttonText = "Battle Gamemode", method =() => Global.BattleGamemode(), isTogglable = false, toolTip = "Sets the gamemode to battle."},
-                new ButtonInfo { buttonText = "SS Disable Triggers", method =() => Global.ssdisabletest(), isTogglable = false, toolTip = "No leaving."},
-                new ButtonInfo { buttonText = "Erupt Volcano", method =() => Global.ForceEruptLava(), isTogglable = false, toolTip = "valcono."},
-                new ButtonInfo { buttonText = "UnErupt Volcano", method =() => Global.ForceUneruptLava(), isTogglable = false, toolTip = "No volacneo."},
+                new ButtonInfo { buttonText = "Set Master "+qdetxt, method =() => Global.FastMaster(), isTogglable = false},
+                new ButtonInfo { buttonText = "Infection Gamemode "+qdetxt, method =() => Global.InfectionGamemode(), isTogglable = false, toolTip = "Sets the gamemode to infection."},
+                new ButtonInfo { buttonText = "Casual Gamemode "+qdetxt, method =() => Global.CasualGamemode(), isTogglable = false, toolTip = "Sets the gamemode to casual."},
+                new ButtonInfo { buttonText = "Hunt Gamemode "+qdetxt, method =() => Global.HuntGamemode(), isTogglable = false, toolTip = "Sets the gamemode to hunt."},
+                new ButtonInfo { buttonText = "Battle Gamemode "+qdetxt, method =() => Global.BattleGamemode(), isTogglable = false, toolTip = "Sets the gamemode to battle."},
+                new ButtonInfo { buttonText = "SS Disable Triggers "+qdetxt, method =() => Global.ssdisabletest(), isTogglable = false, toolTip = "No leaving."},
+                new ButtonInfo { buttonText = "Erupt Volcano "+qdetxt, method =() => Global.ForceEruptLava(), isTogglable = false, toolTip = "valcono."},
+                new ButtonInfo { buttonText = "UnErupt Volcano "+qdetxt, method =() => Global.ForceUneruptLava(), isTogglable = false, toolTip = "No volacneo."},
             },
 
             new ButtonInfo[] { // Hitsounds Mods

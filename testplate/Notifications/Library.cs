@@ -118,6 +118,33 @@ namespace zedmenu.Notifications
                 }
             }
         }
+        public static void ForceNotif(string NotificationText, int clearTime = 4500)
+        {
+            {
+                try
+                {
+                    if (NotifiLib.IsEnabled && NotifiLib.PreviousNotifi != NotificationText)
+                    {
+                        if (!NotificationText.Contains(Environment.NewLine))
+                        {
+                            NotificationText += Environment.NewLine;
+                        }
+                        NotifiLib.NotifiText.text = NotifiLib.NotifiText.text + NotificationText;
+                        NotifiLib.NotifiText.supportRichText = true;
+                        NotifiLib.PreviousNotifi = NotificationText;
+                        try
+                        {
+                            Task.Delay(clearTime).ContinueWith(t => ClearLast());
+                        }
+                        catch { /* cheeseburger */ }
+                    }
+                }
+                catch
+                {
+                    UnityEngine.Debug.LogError("Notification failed, object probably nil due to third person ; " + NotificationText);
+                }
+            }
+        }
 
         public static void ClearAllNotifications()
         {

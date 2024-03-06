@@ -15,6 +15,7 @@ using UnityEngine.UI;
 using static zedmenu.Menu.Buttons;
 using static zedmenu.Settings;
 using UnityEngine.XR;
+using UnityEngine.Playables;
 
 namespace zedmenu.Menu
 {
@@ -75,6 +76,11 @@ namespace zedmenu.Menu
                     menucool = Time.time;
                     menuswitch = UnityEngine.Random.Range(0,menutitles.Length);
                 }
+
+                //if (basegravity == new Vector3(1337f,1337f,1337f))
+                //{
+                //    basegravity = UnityEngine.Physics.gravity;
+                //}
 
                 // Execute Enabled mods
                 foreach (ButtonInfo[] buttonlist in buttons)
@@ -700,6 +706,53 @@ namespace zedmenu.Menu
             colorChanger.Start();
         }
 
+        public static void Custommotd(bool ir)
+        {
+            var FPS = Time.frameCount / Time.time;
+            var FrameRate = (int)FPS;
+            var Ping = PhotonNetwork.GetPing();
+            string[] array = new string[]
+            {
+                        "now go mod!!",
+                        "lil modder",
+                        "skiday",
+                        "skibidi toilet mod coming soon",
+                        "ok modder",
+                        "lil boy",
+            }; string[] f = new string[]
+            {
+                        "zedder",
+                        " zedguyy",
+                        "zedguyy",
+                        " zedder",
+                        "zed "
+            };
+            int num = new System.Random().Next(array.Length);
+
+            //float angle = (Time.time * 4) % (Mathf.PI * 1);
+            //float x = Mathf.Cos(angle);
+            GameObject.Find("CodeOfConduct").GetComponent<Text>().color = new Color(0.75f, 1f, 0.75f, 1f);
+            GameObject.Find("COC Text").GetComponent<Text>().color = new Color(0.8f, 1f, 0.8f, 1f);
+            if (!ir)
+            {
+                GameObject.Find("COC Text").GetComponent<Text>().text = " Menu Symbols \n" +
+                "Notifications: \n" +
+                NotifiLib.PreviousNotifi;
+                GameObject.Find("CodeOfConduct").GetComponent<Text>().text = "zedmenu";
+            }
+            if (ir)
+            {
+                GameObject.Find("COC Text").GetComponent<Text>().text = "GAME INFO: \n \n" +
+                "FPS: " + FrameRate.ToString() + "\n" +
+                "PING: " + Ping.ToString() + "\n" +
+                "ROOM CODE: " + PhotonNetwork.CurrentRoom.Name + "\n" +
+                "PLAYERS IN ROOM: <color=green>" + PhotonNetwork.CurrentRoom.PlayerCount.ToString() + "</color>" + "\n" +
+                "GAMEMODE: <color=green>" + PhotonNetworkController.Instance.currentJoinTrigger.gameModeName + " " + GorillaComputer.instance.currentQueue + "</color>" + "\n" + "Notifications: \n" + "\n" +
+                NotifiLib.PreviousNotifi + "\n";
+                GameObject.Find("CodeOfConduct").GetComponent<Text>().text = "zeds menu";
+            }
+        }
+
         public static void Toggle(string buttonText)
         {
             int lastPage = ((buttons[buttonsType].Length + buttonsPerPage - 1) / buttonsPerPage) - 1;
@@ -771,7 +824,7 @@ namespace zedmenu.Menu
             }
             RecreateMenu();
         }
-
+        
         public static GradientColorKey[] GetSolidGradient(Color color)
         {
             return new GradientColorKey[] { new GradientColorKey(color, 0f), new GradientColorKey(color, 1f) };
@@ -819,10 +872,13 @@ namespace zedmenu.Menu
         public static bool hasRemovedThisFrame = false;
         public static bool frameFixColliders = false;
         public static float buttonCooldown = 0f;
+        public static float rpclearcool = 30f;
+        public static float rpctime = 0f;
         public static bool noti = true;
         public static int pageButtonType = 1;
         public static float buttonOffset = 2;
         public static int fullModAmount = -1;
+        public static int rpcclearcyucle = 0;
         public static int fontCycle = 0;
         public static bool rightHand = false;
         public static bool isRightHand = false;
@@ -848,10 +904,12 @@ namespace zedmenu.Menu
 
         public static string ownerPlayerId = "E19CE8918FD9E927";
         public static string questPlayerId = "86A10278DF9691BE";
-        public static string gtxt = "<color=grey>[</color><color=#96ffb2>G</color><color=grey>]</color>";
-        public static string ttxt = "<color=grey>[</color><color=#96ffb2>T</color><color=grey>]</color>";
-        public static string atxt = "<color=grey>[</color><color=#96ffb2>A</color><color=grey>]</color>";
-        public static string btxt = "<color=grey>[</color><color=#96ffb2>B</color><color=grey>]</color>";
+        public static string gtxt = "<color=grey>[</color><color=#ff3232>G</color><color=grey>]</color>";
+        public static string ttxt = "<color=grey>[</color><color=#ff3232>T</color><color=grey>]</color>";
+        public static string atxt = "<color=grey>[</color><color=#ff3232>A</color><color=grey>]</color>";
+        public static string btxt = "<color=grey>[</color><color=#ff3232>B</color><color=grey>]</color>";
+        public static string detxt = "<color=grey>[</color><color=#ff3232>D</color><color=grey>]</color>";
+        public static string qdetxt = "<color=grey>[</color><color=#ff3232>D?</color><color=grey>]</color>";
 
         public static GameObject cam = null;
         public static GameObject canvasObj = null;
@@ -991,6 +1049,7 @@ namespace zedmenu.Menu
         public static bool noclip = false;
         public static float tagAuraDistance = 1.666f;
         public static int tagAuraIndex = 1;
+        public static Vector3 basegravity = new Vector3(1337f, 1337f, 1337f);
 
         public static bool lastSlingThing = false;
 

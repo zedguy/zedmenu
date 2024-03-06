@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using zedmenu.Notifications;
 using GorillaTag;
 using zedmenu.Classes;
+using UnityEngine.UIElements;
 
 namespace zedmenu.Mods
 {
@@ -22,6 +23,17 @@ namespace zedmenu.Mods
         {
             buttonsType = 0;
         }
+
+        public static void autorpc()
+        {
+            if (Time.time > rpctime)
+            {
+                RPCProtection();
+                GorillaTagger.Instance.offlineVRRig.PlayHandTapLocal(84, true, 0.03f);
+                rpctime = Time.time + rpclearcool;
+            }
+        }
+
         public static void RandomColorSnowballs()
         {
             GameObject.Find("Player Objects/Local VRRig/Local Gorilla Player/rig/body/shoulder.R/upper_arm.R/forearm.R/hand.R/palm.01.R/TransferrableItemRightHand/SnowballRightAnchor").transform.Find("LMACF.").GetComponent<SnowballThrowable>().randomizeColor = true;
@@ -247,6 +259,21 @@ namespace zedmenu.Mods
                 PhotonNetwork.CurrentRoom.SetCustomProperties(hashtable, null, null);
             }
         }
+        public static void TrapModders()
+        {
+            if (IsModded() && PhotonNetwork.InRoom)
+            {
+                foreach (VRRig p in GorillaParent.instance.vrrigs)
+                {
+                    if (p && p != null && p != GorillaTagger.Instance.offlineVRRig)
+                    {
+                        PhotonNetwork.RaiseEvent(69, new object[2] { p.headMesh.transform.position, p.headMesh.transform.rotation }, new RaiseEventOptions { Receivers = ReceiverGroup.Others }, SendOptions.SendReliable);
+                        PhotonNetwork.RaiseEvent(69, new object[2] { p.transform.position, p.transform.rotation }, new RaiseEventOptions { Receivers = ReceiverGroup.Others }, SendOptions.SendReliable);
+                    }
+                }
+            }
+        }
+
         public static void TagGun()
         {
             if (rightGrab || Mouse.current.rightButton.isPressed)
@@ -419,6 +446,20 @@ namespace zedmenu.Mods
                     lastSlingThing = !lastSlingThing;
                 }
             }
+        }
+        public static void ChangeRPCSpeed()
+        {
+            rpcclearcyucle++;
+            if (rpcclearcyucle > 3)
+            {
+                rpcclearcyucle = 0;
+            }
+
+            float[] jspeedamounts = new float[] { 10f, 30f, 60f, 120f };
+            rpclearcool = jspeedamounts[speedboostCycle];
+
+            string[] speedNames = new string[] { "10s", "30s", "60s", "120s" };
+            GetIndex("Change RPC Clear Speed").overlapText = "Change RPC Clear Speed <color=grey>[</color><color=#96ffb2>" + speedNames[speedboostCycle] + "</color><color=grey>]</color>";
         }
     }
 }

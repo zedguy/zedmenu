@@ -123,6 +123,10 @@ namespace zedmenu.Mods
             GorillaLocomotion.Player.Instance.maxJumpSpeed = jspeed;
             GorillaLocomotion.Player.Instance.jumpMultiplier = jmulti;
         }
+        public static void ZeroGravity()
+        {
+            GorillaLocomotion.Player.Instance.bodyCollider.attachedRigidbody.AddForce(Vector3.up * (Time.deltaTime * (9.81f / Time.deltaTime)), ForceMode.Acceleration);
+        }
 
         public static void GripSpeedBoost()
         {
