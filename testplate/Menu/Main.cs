@@ -783,7 +783,7 @@ namespace zedmenu.Menu
                             target.enabled = !target.enabled;
                             if (target.enabled)
                             {
-                                if (target.toolTip == "none")
+                                if (target.toolTip != "none")
                                 {
                                     NotifiLib.SendNotification("<color=grey>[</color><color=green>ENABLE</color><color=grey>]</color> " + target.toolTip);
                                 }
@@ -794,7 +794,7 @@ namespace zedmenu.Menu
                             }
                             else
                             {
-                                if (target.toolTip == "none")
+                                if (target.toolTip != "none")
                                 {
                                     NotifiLib.SendNotification("<color=grey>[</color><color=red>DISABLE</color><color=grey>]</color> " + target.toolTip);
                                 }
@@ -806,7 +806,7 @@ namespace zedmenu.Menu
                         }
                         else
                         {
-                            if (target.toolTip == "none")
+                            if (target.toolTip != "none")
                             {
                                 NotifiLib.SendNotification("<color=grey>[</color><color=green>ENABLE</color><color=grey>]</color> " + target.toolTip);
                             }
