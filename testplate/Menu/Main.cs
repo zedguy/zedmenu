@@ -1057,11 +1057,13 @@ namespace zedmenu.Menu
         public static bool lastMasterClient = false;
         public static string lastRoom = "";
 
-        public static int platformMode = 0;
+        public static int platformMode = 3;
         public static int platformShape = 0;
+        public static int ghostbutton = 0;
 
         public static bool customSoundOnJoin = false;
         public static float partDelay = 0f;
+        public static float telecool = 2f;
 
         public static float delaythinggg = 0f;
         public static float debounce = 0f;

@@ -25,6 +25,24 @@ namespace zedmenu.Mods
                 }
             }
         }
+        public static void Invis()
+        {
+            if (Inputs.rightControllerSecondaryButton && Time.time > Cooldown)
+            {
+                Cooldown = Time.time + 0.24f;
+                if (!ghostMonke)
+                {
+                    ghostMonke = true;
+                    GorillaTagger.Instance.offlineVRRig.enabled = false;
+                    GorillaTagger.Instance.offlineVRRig.transform.position = new Vector3(4500f,9999f,9999f);
+                }
+                else
+                {
+                    ghostMonke = false;
+                    GorillaTagger.Instance.offlineVRRig.enabled = true;
+                }
+            }
+        }
         public static void WeirdArms()
         {
             if (Inputs.rightControllerPrimaryButton && Time.time > Cooldown)
@@ -165,34 +183,37 @@ namespace zedmenu.Mods
         {
             if (Inputs.rightControllerPrimaryButton && Time.time > Cooldown)
             {
-                Cooldown = Time.time + 0.25f;
+                Cooldown = Time.time + 0.2f;
                 if (!ghostMonke)
                 {
                     ghostMonke = true;
+                    isCopying = true;
                     GorillaTagger.Instance.offlineVRRig.enabled = false;
-                    GorillaTagger.Instance.offlineVRRig.transform.position = GorillaLocomotion.Player.Instance.headCollider.transform.position;
-                    GorillaTagger.Instance.offlineVRRig.transform.rotation = GorillaLocomotion.Player.Instance.headCollider.transform.rotation;
-
+                    whoCopy = RigManager.GetRandomVRRig(false);
                 }
                 else
                 {
                     ghostMonke = false;
+                    isCopying = false;
                     GorillaTagger.Instance.offlineVRRig.enabled = true;
                     GorillaTagger.Instance.offlineVRRig.transform.parent = GameObject.Find("Player Objects").transform;
                 }
             }
-            if (ghostMonke)
+            if (ghostMonke && isCopying && whoCopy != null && whoCopy != GorillaTagger.Instance.offlineVRRig)
             {
-                var cooldown = Time.time;
-                VRRig vrrig = RigManager.GetRandomVRRig(false);
-                Transform target = vrrig.transform;
-                GorillaTagger.Instance.offlineVRRig.enabled = false;
-                GorillaTagger.Instance.offlineVRRig.transform.position += GorillaTagger.Instance.offlineVRRig.transform.forward * Time.deltaTime * (1.25f + ((Time.time - cooldown) / 10));
-                GorillaTagger.Instance.offlineVRRig.transform.LookAt(vrrig.transform.position);
-                GorillaTagger.Instance.offlineVRRig.leftHand.rigTarget.transform.position = GorillaTagger.Instance.offlineVRRig.transform.position - (GorillaTagger.Instance.offlineVRRig.transform.right / 4) + (GorillaTagger.Instance.offlineVRRig.transform.forward * 10);
-                GorillaTagger.Instance.offlineVRRig.rightHand.rigTarget.transform.position = GorillaTagger.Instance.offlineVRRig.transform.position + (GorillaTagger.Instance.offlineVRRig.transform.right / 4) + (GorillaTagger.Instance.offlineVRRig.transform.forward * 10);
-                GorillaTagger.Instance.offlineVRRig.leftHand.rigTarget.transform.LookAt(vrrig.headMesh.transform.position);
-                GorillaTagger.Instance.offlineVRRig.rightHand.rigTarget.transform.LookAt(vrrig.headMesh.transform.position);
+                if (ghostMonke)
+                {
+                    var cooldown = Time.time;
+                    VRRig vrrig = whoCopy;
+                    Transform target = vrrig.transform;
+                    GorillaTagger.Instance.offlineVRRig.enabled = false;
+                    GorillaTagger.Instance.offlineVRRig.transform.position += GorillaTagger.Instance.offlineVRRig.transform.forward * Time.deltaTime * (1.25f + ((Time.time - cooldown) / 10));
+                    GorillaTagger.Instance.offlineVRRig.transform.LookAt(vrrig.transform.position);
+                    GorillaTagger.Instance.offlineVRRig.leftHand.rigTarget.transform.position = GorillaTagger.Instance.offlineVRRig.transform.position - (GorillaTagger.Instance.offlineVRRig.transform.right / 4) + (GorillaTagger.Instance.offlineVRRig.transform.forward * 10);
+                    GorillaTagger.Instance.offlineVRRig.rightHand.rigTarget.transform.position = GorillaTagger.Instance.offlineVRRig.transform.position + (GorillaTagger.Instance.offlineVRRig.transform.right / 4) + (GorillaTagger.Instance.offlineVRRig.transform.forward * 10);
+                    GorillaTagger.Instance.offlineVRRig.leftHand.rigTarget.transform.LookAt(vrrig.headMesh.transform.position);
+                    GorillaTagger.Instance.offlineVRRig.rightHand.rigTarget.transform.LookAt(vrrig.headMesh.transform.position);
+                }
             }
         }
         public static void LucyGun()
@@ -273,6 +294,10 @@ namespace zedmenu.Mods
                 GorillaTagger.Instance.offlineVRRig.leftHand.rigTarget.transform.rotation = Quaternion.Inverse(GorillaTagger.Instance.leftHandTransform.transform.rotation);
                 GorillaTagger.Instance.offlineVRRig.rightHand.rigTarget.transform.rotation = Quaternion.Inverse(GorillaTagger.Instance.rightHandTransform.transform.rotation);
             }
+        }
+        public static void StareAtNearby()
+        {
+            GorillaTagger.Instance.offlineVRRig.headConstraint.LookAt(RigManager.GetClosestVRRig().headMesh.transform.position);
         }
         public static void Orbit()
         {

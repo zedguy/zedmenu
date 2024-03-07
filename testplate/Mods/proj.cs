@@ -4,6 +4,7 @@ using Photon.Realtime;
 using System;
 using System.Runtime.InteropServices;
 using UnityEngine;
+using zedmenu.Classes;
 using static zedmenu.Menu.Main;
 using static zedmenu.Settings;
 
@@ -16,7 +17,7 @@ namespace zedmenu.Mods
             ControllerInputPoller.instance.leftControllerGripFloat = 1f;
             GameObject lhelp = GameObject.CreatePrimitive(PrimitiveType.Cube);
             UnityEngine.Object.Destroy(lhelp, 0.1f);
-            lhelp.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+            lhelp.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f) * GorillaTagger.Instance.offlineVRRig.scaleFactor;
             lhelp.transform.position = GorillaTagger.Instance.leftHandTransform.position;
             lhelp.transform.rotation = GorillaTagger.Instance.leftHandTransform.rotation;
             int[] overrides = new int[]

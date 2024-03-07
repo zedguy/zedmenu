@@ -150,14 +150,28 @@ namespace zedmenu.Mods
                 speedboostCycle = 0;
             }
 
-            float[] jspeedamounts = new float[] { 2f, 7.5f, 9f, 200f };
+            float[] jspeedamounts = new float[] { 2f, 7.5f, 9f, 50f };
             jspeed = jspeedamounts[speedboostCycle];
 
-            float[] jmultiamounts = new float[] { 0.5f, 1.25f, 2f, 10f };
+            float[] jmultiamounts = new float[] { 0.5f, 1.25f, 2f, 2.5f };
             jmulti = jmultiamounts[speedboostCycle];
 
             string[] speedNames = new string[] { "Slow", "Normal", "Fast", "Ultra Fast" };
             GetIndex("Change Speed Boost Amount").overlapText = "Change Speed Boost Amount <color=grey>[</color><color=#96ffb2>" + speedNames[speedboostCycle] + "</color><color=grey>]</color>";
+        }
+        public static void changefly()
+        {
+            flySpeedCycle++;
+            if (flySpeedCycle > 3)
+            {
+                flySpeedCycle = 0;
+            }
+
+            float[] jspeedamounts = new float[] { 4f, 10f, 16f, 24f };
+            flySpeed = jspeedamounts[speedboostCycle];
+
+            string[] speedNames = new string[] { "Slow", "Normal", "Fast", "Really Fast" };
+            GetIndex("Change Fly Speed").overlapText = "Change Fly Speed <color=grey>[</color><color=#96ffb2>" + speedNames[speedboostCycle] + "</color><color=grey>]</color>";
         }
 
 
@@ -391,6 +405,14 @@ namespace zedmenu.Mods
                 GorillaTagger.Instance.StartVibration(false, GorillaTagger.Instance.tapHapticStrength / 50f * GorillaLocomotion.Player.Instance.bodyCollider.attachedRigidbody.velocity.magnitude, GorillaTagger.Instance.tapHapticDuration);
             }
         }
+        public static void Fly()
+        {
+            if (Inputs.rightControllerPrimaryButton)
+            {
+                GorillaLocomotion.Player.Instance.transform.position += GorillaLocomotion.Player.Instance.headCollider.transform.forward * Time.deltaTime * flySpeed;
+                GorillaLocomotion.Player.Instance.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            }
+        }
         public static void TPGun()
         {
             if (Inputs.rightGrab || Mouse.current.rightButton.isPressed)
@@ -405,9 +427,10 @@ namespace zedmenu.Mods
                 UnityEngine.Object.Destroy(NewPointer.GetComponent<Rigidbody>());
                 UnityEngine.Object.Destroy(NewPointer.GetComponent<Collider>());
                 UnityEngine.Object.Destroy(NewPointer, Time.deltaTime);
-                if (rightTrigger > 0.5f || Mouse.current.leftButton.isPressed)
+                if (rightTrigger > 0.5f && Time.time > telecool || Mouse.current.leftButton.isPressed)
                 {
                     TeleportPatch.TeleportPlayer(Ray.point);
+                    telecool = Time.time + 2f;
                 }
             }
         }

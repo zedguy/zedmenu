@@ -447,6 +447,13 @@ namespace zedmenu.Mods
                 }
             }
         }
+        public static void PrimDisc()
+        {
+            if (leftPrimary && PhotonNetwork.InRoom)
+            {
+                PhotonNetwork.Disconnect();
+            }
+        }
         public static void ChangeRPCSpeed()
         {
 
