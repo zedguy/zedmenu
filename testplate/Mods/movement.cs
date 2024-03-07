@@ -168,10 +168,10 @@ namespace zedmenu.Mods
             }
 
             float[] jspeedamounts = new float[] { 4f, 10f, 16f, 24f };
-            flySpeed = jspeedamounts[speedboostCycle];
+            flySpeed = jspeedamounts[flySpeedCycle];
 
             string[] speedNames = new string[] { "Slow", "Normal", "Fast", "Really Fast" };
-            GetIndex("Change Fly Speed").overlapText = "Change Fly Speed <color=grey>[</color><color=#96ffb2>" + speedNames[speedboostCycle] + "</color><color=grey>]</color>";
+            GetIndex("Change Fly Speed").overlapText = "Change Fly Speed <color=grey>[</color><color=#96ffb2>" + speedNames[flySpeedCycle] + "</color><color=grey>]</color>";
         }
 
 

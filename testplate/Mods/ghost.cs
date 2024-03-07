@@ -286,13 +286,13 @@ namespace zedmenu.Mods
             }
             if (ghostMonke)
             {
-                GorillaTagger.Instance.offlineVRRig.transform.rotation = GorillaTagger.Instance.bodyCollider.transform.rotation;
+                GorillaTagger.Instance.offlineVRRig.transform.rotation = GorillaTagger.Instance.headCollider.transform.rotation;
                 GorillaTagger.Instance.offlineVRRig.transform.position = GorillaTagger.Instance.headCollider.transform.position + (-GorillaTagger.Instance.headCollider.transform.forward / 6);
-                GorillaTagger.Instance.offlineVRRig.head.rigTarget.transform.rotation = Quaternion.identity;
+                GorillaTagger.Instance.offlineVRRig.head.rigTarget.transform.rotation = GorillaTagger.Instance.headCollider.transform.rotation;
                 GorillaTagger.Instance.offlineVRRig.leftHand.rigTarget.transform.position = GorillaLocomotion.Player.Instance.leftControllerTransform.position;
-                GorillaTagger.Instance.offlineVRRig.rightHand.rigTarget.transform.position = whoCopy.headMesh.transform.position;
-                GorillaTagger.Instance.offlineVRRig.leftHand.rigTarget.transform.rotation = Quaternion.Inverse(GorillaTagger.Instance.leftHandTransform.transform.rotation);
-                GorillaTagger.Instance.offlineVRRig.rightHand.rigTarget.transform.rotation = Quaternion.Inverse(GorillaTagger.Instance.rightHandTransform.transform.rotation);
+                GorillaTagger.Instance.offlineVRRig.rightHand.rigTarget.transform.position = GorillaLocomotion.Player.Instance.rightControllerTransform.position;
+                GorillaTagger.Instance.offlineVRRig.leftHand.rigTarget.transform.rotation = Quaternion.Inverse(GorillaLocomotion.Player.Instance.leftControllerTransform.transform.rotation);
+                GorillaTagger.Instance.offlineVRRig.rightHand.rigTarget.transform.rotation = Quaternion.Inverse(GorillaLocomotion.Player.Instance.rightControllerTransform.transform.rotation);
             }
         }
         public static void StareAtNearby()
