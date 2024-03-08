@@ -122,7 +122,7 @@ namespace zedmenu.Menu
                     GameObject.Find("Environment Objects/LocalObjects_Prefab/TreeRoom/TreeRoomInteractables/Wall Monitors Screens/wallmonitorforest").GetComponent<Renderer>().material = OrangeUI;
                     GameObject.Find("Environment Objects/LocalObjects_Prefab/TreeRoom/TreeRoomInteractables/Wall Monitors Screens/wallmonitorskyjungle").GetComponent<Renderer>().material = OrangeUI;
                     GameObject.Find("Environment Objects/LocalObjects_Prefab/Forest/Terrain/campgroundstructure/scoreboard/REMOVE board").GetComponent<Renderer>().material = OrangeUI;
-
+                    Custommotd();
                     //GameObject.Find("Mountain/UI/Text/monitor").GetComponent<Renderer>().material = OrangeUI;
                     //GameObject.Find("skyjungle/UI/-- Clouds PhysicalComputer UI --/monitor (1)").GetComponent<Renderer>().material = OrangeUI;
                     //GameObject.Find("TreeRoom/TreeRoomInteractables/UI/-- PhysicalComputer UI --/monitor").GetComponent<Renderer>().material = OrangeUI;
@@ -706,7 +706,7 @@ namespace zedmenu.Menu
             colorChanger.Start();
         }
 
-        public static void Custommotd(bool ir)
+        public static void Custommotd()
         {
             var FPS = Time.frameCount / Time.time;
             var FrameRate = (int)FPS;
@@ -733,23 +733,32 @@ namespace zedmenu.Menu
             //float x = Mathf.Cos(angle);
             GameObject.Find("CodeOfConduct").GetComponent<Text>().color = new Color(0.75f, 1f, 0.75f, 1f);
             GameObject.Find("COC Text").GetComponent<Text>().color = new Color(0.8f, 1f, 0.8f, 1f);
-            if (!ir)
+            if (!PhotonNetwork.InRoom)
             {
-                GameObject.Find("COC Text").GetComponent<Text>().text = " Menu Symbols \n" +
+                GameObject.Find("COC Text").GetComponent<Text>().text = " GAME INFO: \n \n" +
                 "Notifications: \n" +
                 NotifiLib.PreviousNotifi;
                 GameObject.Find("CodeOfConduct").GetComponent<Text>().text = "zedmenu";
             }
-            if (ir)
+            if (PhotonNetwork.InRoom)
             {
+                var Gamemode = "";
+                if (PhotonNetwork.CurrentRoom.CustomProperties["gameMode"].ToString().Contains("INFECT"))
+                    Gamemode = "INFECTION";
+                if (PhotonNetwork.CurrentRoom.CustomProperties["gameMode"].ToString().Contains("CASUAL"))
+                    Gamemode = "CASUAL";
+                if (PhotonNetwork.CurrentRoom.CustomProperties["gameMode"].ToString().Contains("HUNT"))
+                    Gamemode = "HUNT";
+                if (PhotonNetwork.CurrentRoom.CustomProperties["gameMode"].ToString().Contains("BATTLE"))
+                    Gamemode = "PAINTBRAWL";
                 GameObject.Find("COC Text").GetComponent<Text>().text = "GAME INFO: \n \n" +
                 "FPS: " + FrameRate.ToString() + "\n" +
                 "PING: " + Ping.ToString() + "\n" +
                 "ROOM CODE: " + PhotonNetwork.CurrentRoom.Name + "\n" +
                 "PLAYERS IN ROOM: <color=green>" + PhotonNetwork.CurrentRoom.PlayerCount.ToString() + "</color>" + "\n" +
-                "GAMEMODE: <color=green>" + PhotonNetworkController.Instance.currentJoinTrigger.gameModeName + " " + GorillaComputer.instance.currentQueue + "</color>" + "\n" + "Notifications: \n" + "\n" +
+                "GAMEMODE: <color=green>" + GorillaComputer.instance.currentQueue + " " + Gamemode + "</color>" + "\n \n" + "Notifications: " + "\n" +
                 NotifiLib.PreviousNotifi + "\n";
-                GameObject.Find("CodeOfConduct").GetComponent<Text>().text = "zeds menu";
+                GameObject.Find("CodeOfConduct").GetComponent<Text>().text = "zedmenu";
             }
         }
 
@@ -783,9 +792,9 @@ namespace zedmenu.Menu
                             target.enabled = !target.enabled;
                             if (target.enabled)
                             {
-                                if (target.toolTip != "none")
+                                if (target.toolTip != "none.")
                                 {
-                                    NotifiLib.SendNotification("<color=grey>[</color><color=green>ENABLE</color><color=grey>]</color> " + target.toolTip);
+                                    NotifiLib.SendNotification("<color=grey>[</color><color=green>TOOLTIP</color><color=grey>]</color> " + target.toolTip);
                                 }
                                 if (target.enableMethod != null)
                                 {
@@ -794,10 +803,10 @@ namespace zedmenu.Menu
                             }
                             else
                             {
-                                if (target.toolTip != "none")
-                                {
-                                    NotifiLib.SendNotification("<color=grey>[</color><color=red>DISABLE</color><color=grey>]</color> " + target.toolTip);
-                                }
+                                //if (target.toolTip != "none.")
+                                //{
+                                //    NotifiLib.SendNotification("<color=grey>[</color><color=red>DISABLE</color><color=grey>]</color> " + target.toolTip);
+                                //}
                                 if (target.disableMethod != null)
                                 {
                                     try { target.disableMethod.Invoke(); } catch { }
@@ -806,9 +815,9 @@ namespace zedmenu.Menu
                         }
                         else
                         {
-                            if (target.toolTip != "none")
+                            if (target.toolTip != "none.")
                             {
-                                NotifiLib.SendNotification("<color=grey>[</color><color=green>ENABLE</color><color=grey>]</color> " + target.toolTip);
+                                NotifiLib.SendNotification("<color=grey>[</color><color=green>TOOLTIP</color><color=grey>]</color> " + target.toolTip);
                             }
                             if (target.method != null)
                             {

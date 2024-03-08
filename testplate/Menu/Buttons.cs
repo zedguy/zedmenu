@@ -16,8 +16,9 @@ namespace zedmenu.Menu
                 new ButtonInfo { buttonText = "Visuals", method =() => SettingsMods.visual(), isTogglable = false, toolTip = "Opens the visual mods for the menu."},
                 new ButtonInfo { buttonText = "Hitsounds", method =() => SettingsMods.HitSettings(), isTogglable = false, toolTip = "Opens the Hitsound mods for the menu."},
                 new ButtonInfo { buttonText = "Disguises", method =() => SettingsMods.Disguises(), isTogglable = false, toolTip = "Opens the disguises for the menu."},
-                new ButtonInfo { buttonText = "Misc", method =() => SettingsMods.ProjectileSettings(), isTogglable = false, toolTip = "Opens the projectile mods for the menu."},
+                new ButtonInfo { buttonText = "Misc", method =() => SettingsMods.ProjectileSettings(), isTogglable = false, toolTip = "Opens the misc mods for the menu."},
                 new ButtonInfo { buttonText = "Credits", method =() => SettingsMods.Trolls(), isTogglable = false, toolTip = "Opens the credits for the menu."},
+                new ButtonInfo { buttonText = "Unstable", method =() => SettingsMods.bannable(), isTogglable = false, toolTip = "Opens the detected mods for the menu."},
             },
 
             new ButtonInfo[] { // Settings
@@ -36,7 +37,6 @@ namespace zedmenu.Menu
                 new ButtonInfo { buttonText = "Change RPC Clear Speed", overlapText = "Change RPC Clear Speed <color=grey>[</color><color=#96ffb2>" + "30s" + "</color><color=grey>]</color>", method =() => Global.ChangeRPCSpeed(), isTogglable = false, toolTip = "Changes time until rpcs flush automatically."},
                 new ButtonInfo { buttonText = "Auto Flush RPCs", method =() => Global.autorpc(), toolTip = "auto flush rpcs (report flush?)."},
                 new ButtonInfo { buttonText = "RPC Flush", method =() => Main.RPCProtection(), isTogglable = false, toolTip = "flush rpcs (report flush?)."},
-                new ButtonInfo { buttonText = "Anti Ban "+qdetxt, method =() => Global.AntiBan(), toolTip = "bans not allowed"},
             },
 
             new ButtonInfo[] { // Rig Mods
@@ -90,14 +90,6 @@ namespace zedmenu.Menu
                 new ButtonInfo { buttonText = "Give Present Gun", method =() => Projectiles.GiveProj("ThrowableGift"), toolTip = "gives spammer to selected player."},
                 new ButtonInfo { buttonText = "Give Mentos Gun", method =() => Projectiles.GiveProj("ScienceCandy"), toolTip = "gives spammer to selected player."},
                 new ButtonInfo { buttonText = "Spam impacts "+gtxt, method =() => Projectiles.imspam()},
-                new ButtonInfo { buttonText = "Set Master "+qdetxt, method =() => Global.FastMaster(), isTogglable = false},
-                new ButtonInfo { buttonText = "Infection Gamemode "+qdetxt, method =() => Global.InfectionGamemode(), isTogglable = false, toolTip = "Sets the gamemode to infection."},
-                new ButtonInfo { buttonText = "Casual Gamemode "+qdetxt, method =() => Global.CasualGamemode(), isTogglable = false, toolTip = "Sets the gamemode to casual."},
-                new ButtonInfo { buttonText = "Hunt Gamemode "+qdetxt, method =() => Global.HuntGamemode(), isTogglable = false, toolTip = "Sets the gamemode to hunt."},
-                new ButtonInfo { buttonText = "Battle Gamemode "+qdetxt, method =() => Global.BattleGamemode(), isTogglable = false, toolTip = "Sets the gamemode to battle."},
-                new ButtonInfo { buttonText = "SS Disable Triggers "+qdetxt, method =() => Global.ssdisabletest(), isTogglable = false, toolTip = "No leaving."},
-                new ButtonInfo { buttonText = "Erupt Volcano "+qdetxt, method =() => Global.ForceEruptLava(), isTogglable = false, toolTip = "valcono."},
-                new ButtonInfo { buttonText = "UnErupt Volcano "+qdetxt, method =() => Global.ForceUneruptLava(), isTogglable = false, toolTip = "No volacneo."},
             },
 
             new ButtonInfo[] { // Hitsounds Mods
@@ -150,6 +142,18 @@ namespace zedmenu.Menu
                 new ButtonInfo { buttonText = "Beacons", method =() => Visuals.Beacons(), toolTip = "Beacons on other players."},
                 new ButtonInfo { buttonText = "Box ESP", method =() => Visuals.Box(), toolTip = "Box shaped ESP on other players."},
                 new ButtonInfo { buttonText = "Dot ESP", method =() => Visuals.Dot(), toolTip = "Dot shaped ESP on other players."},
+            },
+            new ButtonInfo[] { // Unstable Mods
+                new ButtonInfo { buttonText = "Return to Main", method =() => Global.ReturnHome(), isTogglable = false, toolTip = "Returns to the main page of the menu."},
+                new ButtonInfo { buttonText = "Anti Ban", overlapText = "Anti Ban "+qdetxt, method =() => Global.AntiBan(), toolTip = "no bans allowed kinda"},
+                new ButtonInfo { buttonText = "Set Master "+detxt, method =() => Global.FastMaster(), isTogglable = false},
+                new ButtonInfo { buttonText = "Infection Gamemode "+detxt, method =() => Global.InfectionGamemode(), isTogglable = false, toolTip = "Sets the gamemode to infection."},
+                new ButtonInfo { buttonText = "Casual Gamemode "+detxt, method =() => Global.CasualGamemode(), isTogglable = false, toolTip = "Sets the gamemode to casual."},
+                new ButtonInfo { buttonText = "Hunt Gamemode "+detxt, method =() => Global.HuntGamemode(), isTogglable = false, toolTip = "Sets the gamemode to hunt."},
+                new ButtonInfo { buttonText = "Battle Gamemode "+detxt, method =() => Global.BattleGamemode(), isTogglable = false, toolTip = "Sets the gamemode to battle."},
+                new ButtonInfo { buttonText = "SS Disable Triggers "+detxt, method =() => Global.ssdisabletest(), isTogglable = false, toolTip = "No leaving."},
+                new ButtonInfo { buttonText = "Erupt Volcano "+qdetxt, method =() => Global.ForceEruptLava(), isTogglable = false, toolTip = "valcono."},
+                new ButtonInfo { buttonText = "UnErupt Volcano "+qdetxt, method =() => Global.ForceUneruptLava(), isTogglable = false, toolTip = "No volacneo."},
             },
         };
     }

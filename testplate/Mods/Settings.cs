@@ -40,6 +40,10 @@ namespace zedmenu.Mods
         {
             buttonsType = 8;
         }
+        public static void bannable()
+        {
+            buttonsType = 9;
+        }
 
         public static void RightHand()
         {

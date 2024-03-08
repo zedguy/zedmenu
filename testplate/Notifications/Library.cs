@@ -91,7 +91,7 @@ namespace zedmenu.Notifications
             //}
         }
 
-        public static void SendNotification(string NotificationText, int clearTime = 3500)
+        public static void SendNotification(string NotificationText, int clearTime = 3000)
         {
             {
                 try
