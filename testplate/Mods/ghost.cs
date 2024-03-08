@@ -291,8 +291,8 @@ namespace zedmenu.Mods
                 GorillaTagger.Instance.offlineVRRig.head.rigTarget.transform.rotation = GorillaTagger.Instance.headCollider.transform.rotation;
                 GorillaTagger.Instance.offlineVRRig.leftHand.rigTarget.transform.position = GorillaLocomotion.Player.Instance.leftControllerTransform.position;
                 GorillaTagger.Instance.offlineVRRig.rightHand.rigTarget.transform.position = GorillaLocomotion.Player.Instance.rightControllerTransform.position;
-                GorillaTagger.Instance.offlineVRRig.leftHand.rigTarget.transform.rotation = Quaternion.Inverse(GorillaLocomotion.Player.Instance.leftControllerTransform.transform.rotation);
-                GorillaTagger.Instance.offlineVRRig.rightHand.rigTarget.transform.rotation = Quaternion.Inverse(GorillaLocomotion.Player.Instance.rightControllerTransform.transform.rotation);
+                GorillaTagger.Instance.offlineVRRig.leftHand.rigTarget.transform.rotation = GorillaTagger.Instance.headCollider.transform.rotation;
+                GorillaTagger.Instance.offlineVRRig.rightHand.rigTarget.transform.rotation = GorillaTagger.Instance.headCollider.transform.rotation;
             }
         }
         public static void StareAtNearby()
