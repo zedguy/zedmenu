@@ -121,61 +121,16 @@ namespace zedmenu.Mods
             }
         }
 
-        public static void ForceEruptLava()
+        public static void DisableNetworkTriggers()
         {
-            if (!PhotonNetwork.IsMasterClient)
-            {
-                
-                {
-                    FastMaster();
-                }
-            }
-            else
-            {
-                InfectionLavaController controller = InfectionLavaController.Instance;
-                System.Type type = controller.GetType();
-
-                FieldInfo fieldInfo = type.GetField("reliableState", BindingFlags.NonPublic | BindingFlags.Instance);
-
-                object reliableState = fieldInfo.GetValue(controller);
-
-                FieldInfo stateFieldInfo = reliableState.GetType().GetField("state");
-                stateFieldInfo.SetValue(reliableState, InfectionLavaController.RisingLavaState.Erupting);
-
-                FieldInfo stateFieldInfo2 = reliableState.GetType().GetField("stateStartTime");
-                stateFieldInfo2.SetValue(reliableState, PhotonNetwork.Time);
-
-                fieldInfo.SetValue(controller, reliableState);
-            }
+            GameObject.Find("Environment Objects/TriggerZones_Prefab/JoinRoomTriggers_Prefab").SetActive(false);
         }
 
-        public static void ForceUneruptLava()
+        public static void EnableNetworkTriggers()
         {
-            if (!PhotonNetwork.IsMasterClient)
-            {
-                
-                {
-                    FastMaster();
-                }
-            }
-            else
-            {
-                InfectionLavaController controller = InfectionLavaController.Instance;
-                System.Type type = controller.GetType();
-
-                FieldInfo fieldInfo = type.GetField("reliableState", BindingFlags.NonPublic | BindingFlags.Instance);
-
-                object reliableState = fieldInfo.GetValue(controller);
-
-                FieldInfo stateFieldInfo = reliableState.GetType().GetField("state");
-                stateFieldInfo.SetValue(reliableState, InfectionLavaController.RisingLavaState.Draining);
-
-                FieldInfo stateFieldInfo2 = reliableState.GetType().GetField("stateStartTime");
-                stateFieldInfo2.SetValue(reliableState, PhotonNetwork.Time);
-
-                fieldInfo.SetValue(controller, reliableState);
-            }
+            GameObject.Find("Environment Objects/TriggerZones_Prefab/JoinRoomTriggers_Prefab").SetActive(true);
         }
+
         public static void ssdisabletest()
         {
             if (!IsModded())

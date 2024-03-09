@@ -1,9 +1,9 @@
 ﻿using zedmenu.Notifications;
 using Photon.Pun;
-using System.Diagnostics;
+using System;
 using System.IO;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using static zedmenu.Classes.RigManager;
 using static zedmenu.Menu.Main;
 using static zedmenu.Mods.Reconnect;
@@ -22,6 +22,19 @@ namespace zedmenu.Mods
             ControllerInputPoller.instance.leftControllerSecondaryButton = false;
             ControllerInputPoller.instance.rightControllerPrimaryButton = false;
             ControllerInputPoller.instance.rightControllerSecondaryButton = false;
+        }
+
+        public static bool lastjsi = false;
+        public static bool isActive = true;
+
+        public static void DisableGamemodeButtons()
+        {
+            GameObject.Find("Environment Objects/LocalObjects_Prefab/TreeRoom/TreeRoomInteractables/UI/Selector Buttons/anchor/ENABLE FOR BETA").SetActive(false);
+        }
+
+        public static void EnableGamemodeButtons()
+        {
+            GameObject.Find("Environment Objects/LocalObjects_Prefab/TreeRoom/TreeRoomInteractables/UI/Selector Buttons/anchor/ENABLE FOR BETA").SetActive(true);
         }
 
         public static void AntiCrashEnabled()
@@ -48,6 +61,14 @@ namespace zedmenu.Mods
             AntiSoundToggle = false;
         }
 
+        public static void SceneLoaded(Scene arg0, LoadSceneMode arg1)
+        {
+            boards = null;
+        }
+        public static void DisableAntiReport()
+        {
+            boards = null;
+        }
         public static GorillaScoreBoard[] boards = null;
         public static void AntiReportDisconnect()
         {
@@ -61,7 +82,7 @@ namespace zedmenu.Mods
                 {
                     foreach (GorillaPlayerScoreboardLine line in board.lines)
                     {
-                        if (line.linePlayer == PhotonNetwork.LocalPlayer)
+                        if (GetPlayerFromNetPlayer(line.linePlayer) == PhotonNetwork.LocalPlayer)
                         {
                             Transform report = line.reportButton.gameObject.transform;
                             foreach (VRRig vrrig in GorillaParent.instance.vrrigs)
@@ -92,42 +113,33 @@ namespace zedmenu.Mods
         {
             try
             {
-                GameObject boards = GameObject.Find("Environment Objects/PersistentObjects_Prefab/GorillaUI");
-                Transform boardsTransform = boards.transform;
-                for (int i = 0; i < boardsTransform.childCount; i++)
+                if (boards == null)
                 {
-                    Transform v = boardsTransform.GetChild(i);
-                    if (v.gameObject.name.Contains("Report") && v.gameObject.activeSelf)
+                    boards = GameObject.FindObjectsOfType<GorillaScoreBoard>();
+                }
+                foreach (GorillaScoreBoard board in boards)
+                {
+                    foreach (GorillaPlayerScoreboardLine line in board.lines)
                     {
-                        string Name = v.gameObject.name;
-                        v = v.Find("GorillaScoreBoard/LineParent");
-                        for (int i2 = 0; i2 < v.childCount; i2++)
+                        if (GetPlayerFromNetPlayer(line.linePlayer) == PhotonNetwork.LocalPlayer)
                         {
-                            Transform v2 = v.GetChild(i2);
-                            if (v2.name.Contains("GorillaPlayerScoreboardLine"))
+                            Transform report = line.reportButton.gameObject.transform;
+                            foreach (VRRig vrrig in GorillaParent.instance.vrrigs)
                             {
-                                Text name = v2.Find("Player Name").GetComponent<Text>();
-                                Transform report = v2.Find("ReportButton");
-                                if (!report.gameObject.activeSelf)
+                                if (vrrig != GorillaTagger.Instance.offlineVRRig)
                                 {
-                                    foreach (VRRig vrrig in GorillaParent.instance.vrrigs)
+                                    float D1 = Vector3.Distance(vrrig.rightHandTransform.position, report.position);
+                                    float D2 = Vector3.Distance(vrrig.leftHandTransform.position, report.position);
+
+                                    float threshold = 0.35f;
+
+                                    if (D1 < threshold || D2 < threshold)
                                     {
-                                        if (vrrig != GorillaTagger.Instance.offlineVRRig)
-                                        {
-                                            float D1 = Vector3.Distance(vrrig.rightHandTransform.position, report.position);
-                                            float D2 = Vector3.Distance(vrrig.leftHandTransform.position, report.position);
-
-                                            float threshold = 0.35f;
-
-                                            if (D1 < threshold || D2 < threshold)
-                                            {
-                                                rejRoom = PhotonNetwork.CurrentRoom.Name;
-                                                rejDebounce = Time.time + 2f;
-                                                PhotonNetwork.Disconnect();
-                                                RPCProtection();
-                                                NotifiLib.SendNotification("<color=grey>[</color><color=purple>ANTI-REPORT</color><color=grey>]</color> <color=white>Someone attempted to report you, you have been disconnected and will be reconnected shortly.</color>");
-                                            }
-                                        }
+                                        rejRoom = PhotonNetwork.CurrentRoom.Name;
+                                        rejDebounce = Time.time + 2f;
+                                        PhotonNetwork.Disconnect();
+                                        RPCProtection();
+                                        NotifiLib.SendNotification("<color=grey>[</color><color=purple>ANTI-REPORT</color><color=grey>]</color> <color=white>Someone attempted to report you, you have been disconnected and will be reconnected shortly.</color>");
                                     }
                                 }
                             }
@@ -142,42 +154,33 @@ namespace zedmenu.Mods
         {
             try
             {
-                GameObject boards = GameObject.Find("Environment Objects/PersistentObjects_Prefab/GorillaUI");
-                Transform boardsTransform = boards.transform;
-                for (int i = 0; i < boardsTransform.childCount; i++)
+                if (boards == null)
                 {
-                    Transform v = boardsTransform.GetChild(i);
-                    if (v.gameObject.name.Contains("Report") && v.gameObject.activeSelf)
+                    boards = GameObject.FindObjectsOfType<GorillaScoreBoard>();
+                }
+                foreach (GorillaScoreBoard board in boards)
+                {
+                    foreach (GorillaPlayerScoreboardLine line in board.lines)
                     {
-                        string Name = v.gameObject.name;
-                        v = v.Find("GorillaScoreBoard/LineParent");
-                        for (int i2 = 0; i2 < v.childCount; i2++)
+                        if (GetPlayerFromNetPlayer(line.linePlayer) == PhotonNetwork.LocalPlayer)
                         {
-                            Transform v2 = v.GetChild(i2);
-                            if (v2.name.Contains("GorillaPlayerScoreboardLine"))
+                            Transform report = line.reportButton.gameObject.transform;
+                            foreach (VRRig vrrig in GorillaParent.instance.vrrigs)
                             {
-                                Text name = v2.Find("Player Name").GetComponent<Text>();
-                                Transform report = v2.Find("ReportButton");
-                                if (!report.gameObject.activeSelf)
+                                if (vrrig != GorillaTagger.Instance.offlineVRRig)
                                 {
-                                    foreach (VRRig vrrig in GorillaParent.instance.vrrigs)
+                                    float D1 = Vector3.Distance(vrrig.rightHandTransform.position, report.position);
+                                    float D2 = Vector3.Distance(vrrig.leftHandTransform.position, report.position);
+
+                                    float threshold = 0.35f;
+
+                                    if (D1 < threshold || D2 < threshold)
                                     {
-                                        if (vrrig != GorillaTagger.Instance.offlineVRRig)
-                                        {
-                                            float D1 = Vector3.Distance(vrrig.rightHandTransform.position, report.position);
-                                            float D2 = Vector3.Distance(vrrig.leftHandTransform.position, report.position);
-
-                                            float threshold = 0.35f;
-
-                                            if (D1 < threshold || D2 < threshold)
-                                            {
-                                                PhotonNetwork.Disconnect();
-                                                RPCProtection();
-                                                isJoiningRandom = true;
-                                                jrDebounce = Time.time + internetFloat;
-                                                NotifiLib.SendNotification("<color=grey>[</color><color=purple>ANTI-REPORT</color><color=grey>]</color> <color=white>Someone attempted to report you, you have been disconnected and will be connected to a random lobby shortly.</color>");
-                                            }
-                                        }
+                                        PhotonNetwork.Disconnect();
+                                        RPCProtection();
+                                        isJoiningRandom = true;
+                                        jrDebounce = Time.time + internetFloat;
+                                        NotifiLib.SendNotification("<color=grey>[</color><color=purple>ANTI-REPORT</color><color=grey>]</color> <color=white>Someone attempted to report you, you have been disconnected and will be connected to a random lobby shortly.</color>");
                                     }
                                 }
                             }
@@ -284,7 +287,11 @@ namespace zedmenu.Mods
             byte randB = (byte)UnityEngine.Random.Range(0, 255);
             byte randC = (byte)UnityEngine.Random.Range(0, 255);
             ChangeColor(new Color32(randA, randB, randC, 255));
-            Disguise.SpazAccessories();
+
+            for (var i = 0; i < 50; i++)
+            {
+                Disguise.SpazAccessories();
+            }
         }
     }
 }

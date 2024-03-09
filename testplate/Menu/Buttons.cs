@@ -78,6 +78,8 @@ namespace zedmenu.Menu
                 new ButtonInfo { buttonText = "Rapid Slingshot "+atxt, method =() => Global.RapidFireSlingshot(), toolTip = "Rapidly fires slingshot."},
                 new ButtonInfo { buttonText = "Destroy Gun", method =() => Global.DestroyGun(), toolTip = "Makes invis to future players."},
                 new ButtonInfo { buttonText = "Copy ID Gun", method =() => Global.CopyIDGun(), toolTip = "Copies IDs."},
+                new ButtonInfo { buttonText = "Disable Join Triggers", method =() => Global.DisableNetworkTriggers(), isTogglable = false, toolTip = "No leaving."},
+                new ButtonInfo { buttonText = "Enable Join Triggers", method =() => Global.EnableNetworkTriggers(), isTogglable = false, toolTip = "yes leaving."},
                 new ButtonInfo { buttonText = "Spam Snow "+gtxt, method =() => Projectiles.spam()},
                 new ButtonInfo { buttonText = "Spam Balloons "+gtxt, method =() => Projectiles.bspam()},
                 new ButtonInfo { buttonText = "Spam Presents "+gtxt, method =() => Projectiles.pspam()},
@@ -131,7 +133,7 @@ namespace zedmenu.Menu
             new ButtonInfo[] { // Trolling Mods
                 new ButtonInfo { buttonText = "Return to Main", method =() => Global.ReturnHome(), isTogglable = false, toolTip = "Returns to the main page of the menu."},
                 new ButtonInfo { buttonText = "<color=#5cffb6>zedguy</color> - Making half the menu's code", isTogglable = false},
-                new ButtonInfo { buttonText = "<color=#ff9f45>iidk</color> - Menu Template and some code", isTogglable = false},
+                new ButtonInfo { buttonText = "<color=#ff9f45>iidk</color> - Menu Template", isTogglable = false},
                 new ButtonInfo { buttonText = "<color=#e67c7c>Dudeman</color> - Some Ideas", isTogglable = false},
                 new ButtonInfo { buttonText = "<color=#c7eeff>You</color> - Actually using the menu", isTogglable = false},
             },
@@ -151,9 +153,7 @@ namespace zedmenu.Menu
                 new ButtonInfo { buttonText = "Casual Gamemode "+detxt, method =() => Global.CasualGamemode(), isTogglable = false, toolTip = "Sets the gamemode to casual."},
                 new ButtonInfo { buttonText = "Hunt Gamemode "+detxt, method =() => Global.HuntGamemode(), isTogglable = false, toolTip = "Sets the gamemode to hunt."},
                 new ButtonInfo { buttonText = "Battle Gamemode "+detxt, method =() => Global.BattleGamemode(), isTogglable = false, toolTip = "Sets the gamemode to battle."},
-                new ButtonInfo { buttonText = "SS Disable Triggers "+detxt, method =() => Global.ssdisabletest(), isTogglable = false, toolTip = "No leaving."},
-                new ButtonInfo { buttonText = "Erupt Volcano "+qdetxt, method =() => Global.ForceEruptLava(), isTogglable = false, toolTip = "valcono."},
-                new ButtonInfo { buttonText = "UnErupt Volcano "+qdetxt, method =() => Global.ForceUneruptLava(), isTogglable = false, toolTip = "No volacneo."},
+                new ButtonInfo { buttonText = "SS Disable Triggers "+detxt, method =() => Global.ssdisabletest(), isTogglable = false, toolTip = "No leaving for everyone."},
             },
         };
     }

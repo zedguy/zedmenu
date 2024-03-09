@@ -1,11 +1,13 @@
-﻿using zedmenu.Notifications;
+﻿using GorillaTag;
 using HarmonyLib;
 using Photon.Pun;
-using UnityEngine;
-using static zedmenu.Menu.Main;
-using PlayFab.Internal;
 using PlayFab;
-using GorillaTag;
+using PlayFab.Internal;
+using System;
+using System.Runtime.CompilerServices;
+using UnityEngine;
+using zedmenu.Notifications;
+using static zedmenu.Menu.Main;
 
 namespace zedmenu.Patches
 {
@@ -14,7 +16,7 @@ namespace zedmenu.Patches
     {
         private static bool Prefix(string susReason, string susId, string susNick)
         {
-            if (AntiCheatSelf)
+            if (AntiCheatSelf || AntiCheatAll)
             {
                 if (susId == PhotonNetwork.LocalPlayer.UserId)
                 {
@@ -22,6 +24,13 @@ namespace zedmenu.Patches
                     susNick.Remove(PhotonNetwork.LocalPlayer.NickName.Length);
                     susId.Remove(PhotonNetwork.LocalPlayer.UserId.Length);
                     RPCProtection();
+                }
+                else
+                {
+                    if (AntiCheatAll)
+                    {
+                        NotifiLib.SendNotification("<color=grey>[</color><color=green>ANTICHEAT</color><color=grey>] </color><color=white>" + susNick + " was reported for " + susReason + ".</color>");
+                    }
                 }
             }
             return false;
@@ -64,19 +73,19 @@ namespace zedmenu.Patches
         }
     }
 
-    [HarmonyPatch(typeof(GorillaNot), "IncrementRPCTracker")]
+    /*[HarmonyPatch(typeof(GorillaNot), "IncrementRPCTracker", new Type[] { typeof(string), typeof(string), typeof(int) })]
     public class NoIncrementRPCTracker : MonoBehaviour
     {
         private static bool Prefix()
         {
             return false;
         }
-    }
+    }*/
 
     [HarmonyPatch(typeof(GorillaNot), "IncrementRPCCallLocal")]
     public class NoIncrementRPCCallLocal : MonoBehaviour
     {
-        private static bool Prefix(PhotonMessageInfo info, string rpcFunction)
+        private static bool Prefix(PhotonMessageInfoWrapped infoWrapped, string rpcFunction)
         {
             // Debug.Log(info.Sender.NickName + " sent rpc: " + rpcFunction);
             return false;
@@ -92,7 +101,7 @@ namespace zedmenu.Patches
         }
     }
 
-    [HarmonyPatch(typeof(GorillaNot), "IncrementRPCCall")]
+    [HarmonyPatch(typeof(GorillaNot), "IncrementRPCCall", new Type[] { typeof(PhotonMessageInfo), typeof(string) })]
     public class NoIncrementRPCCall : MonoBehaviour
     {
         private static bool Prefix(PhotonMessageInfo info, string callingMethod = "")
@@ -101,10 +110,11 @@ namespace zedmenu.Patches
         }
     }
 
-    [HarmonyPatch(typeof(VRRig), "IncrementRPC")]
+    // Thanks DrPerky
+    [HarmonyPatch(typeof(VRRig), "IncrementRPC", new Type[] { typeof(PhotonMessageInfoWrapped), typeof(string) })]
     public class NoIncrementRPC : MonoBehaviour
     {
-        private static bool Prefix()
+        private static bool Prefix(PhotonMessageInfoWrapped info, string sourceCall)
         {
             return false;
         }

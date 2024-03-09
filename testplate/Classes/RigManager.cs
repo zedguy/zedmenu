@@ -15,22 +15,16 @@ namespace zedmenu.Classes
 
         public static VRRig GetRandomVRRig(bool includeSelf)
         {
-            VRRig random = GorillaParent.instance.vrrigs[UnityEngine.Random.Range(0, GorillaParent.instance.vrrigs.Count - 1)];
+            Photon.Realtime.Player randomPlayer;
             if (includeSelf)
             {
-                return random;
+                randomPlayer = PhotonNetwork.PlayerList[UnityEngine.Random.Range(0, PhotonNetwork.PlayerList.Length - 1)];
             }
             else
             {
-                if (random != GorillaTagger.Instance.offlineVRRig)
-                {
-                    return random;
-                }
-                else
-                {
-                    return GetRandomVRRig(includeSelf);
-                }
+                randomPlayer = PhotonNetwork.PlayerListOthers[UnityEngine.Random.Range(0, PhotonNetwork.PlayerListOthers.Length - 1)];
             }
+            return GetVRRigFromPlayer(randomPlayer);
         }
 
         public static VRRig GetClosestVRRig()
@@ -39,7 +33,7 @@ namespace zedmenu.Classes
             VRRig outRig = null;
             foreach (VRRig vrrig in GorillaParent.instance.vrrigs)
             {
-                if (Vector3.Distance(GorillaTagger.Instance.bodyCollider.transform.position, vrrig.transform.position) < num)
+                if (Vector3.Distance(GorillaTagger.Instance.bodyCollider.transform.position, vrrig.transform.position) < num && vrrig != GorillaTagger.Instance.offlineVRRig)
                 {
                     num = Vector3.Distance(GorillaTagger.Instance.bodyCollider.transform.position, vrrig.transform.position);
                     outRig = vrrig;
@@ -58,7 +52,8 @@ namespace zedmenu.Classes
             if (includeSelf)
             {
                 return PhotonNetwork.PlayerList[UnityEngine.Random.Range(0, PhotonNetwork.PlayerList.Length - 1)];
-            } else
+            }
+            else
             {
                 return PhotonNetwork.PlayerListOthers[UnityEngine.Random.Range(0, PhotonNetwork.PlayerListOthers.Length - 1)];
             }
@@ -75,6 +70,20 @@ namespace zedmenu.Classes
             foreach (Photon.Realtime.Player target in PhotonNetwork.PlayerList)
             {
                 if (target.UserId == id)
+                {
+                    found = target;
+                    break;
+                }
+            }
+            return found;
+        }
+
+        public static Photon.Realtime.Player GetPlayerFromNetPlayer(NetPlayer p)
+        {
+            Photon.Realtime.Player found = null;
+            foreach (Photon.Realtime.Player target in PhotonNetwork.PlayerList)
+            {
+                if (target.UserId == p.UserId)
                 {
                     found = target;
                     break;

@@ -642,7 +642,17 @@ namespace zedmenu.Menu
             {
                 try
                 {
-                    TPC = GameObject.Find("Player Objects/Third Person Camera/Shoulder Camera").GetComponent<Camera>();
+                    if (TPC == null)
+                    {
+                        try
+                        {
+                            TPC = GameObject.Find("Player Objects/Third Person Camera/Shoulder Camera").GetComponent<Camera>();
+                        }
+                        catch
+                        {
+                            TPC = GameObject.Find("Shoulder Camera").GetComponent<Camera>();
+                        }
+                    }
                 }
                 catch { }
                 if (TPC != null)
