@@ -3,6 +3,8 @@ using zedmenu.Mods;
 using static zedmenu.Settings;
 using static zedmenu.Menu.Main;
 using GorillaTag.GuidedRefs;
+using System;
+
 namespace zedmenu.Menu
 {
     internal class Buttons
@@ -23,9 +25,10 @@ namespace zedmenu.Menu
 
             new ButtonInfo[] { // Settings
                 new ButtonInfo { buttonText = "Return to Main", method =() => Global.ReturnHome(), isTogglable = false, toolTip = "Returns to the main page of the menu."},
-                new ButtonInfo { buttonText = "Right Hand", enableMethod =() => SettingsMods.RightHand(), disableMethod =() => SettingsMods.LeftHand(), toolTip = "Puts the menu on your right hand."},
+                //new ButtonInfo { buttonText = "Right Hand", enableMethod =() => SettingsMods.RightHand(), disableMethod =() => SettingsMods.LeftHand(), toolTip = "Puts the menu on your right hand."},
                 new ButtonInfo { buttonText = "Notifications", enableMethod =() => SettingsMods.EnableNotifications(), disableMethod =() => SettingsMods.DisableNotifications(), enabled = !disableNotifications, toolTip = "Toggles the notifications."},
                 new ButtonInfo { buttonText = "Disconnect Button", enableMethod =() => SettingsMods.EnableDisconnectButton(), disableMethod =() => SettingsMods.DisableDisconnectButton(), enabled = disconnectButton, toolTip = "Toggles the disconnect button."},
+                new ButtonInfo { buttonText = "Primary Disconnect "+ytxt, method =() => Global.PrimDisc(), toolTip = "disconnects when primary pressed."},
                 new ButtonInfo { buttonText = "Night Mode", method =() => Main.NightTime(), isTogglable = false, toolTip = "Night time."},
                 new ButtonInfo { buttonText = "AntiReport", method =() => Safety.AntiReportDisconnect(), toolTip = "Disconnects when reports are attempted."},
                 new ButtonInfo { buttonText = "AntiModerator", method =() => Safety.AntiModerator(), toolTip = "Disconnects when a stick joins."},
@@ -34,7 +37,7 @@ namespace zedmenu.Menu
                 new ButtonInfo { buttonText = "Change Speed Boost Amount", overlapText = "Change Speed Boost Amount <color=grey>[</color><color=#96ffb2>Normal</color><color=grey>]</color>", method =() => Locomotion.ChangeSpeedBoostAmount(), isTogglable = false, toolTip = "Changes the speed of the speed boosts."},
                 new ButtonInfo { buttonText = "Change Fly Speed", overlapText = "Change Fly Speed <color=grey>[</color><color=#96ffb2>Normal</color><color=grey>]</color>", method =() => Locomotion.changefly(), isTogglable = false, toolTip = "Changes the speed of fly mods."},
                 new ButtonInfo { buttonText = "Change Visual Colors", overlapText = "Change Visual Colors <color=grey>[</color><color=#96ffb2>" + "Player Color" + "</color><color=grey>]</color>", method =() => Visuals.ChangeSpeedBoostAmount(), isTogglable = false, toolTip = "Changes draw size."},
-                new ButtonInfo { buttonText = "Change RPC Clear Speed", overlapText = "Change RPC Clear Speed <color=grey>[</color><color=#96ffb2>" + "30s" + "</color><color=grey>]</color>", method =() => Global.ChangeRPCSpeed(), isTogglable = false, toolTip = "Changes time until rpcs flush automatically."},
+                new ButtonInfo { buttonText = "Change RPC Clear Speed", overlapText = "Change RPC Clear Speed <color=grey>[</color><color=#96ffb2>" + "10s" + "</color><color=grey>]</color>", method =() => Global.ChangeRPCSpeed(), isTogglable = false, toolTip = "Changes time until rpcs flush automatically."},
                 new ButtonInfo { buttonText = "Auto Flush RPCs", method =() => Global.autorpc(), toolTip = "auto flush rpcs (report flush?)."},
                 new ButtonInfo { buttonText = "RPC Flush", method =() => Main.RPCProtection(), isTogglable = false, toolTip = "flush rpcs (report flush?)."},
             },
@@ -78,6 +81,8 @@ namespace zedmenu.Menu
                 new ButtonInfo { buttonText = "Rapid Slingshot "+atxt, method =() => Global.RapidFireSlingshot(), toolTip = "Rapidly fires slingshot."},
                 new ButtonInfo { buttonText = "Destroy Gun", method =() => Global.DestroyGun(), toolTip = "Makes invis to future players."},
                 new ButtonInfo { buttonText = "Copy ID Gun", method =() => Global.CopyIDGun(), toolTip = "Copies IDs."},
+                new ButtonInfo { buttonText = "Low Quality Microphone", enableMethod =() => Global.LowQualityMicrophone(), disableMethod =() => Global.HighQualityMicrophone(), toolTip = "Makes your microphone bad quality."},
+                new ButtonInfo { buttonText = "Funny Mic", enableMethod =() => Global.FunnyMic(), disableMethod =() => Global.UnFunnyMic(), toolTip = "loud = funny."},
                 new ButtonInfo { buttonText = "Disable Join Triggers", method =() => Global.DisableNetworkTriggers(), isTogglable = false, toolTip = "No leaving."},
                 new ButtonInfo { buttonText = "Enable Join Triggers", method =() => Global.EnableNetworkTriggers(), isTogglable = false, toolTip = "yes leaving."},
             },
@@ -150,15 +155,6 @@ namespace zedmenu.Menu
                 new ButtonInfo { buttonText = "Cum "+gtxt, method =() => Projectiles.cumm()},
                 new ButtonInfo { buttonText = "Spam impacts "+gtxt, method =() => Projectiles.imspam()},
                 new ButtonInfo { buttonText = "Random Sound Spam "+gtxt, method =() => HitSounds.rsp(), toolTip = "Constantly spams random hitsounds."},
-                new ButtonInfo { buttonText = "Reset Slingshot", method =() => Global.MakeSlingshotProj("SlingshotProjectile"), isTogglable = false, toolTip = "Sets Slingshot projectile back."},
-                new ButtonInfo { buttonText = "Set Slingshot to Snow", method =() => Global.MakeSlingshotProj("SnowballProjectile"), isTogglable = false, toolTip = "Sets Slingshot to Snowballs."},
-                new ButtonInfo { buttonText = "Set Slingshot to Balloons", method =() => Global.MakeSlingshotProj("WaterBalloonProjectile"), isTogglable = false, toolTip = "Sets Slingshot to Balloons."},
-                new ButtonInfo { buttonText = "Set Slingshot to Deadshot", method =() => Global.MakeSlingshotProj("HornsSlingshotProjectile_PrefabV"), isTogglable = false, toolTip = "Sets Slingshot to Snowballs."},
-                new ButtonInfo { buttonText = "Set Slingshot to Clouds", method =() => Global.MakeSlingshotProj("CloudSlingshot_Projectile"), isTogglable = false, toolTip = "Sets Slingshot to rainbow."},
-                new ButtonInfo { buttonText = "Set Slingshot to Cupid", method =() => Global.MakeSlingshotProj("CupidArrow_Projectile"), isTogglable = false, toolTip = "Sets Slingshot to Cupid."},
-                new ButtonInfo { buttonText = "Set Slingshot to Leaf", method =() => Global.MakeSlingshotProj("ElfBow_Projectile"), isTogglable = false, toolTip = "Sets Slingshot to Leaf."},
-                new ButtonInfo { buttonText = "Set Slingshot to Mentos", method =() => Global.MakeSlingshotProj("ScienceCandyProjectile Variant"), isTogglable = false, toolTip = "Sets Slingshot to mentos."},
-                new ButtonInfo { buttonText = "Set Slingshot to Ice", method =() => Global.MakeSlingshotProj("IceSlingshotProjectile_PrefabV Variant"), isTogglable = false, toolTip = "Sets Slingshot to Ice."},
             },
         };
         /*public static string[] fullProjectileNames = new string[]

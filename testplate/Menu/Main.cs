@@ -891,7 +891,7 @@ namespace zedmenu.Menu
         public static bool hasRemovedThisFrame = false;
         public static bool frameFixColliders = false;
         public static float buttonCooldown = 0f;
-        public static float rpclearcool = 30f;
+        public static float rpclearcool = 10f;
         public static float rpctime = 0f;
         public static bool noti = true;
         public static int pageButtonType = 1;
@@ -927,6 +927,8 @@ namespace zedmenu.Menu
         public static string ttxt = "<color=grey>[</color><color=#96ffb2>T</color><color=grey>]</color>";
         public static string atxt = "<color=grey>[</color><color=#96ffb2>A</color><color=grey>]</color>";
         public static string btxt = "<color=grey>[</color><color=#96ffb2>B</color><color=grey>]</color>";
+        public static string ytxt = "<color=grey>[</color><color=#96ffb2>Y</color><color=grey>]</color>";
+        public static string xtxt = "<color=grey>[</color><color=#96ffb2>X</color><color=grey>]</color>";
         public static string detxt = "<color=grey>[</color><color=#ff3232>D</color><color=grey>]</color>";
         public static string qdetxt = "<color=grey>[</color><color=#ff3232>D?</color><color=grey>]</color>";
 
