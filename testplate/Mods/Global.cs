@@ -16,6 +16,7 @@ using zedmenu.Classes;
 using UnityEngine.UIElements;
 using Photon.Voice.Unity.UtilityScripts;
 using POpusCodec.Enums;
+using OVR.OpenVR;
 
 namespace zedmenu.Mods
 {
@@ -24,6 +25,7 @@ namespace zedmenu.Mods
         public static void ReturnHome()
         {
             buttonsType = 0;
+            pageNumber = 0;
         }
 
         public static void autorpc()
@@ -133,89 +135,6 @@ namespace zedmenu.Mods
             GameObject.Find("Environment Objects/TriggerZones_Prefab/JoinRoomTriggers_Prefab").SetActive(true);
         }
 
-        public static void ssdisabletest()
-        {
-            if (!IsModded())
-            {
-                if (!GetIndex("Disable Auto Anti Ban").enabled)
-                {
-                    AntiBan();
-                }
-            }
-            else
-            {
-                Hashtable hashtable = new Hashtable();
-                hashtable.Add("gameMode", "forestcitybasementcanyonsmountainsbeachskycaves" + PhotonNetwork.CurrentRoom.CustomProperties["gameMode"].ToString());
-                PhotonNetwork.CurrentRoom.SetCustomProperties(hashtable, null, null);
-            }
-        }
-        public static void InfectionGamemode()
-        {
-            if (!IsModded())
-            {
-                
-                {
-                    AntiBan();
-                }
-            }
-            else
-            {
-                Hashtable hashtable = new Hashtable();
-                hashtable.Add("gameMode", "forestDEFAULTMODDED_MODDED_INFECTION");
-                PhotonNetwork.CurrentRoom.SetCustomProperties(hashtable, null, null);
-            }
-        }
-
-        public static void CasualGamemode()
-        {
-            if (!IsModded())
-            {
-                
-                {
-                    AntiBan();
-                }
-            }
-            else
-            {
-                Hashtable hashtable = new Hashtable();
-                hashtable.Add("gameMode", "forestDEFAULTMODDED_MODDED_CASUALCASUAL");
-                PhotonNetwork.CurrentRoom.SetCustomProperties(hashtable, null, null);
-            }
-        }
-
-        public static void HuntGamemode()
-        {
-            if (!IsModded())
-            {
-                
-                {
-                    AntiBan();
-                }
-            }
-            else
-            {
-                Hashtable hashtable = new Hashtable();
-                hashtable.Add("gameMode", "forestDEFAULTMODDED_MODDED_HUNTHUNT");
-                PhotonNetwork.CurrentRoom.SetCustomProperties(hashtable, null, null);
-            }
-        }
-
-        public static void BattleGamemode()
-        {
-            if (!IsModded())
-            {
-                
-                {
-                    AntiBan();
-                }
-            }
-            else
-            {
-                Hashtable hashtable = new Hashtable();
-                hashtable.Add("gameMode", "forestDEFAULTMODDED_MODDED_BATTLEPAINTBRAWL");
-                PhotonNetwork.CurrentRoom.SetCustomProperties(hashtable, null, null);
-            }
-        }
         public static void TrapModders()
         {
             if (IsModded() && PhotonNetwork.InRoom)
@@ -404,23 +323,42 @@ namespace zedmenu.Mods
                 }
             }
         }
-        public static void MakeSlingshotProj(string p)
-        {
-            if (rightPrimary)
-            {
-                GameObject slingy = GameObject.Find("Player Objects/Local VRRig/Local Gorilla Player/rig/body/shoulder.L/upper_arm.L/forearm.L/hand.L/palm.01.L/TransferrableItemLeftHand/Slingshot Anchor/Slingshot");
-                if (slingy != null)
-                {
-                    Slingshot yay = slingy.GetComponent<Slingshot>();
-                    yay.projectilePrefab.tag = p;
-                }
-            }
-        }
         public static void LowQualityMicrophone()
         {
             Photon.Voice.Unity.Recorder mic = GameObject.Find("Photon Manager").GetComponent<Photon.Voice.Unity.Recorder>();
             mic.SamplingRate = SamplingRate.Sampling08000;
             mic.Bitrate = 4;
+
+            mic.RestartRecording(true);
+        }
+        public static void FunnyMic()
+        {
+            Photon.Voice.Unity.Recorder mic = GameObject.Find("Photon Manager").GetComponent<Photon.Voice.Unity.Recorder>();
+
+            if (!mic.gameObject.GetComponent<MicAmplifier>())
+            {
+                mic.gameObject.AddComponent<MicAmplifier>();
+            }
+
+            MicAmplifier loudman = mic.gameObject.GetComponent<MicAmplifier>();
+            loudman.AmplificationFactor = 12;
+            loudman.BoostValue = 10;
+            mic.SamplingRate = SamplingRate.Sampling08000;
+            mic.Bitrate = 6;
+
+            mic.RestartRecording(true);
+        }
+
+        public static void UnFunnyMic()
+        {
+            Photon.Voice.Unity.Recorder mic = GameObject.Find("Photon Manager").GetComponent<Photon.Voice.Unity.Recorder>();
+
+            if (mic.gameObject.GetComponent<MicAmplifier>())
+            {
+                UnityEngine.Object.Destroy(mic.gameObject.GetComponent<MicAmplifier>());
+            }
+            mic.SamplingRate = SamplingRate.Sampling16000;
+            mic.Bitrate = 25000;
 
             mic.RestartRecording(true);
         }
