@@ -28,7 +28,7 @@ namespace zedmenu.Menu
                 //new ButtonInfo { buttonText = "Right Hand", enableMethod =() => SettingsMods.RightHand(), disableMethod =() => SettingsMods.LeftHand(), toolTip = "Puts the menu on your right hand."},
                 new ButtonInfo { buttonText = "Notifications", enableMethod =() => SettingsMods.EnableNotifications(), disableMethod =() => SettingsMods.DisableNotifications(), enabled = !disableNotifications, toolTip = "Toggles the notifications."},
                 new ButtonInfo { buttonText = "Disconnect Button", enableMethod =() => SettingsMods.EnableDisconnectButton(), disableMethod =() => SettingsMods.DisableDisconnectButton(), enabled = disconnectButton, toolTip = "Toggles the disconnect button."},
-                new ButtonInfo { buttonText = "Primary Disconnect "+ytxt, method =() => Global.PrimDisc(), toolTip = "disconnects when primary pressed."},
+                new ButtonInfo { buttonText = "Primary Disconnect "+ytxt, method =() => Global.PrimDisc(), toolTip = "disconnects when primary button on left pressed."},
                 new ButtonInfo { buttonText = "Night Mode", method =() => Main.NightTime(), isTogglable = false, toolTip = "Night time."},
                 new ButtonInfo { buttonText = "AntiReport", method =() => Safety.AntiReportDisconnect(), toolTip = "Disconnects when reports are attempted."},
                 new ButtonInfo { buttonText = "AntiModerator", method =() => Safety.AntiModerator(), toolTip = "Disconnects when a stick joins."},
