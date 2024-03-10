@@ -18,7 +18,7 @@ namespace zedmenu.Mods
                 if (IsRandom)
                 {
                     cooldown = Time.time;
-                    gorillaSurfaceOverride.overrideIndex = UnityEngine.Random.Range(0, 243);
+                    gorillaSurfaceOverride.overrideIndex = UnityEngine.Random.Range(0, 252);
                 }
             }
         }
@@ -30,7 +30,7 @@ namespace zedmenu.Mods
                 foreach (GorillaSurfaceOverride gorillaSurfaceOverride in Resources.FindObjectsOfTypeAll<GorillaSurfaceOverride>())
                 {
                     cooldown = Time.time;
-                    gorillaSurfaceOverride.overrideIndex = UnityEngine.Random.Range(0, 243);
+                    gorillaSurfaceOverride.overrideIndex = UnityEngine.Random.Range(0, 252);
                 }
             }
         }
@@ -54,7 +54,7 @@ namespace zedmenu.Mods
         public static void RPCHit(int index, bool ran = false)
         {
             if (ran)
-                index = UnityEngine.Random.Range(0, 231);
+                index = UnityEngine.Random.Range(0, 252);
             GorillaTagger.Instance.myVRRig.RPC("PlayHandTap", RpcTarget.All, new object[]{
                 index,
                 false,

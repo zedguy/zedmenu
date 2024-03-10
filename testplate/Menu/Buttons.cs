@@ -11,14 +11,14 @@ namespace zedmenu.Menu
         {
             new ButtonInfo[] { // Mod Categories
                 new ButtonInfo { buttonText = "Settings", method =() => SettingsMods.EnterSettings(), isTogglable = false, toolTip = "Opens the main settings page for the menu."},
-                new ButtonInfo { buttonText = "Movement", method =() => SettingsMods.MovementSettings(), isTogglable = false, toolTip = "Opens the movement mods for the menu."},
+                new ButtonInfo { buttonText = "Movement", method =() => SettingsMods.MovementSettings(), isTogglable = false, toolTip = "Opens the movement mods for t he menu."},
                 new ButtonInfo { buttonText = "VRRig", method =() => SettingsMods.MenuSettings(), isTogglable = false, toolTip = "Opens the rig mods for the menu."},
                 new ButtonInfo { buttonText = "Visuals", method =() => SettingsMods.visual(), isTogglable = false, toolTip = "Opens the visual mods for the menu."},
                 new ButtonInfo { buttonText = "Hitsounds", method =() => SettingsMods.HitSettings(), isTogglable = false, toolTip = "Opens the Hitsound mods for the menu."},
                 new ButtonInfo { buttonText = "Disguises", method =() => SettingsMods.Disguises(), isTogglable = false, toolTip = "Opens the disguises for the menu."},
+                new ButtonInfo { buttonText = "Projectiles", method =() => SettingsMods.bannable(), isTogglable = false, toolTip = "Opens the projectile mods for the menu."},
                 new ButtonInfo { buttonText = "Misc", method =() => SettingsMods.ProjectileSettings(), isTogglable = false, toolTip = "Opens the misc mods for the menu."},
                 new ButtonInfo { buttonText = "Credits", method =() => SettingsMods.Trolls(), isTogglable = false, toolTip = "Opens the credits for the menu."},
-                new ButtonInfo { buttonText = "Unstable", method =() => SettingsMods.bannable(), isTogglable = false, toolTip = "Opens the detected mods for the menu."},
             },
 
             new ButtonInfo[] { // Settings
@@ -80,18 +80,6 @@ namespace zedmenu.Menu
                 new ButtonInfo { buttonText = "Copy ID Gun", method =() => Global.CopyIDGun(), toolTip = "Copies IDs."},
                 new ButtonInfo { buttonText = "Disable Join Triggers", method =() => Global.DisableNetworkTriggers(), isTogglable = false, toolTip = "No leaving."},
                 new ButtonInfo { buttonText = "Enable Join Triggers", method =() => Global.EnableNetworkTriggers(), isTogglable = false, toolTip = "yes leaving."},
-                new ButtonInfo { buttonText = "Spam Snow "+gtxt, method =() => Projectiles.spam()},
-                new ButtonInfo { buttonText = "Spam Balloons "+gtxt, method =() => Projectiles.bspam()},
-                new ButtonInfo { buttonText = "Spam Presents "+gtxt, method =() => Projectiles.pspam()},
-                new ButtonInfo { buttonText = "Spam Mentos "+gtxt, method =() => Projectiles.mspam()},
-                new ButtonInfo { buttonText = "Spam Rocks "+gtxt, method =() => Projectiles.lspam()},
-                new ButtonInfo { buttonText = "Piss "+gtxt, method =() => Projectiles.pee()},
-                new ButtonInfo { buttonText = "Cum "+gtxt, method =() => Projectiles.cumm()},
-                new ButtonInfo { buttonText = "Give Snow Gun", method =() => Projectiles.GiveProj("Snowball"), toolTip = "gives spammer to selected player."},
-                new ButtonInfo { buttonText = "Give WaterBalloon Gun", method =() => Projectiles.GiveProj("WaterBalloon"), toolTip = "gives spammer to selected player."},
-                new ButtonInfo { buttonText = "Give Present Gun", method =() => Projectiles.GiveProj("ThrowableGift"), toolTip = "gives spammer to selected player."},
-                new ButtonInfo { buttonText = "Give Mentos Gun", method =() => Projectiles.GiveProj("ScienceCandy"), toolTip = "gives spammer to selected player."},
-                new ButtonInfo { buttonText = "Spam impacts "+gtxt, method =() => Projectiles.imspam()},
             },
 
             new ButtonInfo[] { // Hitsounds Mods
@@ -113,11 +101,11 @@ namespace zedmenu.Menu
                 new ButtonInfo { buttonText = "Set to WaterBalloon", method =() => HitSounds.SetHitsounds(204), isTogglable = false, toolTip = "Sets hitsounds to waterballoon."},
                 new ButtonInfo { buttonText = "Set to Presents", method =() => HitSounds.SetHitsounds(240), isTogglable = false, toolTip = "Sets hitsounds to Presents."},
                 new ButtonInfo { buttonText = "Set to Candy", method =() => HitSounds.SetHitsounds(249), isTogglable = false, toolTip = "Sets hitsounds to Presents."},
+                new ButtonInfo { buttonText = "Set to Fish Food", method =() => HitSounds.SetHitsounds(252), isTogglable = false, toolTip = "Sets hitsounds to food for fishies."},
                 new ButtonInfo { buttonText = "Set to Big Crystal", method =() => HitSounds.SetHitsounds(213), isTogglable = false, toolTip = "Sets hitsounds to Big Crystal."},
                 new ButtonInfo { buttonText = "Set to Ice", method =() => HitSounds.SetHitsounds(59), isTogglable = false, toolTip = "Sets hitsounds to slippery."},
                 new ButtonInfo { buttonText = "Randomize Hitsounds", method =() => HitSounds.SetHitsounds(0,true), isTogglable = false, toolTip = "Randomize hitsounds."},
                 new ButtonInfo { buttonText = "Toggle Random Sounds", method =() => HitSounds.randomize(), toolTip = "Constantly randomizes hitsounds."},
-                new ButtonInfo { buttonText = "Random Sound Spam "+gtxt, method =() => HitSounds.rsp(), toolTip = "Constantly spams random hitsounds."},
             },
 
             new ButtonInfo[] { // Disguises
@@ -137,6 +125,7 @@ namespace zedmenu.Menu
                 new ButtonInfo { buttonText = "<color=#e67c7c>Dudeman</color> - Some Ideas", isTogglable = false},
                 new ButtonInfo { buttonText = "<color=#c7eeff>You</color> - Actually using the menu", isTogglable = false},
             },
+
             new ButtonInfo[] { // Visual Mods
                 new ButtonInfo { buttonText = "Return to Main", method =() => Global.ReturnHome(), isTogglable = false, toolTip = "Returns to the main page of the menu."},
                 new ButtonInfo { buttonText = "Tracers", method =() => Visuals.Tracers(), toolTip = "Traces other players."},
@@ -145,16 +134,52 @@ namespace zedmenu.Menu
                 new ButtonInfo { buttonText = "Box ESP", method =() => Visuals.Box(), toolTip = "Box shaped ESP on other players."},
                 new ButtonInfo { buttonText = "Dot ESP", method =() => Visuals.Dot(), toolTip = "Dot shaped ESP on other players."},
             },
-            new ButtonInfo[] { // Unstable Mods
+
+            new ButtonInfo[] { // Spam Mods
                 new ButtonInfo { buttonText = "Return to Main", method =() => Global.ReturnHome(), isTogglable = false, toolTip = "Returns to the main page of the menu."},
-                new ButtonInfo { buttonText = "Anti Ban", overlapText = "Anti Ban "+qdetxt, method =() => Global.AntiBan(), toolTip = "no bans allowed kinda"},
-                new ButtonInfo { buttonText = "Set Master "+detxt, method =() => Global.FastMaster(), isTogglable = false},
-                new ButtonInfo { buttonText = "Infection Gamemode "+detxt, method =() => Global.InfectionGamemode(), isTogglable = false, toolTip = "Sets the gamemode to infection."},
-                new ButtonInfo { buttonText = "Casual Gamemode "+detxt, method =() => Global.CasualGamemode(), isTogglable = false, toolTip = "Sets the gamemode to casual."},
-                new ButtonInfo { buttonText = "Hunt Gamemode "+detxt, method =() => Global.HuntGamemode(), isTogglable = false, toolTip = "Sets the gamemode to hunt."},
-                new ButtonInfo { buttonText = "Battle Gamemode "+detxt, method =() => Global.BattleGamemode(), isTogglable = false, toolTip = "Sets the gamemode to battle."},
-                new ButtonInfo { buttonText = "SS Disable Triggers "+detxt, method =() => Global.ssdisabletest(), isTogglable = false, toolTip = "No leaving for everyone."},
+                new ButtonInfo { buttonText = "Spam Snow "+gtxt, method =() => Projectiles.spam()},
+                new ButtonInfo { buttonText = "Spam Balloons "+gtxt, method =() => Projectiles.bspam()},
+                new ButtonInfo { buttonText = "Spam Presents "+gtxt, method =() => Projectiles.pspam()},
+                new ButtonInfo { buttonText = "Spam Mentos "+gtxt, method =() => Projectiles.mspam()},
+                new ButtonInfo { buttonText = "Spam Rocks "+gtxt, method =() => Projectiles.lspam()},
+                new ButtonInfo { buttonText = "Give Snow Gun", method =() => Projectiles.GiveProj("Snowball"), toolTip = "gives spammer to selected player."},
+                new ButtonInfo { buttonText = "Give WaterBalloon Gun", method =() => Projectiles.GiveProj("WaterBalloon"), toolTip = "gives spammer to selected player."},
+                new ButtonInfo { buttonText = "Give Present Gun", method =() => Projectiles.GiveProj("ThrowableGift"), toolTip = "gives spammer to selected player."},
+                new ButtonInfo { buttonText = "Give Mentos Gun", method =() => Projectiles.GiveProj("ScienceCandy"), toolTip = "gives spammer to selected player."},
+                new ButtonInfo { buttonText = "Piss "+gtxt, method =() => Projectiles.pee()},
+                new ButtonInfo { buttonText = "Cum "+gtxt, method =() => Projectiles.cumm()},
+                new ButtonInfo { buttonText = "Spam impacts "+gtxt, method =() => Projectiles.imspam()},
+                new ButtonInfo { buttonText = "Random Sound Spam "+gtxt, method =() => HitSounds.rsp(), toolTip = "Constantly spams random hitsounds."},
+                new ButtonInfo { buttonText = "Reset Slingshot", method =() => Global.MakeSlingshotProj("SlingshotProjectile"), isTogglable = false, toolTip = "Sets Slingshot projectile back."},
+                new ButtonInfo { buttonText = "Set Slingshot to Snow", method =() => Global.MakeSlingshotProj("SnowballProjectile"), isTogglable = false, toolTip = "Sets Slingshot to Snowballs."},
+                new ButtonInfo { buttonText = "Set Slingshot to Balloons", method =() => Global.MakeSlingshotProj("WaterBalloonProjectile"), isTogglable = false, toolTip = "Sets Slingshot to Balloons."},
+                new ButtonInfo { buttonText = "Set Slingshot to Deadshot", method =() => Global.MakeSlingshotProj("HornsSlingshotProjectile_PrefabV"), isTogglable = false, toolTip = "Sets Slingshot to Snowballs."},
+                new ButtonInfo { buttonText = "Set Slingshot to Clouds", method =() => Global.MakeSlingshotProj("CloudSlingshot_Projectile"), isTogglable = false, toolTip = "Sets Slingshot to rainbow."},
+                new ButtonInfo { buttonText = "Set Slingshot to Cupid", method =() => Global.MakeSlingshotProj("CupidArrow_Projectile"), isTogglable = false, toolTip = "Sets Slingshot to Cupid."},
+                new ButtonInfo { buttonText = "Set Slingshot to Leaf", method =() => Global.MakeSlingshotProj("ElfBow_Projectile"), isTogglable = false, toolTip = "Sets Slingshot to Leaf."},
+                new ButtonInfo { buttonText = "Set Slingshot to Mentos", method =() => Global.MakeSlingshotProj("ScienceCandyProjectile Variant"), isTogglable = false, toolTip = "Sets Slingshot to mentos."},
+                new ButtonInfo { buttonText = "Set Slingshot to Ice", method =() => Global.MakeSlingshotProj("IceSlingshotProjectile_PrefabV Variant"), isTogglable = false, toolTip = "Sets Slingshot to Ice."},
             },
         };
+        /*public static string[] fullProjectileNames = new string[]
+        {
+            "SlingshotProjectile",
+            "SnowballProjectile",
+            "WaterBalloonProjectile",
+            "LavaRockProjectile",
+            "HornsSlingshotProjectile_PrefabV",
+            "CloudSlingshot_Projectile",
+            "CupidArrow_Projectile",
+            "IceSlingshotProjectile_PrefabV Variant",
+            "ElfBow_Projectile",
+            "MoltenRockSlingshot_Projectile",
+            "SpiderBowProjectile Variant",
+            "BucketGift_Cane_Projectile Variant",
+            "BucketGift_Coal_Projectile Variant",
+            "BucketGift_Roll_Projectile Variant",
+            "BucketGift_Round_Projectile Variant",
+            "BucketGift_Square_Projectile Variant",
+            "ScienceCandyProjectile Variant"
+        };*/
     }
 }

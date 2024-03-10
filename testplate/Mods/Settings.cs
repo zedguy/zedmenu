@@ -24,14 +24,17 @@ namespace zedmenu.Mods
         {
             buttonsType = 4;
         }
+
         public static void HitSettings()
         {
             buttonsType = 5;
         }
+
         public static void Disguises()
         {
             buttonsType = 6;
         }
+
         public static void Trolls()
         {
             buttonsType = 7;
@@ -40,6 +43,7 @@ namespace zedmenu.Mods
         {
             buttonsType = 8;
         }
+
         public static void bannable()
         {
             buttonsType = 9;

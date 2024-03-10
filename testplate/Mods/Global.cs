@@ -14,6 +14,8 @@ using zedmenu.Notifications;
 using GorillaTag;
 using zedmenu.Classes;
 using UnityEngine.UIElements;
+using Photon.Voice.Unity.UtilityScripts;
+using POpusCodec.Enums;
 
 namespace zedmenu.Mods
 {
@@ -397,10 +399,46 @@ namespace zedmenu.Mods
                     System.Type type = yay.GetType();
                     FieldInfo fieldInfo = type.GetField("minTimeToLaunch", BindingFlags.NonPublic | BindingFlags.Instance);
                     fieldInfo.SetValue(yay, -1f);
-                    ControllerInputPoller.instance.rightControllerIndexFloat = lastSlingThing ? 1f : 0f;
+                    GameObject.Find("Player Objects/Player VR Controller/GorillaPlayer/EquipmentInteractor").GetComponent<EquipmentInteractor>().ReleaseRightHand();
                     lastSlingThing = !lastSlingThing;
                 }
             }
+        }
+        public static void MakeSlingshotProj(string p)
+        {
+            if (rightPrimary)
+            {
+                GameObject slingy = GameObject.Find("Player Objects/Local VRRig/Local Gorilla Player/rig/body/shoulder.L/upper_arm.L/forearm.L/hand.L/palm.01.L/TransferrableItemLeftHand/Slingshot Anchor/Slingshot");
+                if (slingy != null)
+                {
+                    Slingshot yay = slingy.GetComponent<Slingshot>();
+                    yay.projectilePrefab.tag = p;
+                }
+            }
+        }
+        public static void LowQualityMicrophone()
+        {
+            Photon.Voice.Unity.Recorder mic = GameObject.Find("Photon Manager").GetComponent<Photon.Voice.Unity.Recorder>();
+            mic.SamplingRate = SamplingRate.Sampling08000;
+            mic.Bitrate = 4;
+
+            mic.RestartRecording(true);
+        }
+
+        public static void HighQualityMicrophone()
+        {
+            Photon.Voice.Unity.Recorder mic = GameObject.Find("Photon Manager").GetComponent<Photon.Voice.Unity.Recorder>();
+            mic.SamplingRate = SamplingRate.Sampling16000;
+            mic.Bitrate = 25000;
+
+            mic.RestartRecording(true);
+        }
+
+
+        public static void ReloadMicrophone()
+        {
+            Photon.Voice.Unity.Recorder mic = GameObject.Find("Photon Manager").GetComponent<Photon.Voice.Unity.Recorder>();
+            mic.RestartRecording(true);
         }
         public static void PrimDisc()
         {
