@@ -81,8 +81,6 @@ namespace zedmenu.Menu
                 new ButtonInfo { buttonText = "Rapid Slingshot "+atxt, method =() => Global.RapidFireSlingshot(), toolTip = "Rapidly fires slingshot."},
                 new ButtonInfo { buttonText = "Destroy Gun", method =() => Global.DestroyGun(), toolTip = "Makes invis to future players."},
                 new ButtonInfo { buttonText = "Copy ID Gun", method =() => Global.CopyIDGun(), toolTip = "Copies IDs."},
-                new ButtonInfo { buttonText = "Low Quality Microphone", enableMethod =() => Global.LowQualityMicrophone(), disableMethod =() => Global.HighQualityMicrophone(), toolTip = "Makes your microphone bad quality."},
-                new ButtonInfo { buttonText = "Funny Mic", enableMethod =() => Global.FunnyMic(), disableMethod =() => Global.UnFunnyMic(), toolTip = "loud = funny."},
                 new ButtonInfo { buttonText = "Disable Join Triggers", method =() => Global.DisableNetworkTriggers(), isTogglable = false, toolTip = "No leaving."},
                 new ButtonInfo { buttonText = "Enable Join Triggers", method =() => Global.EnableNetworkTriggers(), isTogglable = false, toolTip = "yes leaving."},
             },
