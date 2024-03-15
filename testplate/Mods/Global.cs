@@ -323,60 +323,14 @@ namespace zedmenu.Mods
                 }
             }
         }
-        public static void LowQualityMicrophone()
+        public static void LucyTest()
         {
-            Photon.Voice.Unity.Recorder mic = GameObject.Find("Photon Manager").GetComponent<Photon.Voice.Unity.Recorder>();
-            mic.SamplingRate = SamplingRate.Sampling08000;
-            mic.Bitrate = 4;
+            GameObject.Find("Environment Objects/PersistentObjects_Prefab/Halloween Ghost").SetActive(true);
+            GameObject.Find("Environment Objects/PersistentObjects_Prefab/Halloween Ghost/FloatingChaseSkeleton").GetComponent<HalloweenGhostChaser>().photonView.ControllerActorNr = PhotonNetwork.LocalPlayer.ActorNumber;
+            GameObject.Find("Environment Objects/PersistentObjects_Prefab/Halloween Ghost/FloatingChaseSkeleton").GetComponent<HalloweenGhostChaser>().photonView.OwnerActorNr = PhotonNetwork.LocalPlayer.ActorNumber;
+            GameObject.Find("Environment Objects/PersistentObjects_Prefab/Halloween Ghost/FloatingChaseSkeleton").GetComponent<HalloweenGhostChaser>().currentState = HalloweenGhostChaser.ChaseState.Gong;
+            GameObject.Find("Environment Objects/PersistentObjects_Prefab/Halloween Ghost/FloatingChaseSkeleton").GetComponent<HalloweenGhostChaser>().UpdateState();
 
-            mic.RestartRecording(true);
-        }
-        public static void FunnyMic()
-        {
-            Photon.Voice.Unity.Recorder mic = GameObject.Find("Photon Manager").GetComponent<Photon.Voice.Unity.Recorder>();
-
-            if (!mic.gameObject.GetComponent<MicAmplifier>())
-            {
-                mic.gameObject.AddComponent<MicAmplifier>();
-            }
-
-            MicAmplifier loudman = mic.gameObject.GetComponent<MicAmplifier>();
-            loudman.AmplificationFactor = 12;
-            loudman.BoostValue = 10;
-            mic.SamplingRate = SamplingRate.Sampling08000;
-            mic.Bitrate = 6;
-
-            mic.RestartRecording(true);
-        }
-
-        public static void UnFunnyMic()
-        {
-            Photon.Voice.Unity.Recorder mic = GameObject.Find("Photon Manager").GetComponent<Photon.Voice.Unity.Recorder>();
-
-            if (mic.gameObject.GetComponent<MicAmplifier>())
-            {
-                UnityEngine.Object.Destroy(mic.gameObject.GetComponent<MicAmplifier>());
-            }
-            mic.SamplingRate = SamplingRate.Sampling16000;
-            mic.Bitrate = 25000;
-
-            mic.RestartRecording(true);
-        }
-
-        public static void HighQualityMicrophone()
-        {
-            Photon.Voice.Unity.Recorder mic = GameObject.Find("Photon Manager").GetComponent<Photon.Voice.Unity.Recorder>();
-            mic.SamplingRate = SamplingRate.Sampling16000;
-            mic.Bitrate = 25000;
-
-            mic.RestartRecording(true);
-        }
-
-
-        public static void ReloadMicrophone()
-        {
-            Photon.Voice.Unity.Recorder mic = GameObject.Find("Photon Manager").GetComponent<Photon.Voice.Unity.Recorder>();
-            mic.RestartRecording(true);
         }
         public static void PrimDisc()
         {

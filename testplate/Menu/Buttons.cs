@@ -31,7 +31,6 @@ namespace zedmenu.Menu
                 new ButtonInfo { buttonText = "Primary Disconnect "+ytxt, method =() => Global.PrimDisc(), toolTip = "disconnects when primary button on left pressed."},
                 new ButtonInfo { buttonText = "Night Mode", method =() => Main.NightTime(), isTogglable = false, toolTip = "Night time."},
                 new ButtonInfo { buttonText = "AntiReport", method =() => Safety.AntiReportDisconnect(), toolTip = "Disconnects when reports are attempted."},
-                new ButtonInfo { buttonText = "AntiModerator", method =() => Safety.AntiModerator(), toolTip = "Disconnects when a stick joins."},
                 new ButtonInfo { buttonText = "Change Platform Mode", overlapText = "Change Platform Mode <color=grey>[</color><color=#96ffb2>Round Classic</color><color=grey>]</color>", method =() => Locomotion.platsize(), isTogglable = false, toolTip = "Changes platform type."},
                 new ButtonInfo { buttonText = "Change Draw Size", method =() => Locomotion.drawsize(), isTogglable = false, toolTip = "Changes draw size."},
                 new ButtonInfo { buttonText = "Change Speed Boost Amount", overlapText = "Change Speed Boost Amount <color=grey>[</color><color=#96ffb2>Normal</color><color=grey>]</color>", method =() => Locomotion.ChangeSpeedBoostAmount(), isTogglable = false, toolTip = "Changes the speed of the speed boosts."},
@@ -83,6 +82,7 @@ namespace zedmenu.Menu
                 new ButtonInfo { buttonText = "Copy ID Gun", method =() => Global.CopyIDGun(), toolTip = "Copies IDs."},
                 new ButtonInfo { buttonText = "Disable Join Triggers", method =() => Global.DisableNetworkTriggers(), isTogglable = false, toolTip = "No leaving."},
                 new ButtonInfo { buttonText = "Enable Join Triggers", method =() => Global.EnableNetworkTriggers(), isTogglable = false, toolTip = "yes leaving."},
+                new ButtonInfo { buttonText = "Lucy Test", method =() => Global.LucyTest(), isTogglable = false},
             },
 
             new ButtonInfo[] { // Hitsounds Mods

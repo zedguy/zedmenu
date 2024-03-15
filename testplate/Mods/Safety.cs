@@ -191,68 +191,6 @@ namespace zedmenu.Mods
             catch { } // Not connected
         }
 
-        public static void AntiModerator()
-        {
-            foreach (VRRig vrrig in GorillaParent.instance.vrrigs)
-            {
-                if (!vrrig.isOfflineVRRig && vrrig.concatStringOfCosmeticsAllowed.Contains("LBAAK"))
-                {
-                    try
-                    {
-                        VRRig plr = vrrig;
-                        Photon.Realtime.Player player = GetPlayerFromVRRig(plr);
-                        if (player != null)
-                        {
-                            string text = "Room: " + PhotonNetwork.CurrentRoom.Name;
-                            float r = 0f;
-                            float g = 0f;
-                            float b = 0f;
-                            try
-                            {
-
-                                r = plr.playerColor.r * 255;
-                                g = plr.playerColor.r * 255;
-                                b = plr.playerColor.r * 255;
-                            }
-                            catch { UnityEngine.Debug.Log("Failed to log colors, rig most likely nonexistent"); }
-
-                            try
-                            {
-                                text += "\n====================================\n";
-                                text += string.Concat(new string[]
-                                {
-                                    "Player Name: \"",
-                                    player.NickName,
-                                    "\", Player ID: \"",
-                                    player.UserId,
-                                    "\", Player Color: (R: ",
-                                    r.ToString(),
-                                    ", G: ",
-                                    g.ToString(),
-                                    ", B: ",
-                                    b.ToString(),
-                                    ")"
-                                });
-                            }
-                            catch { UnityEngine.Debug.Log("Failed to log player"); }
-
-                            text += "\n====================================\n";
-                            text += "Text file generated with ii's Stupid Menu";
-                            string fileName = "iisStupidMenu/" + player.NickName + " - Anti Moderator.txt";
-                            if (!Directory.Exists("iisStupidMenu"))
-                            {
-                                Directory.CreateDirectory("iisStupidMenu");
-                            }
-                            File.WriteAllText(fileName, text);
-                        }
-                    }
-                    catch { }
-                    PhotonNetwork.Disconnect();
-                    NotifiLib.SendNotification("<color=grey>[</color><color=purple>ANTI-REPORT</color><color=grey>]</color> <color=white>There was a moderator in your lobby, you have been disconnected. Their Player ID and Room Code have been saved to a file.</color>");
-                }
-            }
-        }
-
         public static void EnableACReportSelf()
         {
             AntiCheatSelf = true;
